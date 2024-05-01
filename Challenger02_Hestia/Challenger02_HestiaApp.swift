@@ -1,14 +1,14 @@
 //
-//  Challenger02_HestiaApp.swift
-//  Challenger02_Hestia
+//  Challenge2App.swift
+//  Challenge2
 //
-//  Created by Willys Oliveira on 30/04/24.
+//  Created by Guilherme Avila on 26/04/24.
 //
 
 import SwiftUI
 
 @main
-struct Challenger02_HestiaApp: App {
+struct Challenge2App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

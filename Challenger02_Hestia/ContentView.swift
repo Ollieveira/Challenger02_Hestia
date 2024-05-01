@@ -1,24 +1,18 @@
-//
-//  ContentView.swift
-//  Challenger02_Hestia
-//
-//  Created by Willys Oliveira on 30/04/24.
-//
-
 import SwiftUI
+import SpriteKit
 
 struct ContentView: View {
+    @State private var routerState: Int = 1
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack{
+            switch(routerState){
+            case(1):
+                MealsListView()
+            default: Text("Wow")
+            }
         }
-        .padding()
+        
     }
-}
-
-#Preview {
-    ContentView()
 }
