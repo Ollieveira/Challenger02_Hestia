@@ -15,3 +15,7 @@ struct Challenge2App: App {
         }
     }
 }
+
+#Preview {
+    ContentView()
+}

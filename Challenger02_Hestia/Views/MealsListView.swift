@@ -2,12 +2,14 @@ import SwiftUI
 import Combine
 
 struct MealsListView: View {
+    @Binding var routerState:Int
+    @Binding var chosenMeal: Meal?
+    
     @StateObject var viewModel = MealViewModel()
     @State private var searchTimer: Timer?
     let alphabet = Array("abcdefghijklmnopqrstuvwxyz")
     
     var body: some View {
-        NavigationView {
             VStack {
                 Picker("Search Type", selection: $viewModel.searchType) {
                     Text("Name").tag(MealViewModel.SearchType.name)
@@ -23,10 +25,10 @@ struct MealsListView: View {
                     if viewModel.searchType == .name {
                         TextField("Type here to search meals", text: $viewModel.searchQuery)
                             .onChange(of: viewModel.searchQuery) { newValue, _ in
-                                debounceSearch(query: newValue)
+                                debounceSearch(query: viewModel.searchQuery)
                             }
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
+                            .padding(20)
                     } else if viewModel.searchType == .letter{
                         Picker("Select a letter", selection: $viewModel.searchQuery) {
                             ForEach(alphabet, id: \.self) { letter in
@@ -40,19 +42,20 @@ struct MealsListView: View {
                                 await viewModel.performSearch(query: viewModel.searchQuery)
                             }
                         }) {
-                           RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+                           RoundedRectangle(cornerRadius: 25.0)
                                 .frame(width:20, height: 20)
                         }
                     }
                     List(viewModel.meals, id: \.id) { meal in
-                        NavigationLink(destination: MealDetailView(meal: meal)) {
-                            MealRow(meal: meal)
+                        Button(action: {
+                            chosenMeal = meal
+                            routerState = 2
+                        }) {
+                            MealRow(meal:meal)
                         }
                     }
 
                 }
-            }
-            .navigationTitle("Meal Search")
         }
     }
     
@@ -65,10 +68,4 @@ struct MealsListView: View {
             }
         }
     
-}
-
-struct MealsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MealsListView()
-    }
 }
