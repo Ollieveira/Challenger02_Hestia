@@ -1,6 +1,6 @@
 import Foundation
 
-struct Meal: Identifiable, Codable {
+struct Meal: Identifiable, Codable, Equatable {
     var id: String { idMeal }
     let idMeal: String
     let strMeal: String

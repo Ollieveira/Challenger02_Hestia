@@ -187,6 +187,10 @@ class SpeechToText: ObservableObject {
             let word = extractLastWord(from: message.lowercased())
             words.append(word)
             currentWord = word
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.currentWord = ""
+            }
         }
     }
     

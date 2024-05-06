@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6FF14DB42BE16F760004D52C /* Challenger02_HestiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF14DB32BE16F760004D52C /* Challenger02_HestiaApp.swift */; };
-		6FF14DB62BE16F760004D52C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF14DB52BE16F760004D52C /* ContentView.swift */; };
 		6FF14DB82BE16F770004D52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DB72BE16F770004D52C /* Assets.xcassets */; };
 		6FF14DBB2BE16F770004D52C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DBA2BE16F770004D52C /* Preview Assets.xcassets */; };
+		6FF1E13F2BE549B300A4B14E /* RouterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E13E2BE549B300A4B14E /* RouterViews.swift */; };
+		6FF1E15C2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E15B2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift */; };
+		6FF1E15E2BE57CCD00A4B14E /* ButtonStyleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E15D2BE57CCD00A4B14E /* ButtonStyleMenuView.swift */; };
+		6FF1E1602BE57E0000A4B14E /* TheTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E15F2BE57E0000A4B14E /* TheTabView.swift */; };
 		993DD3D92BE416500007EEEE /* SpeechToTextClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993DD3D82BE416500007EEEE /* SpeechToTextClass.swift */; };
 		993DD3DB2BE4166F0007EEEE /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993DD3DA2BE4166F0007EEEE /* SpeechView.swift */; };
 		9964D9C32BE2A9B8008CE95B /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964D9C22BE2A9B8008CE95B /* MealModel.swift */; };
@@ -27,9 +30,12 @@
 /* Begin PBXFileReference section */
 		6FF14DB02BE16F760004D52C /* Challenger02_Hestia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challenger02_Hestia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF14DB32BE16F760004D52C /* Challenger02_HestiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenger02_HestiaApp.swift; sourceTree = "<group>"; };
-		6FF14DB52BE16F760004D52C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6FF14DB72BE16F770004D52C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FF14DBA2BE16F770004D52C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6FF1E13E2BE549B300A4B14E /* RouterViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViews.swift; sourceTree = "<group>"; };
+		6FF1E15B2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryThingTogetherMenuView.swift; sourceTree = "<group>"; };
+		6FF1E15D2BE57CCD00A4B14E /* ButtonStyleMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleMenuView.swift; sourceTree = "<group>"; };
+		6FF1E15F2BE57E0000A4B14E /* TheTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheTabView.swift; sourceTree = "<group>"; };
 		993DD3D82BE416500007EEEE /* SpeechToTextClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextClass.swift; sourceTree = "<group>"; };
 		993DD3DA2BE4166F0007EEEE /* SpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
 		9964D9C22BE2A9B8008CE95B /* MealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModel.swift; sourceTree = "<group>"; };
@@ -73,12 +79,12 @@
 		6FF14DB22BE16F760004D52C /* Challenger02_Hestia */ = {
 			isa = PBXGroup;
 			children = (
+				6FF14DB32BE16F760004D52C /* Challenger02_HestiaApp.swift */,
+				6FF1E15A2BE57B6600A4B14E /* Menu */,
 				993DD3D72BE414D60007EEEE /* Speech */,
 				9964D9C12BE2A9AC008CE95B /* Models */,
 				9964D9C02BE2A9A1008CE95B /* Services */,
 				9964D9BF2BE2A995008CE95B /* Views */,
-				6FF14DB32BE16F760004D52C /* Challenger02_HestiaApp.swift */,
-				6FF14DB52BE16F760004D52C /* ContentView.swift */,
 				6FF14DB72BE16F770004D52C /* Assets.xcassets */,
 				6FF14DB92BE16F770004D52C /* Preview Content */,
 			);
@@ -91,6 +97,15 @@
 				6FF14DBA2BE16F770004D52C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6FF1E15A2BE57B6600A4B14E /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				6FF1E15B2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift */,
+				6FF1E15D2BE57CCD00A4B14E /* ButtonStyleMenuView.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		993DD3D72BE414D60007EEEE /* Speech */ = {
@@ -109,6 +124,7 @@
 				9964D9CE2BE2AA60008CE95B /* MealDetailView.swift */,
 				9964D9D02BE2AA6E008CE95B /* MealRowItem.swift */,
 				9964D9D22BE2AA80008CE95B /* CategoriesListView.swift */,
+				6FF1E15F2BE57E0000A4B14E /* TheTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				9964D9CA2BE2AA34008CE95B /* WebService.swift */,
+				6FF1E13E2BE549B300A4B14E /* RouterViews.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -204,7 +221,7 @@
 			files = (
 				993DD3D92BE416500007EEEE /* SpeechToTextClass.swift in Sources */,
 				9964D9CF2BE2AA60008CE95B /* MealDetailView.swift in Sources */,
-				6FF14DB62BE16F760004D52C /* ContentView.swift in Sources */,
+				6FF1E15C2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift in Sources */,
 				9964D9C52BE2A9CB008CE95B /* MealViewModel.swift in Sources */,
 				9964D9CB2BE2AA34008CE95B /* WebService.swift in Sources */,
 				993DD3DB2BE4166F0007EEEE /* SpeechView.swift in Sources */,
@@ -213,8 +230,11 @@
 				9964D9C72BE2A9EB008CE95B /* CategoryModel.swift in Sources */,
 				9964D9C92BE2A9FB008CE95B /* CategoryViewModel.swift in Sources */,
 				6FF14DB42BE16F760004D52C /* Challenger02_HestiaApp.swift in Sources */,
+				6FF1E13F2BE549B300A4B14E /* RouterViews.swift in Sources */,
 				9964D9CD2BE2AA49008CE95B /* MealsListView.swift in Sources */,
 				9964D9D32BE2AA80008CE95B /* CategoriesListView.swift in Sources */,
+				6FF1E1602BE57E0000A4B14E /* TheTabView.swift in Sources */,
+				6FF1E15E2BE57CCD00A4B14E /* ButtonStyleMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
