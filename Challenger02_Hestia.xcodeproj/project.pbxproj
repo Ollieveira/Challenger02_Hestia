@@ -14,6 +14,7 @@
 		6FF1E15C2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E15B2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift */; };
 		6FF1E15E2BE57CCD00A4B14E /* ButtonStyleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E15D2BE57CCD00A4B14E /* ButtonStyleMenuView.swift */; };
 		6FF1E1602BE57E0000A4B14E /* TheTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E15F2BE57E0000A4B14E /* TheTabView.swift */; };
+		6FFC187D2BE9C3860015C6B3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 6FFC187C2BE9C3860015C6B3 /* WaterfallGrid */; };
 		993DD3D92BE416500007EEEE /* SpeechToTextClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993DD3D82BE416500007EEEE /* SpeechToTextClass.swift */; };
 		993DD3DB2BE4166F0007EEEE /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993DD3DA2BE4166F0007EEEE /* SpeechView.swift */; };
 		9964D9C32BE2A9B8008CE95B /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964D9C22BE2A9B8008CE95B /* MealModel.swift */; };
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FFC187D2BE9C3860015C6B3 /* WaterfallGrid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +167,9 @@
 			dependencies = (
 			);
 			name = Challenger02_Hestia;
+			packageProductDependencies = (
+				6FFC187C2BE9C3860015C6B3 /* WaterfallGrid */,
+			);
 			productName = Challenger02_Hestia;
 			productReference = 6FF14DB02BE16F760004D52C /* Challenger02_Hestia.app */;
 			productType = "com.apple.product-type.application";
@@ -193,6 +198,9 @@
 				Base,
 			);
 			mainGroup = 6FF14DA72BE16F760004D52C;
+			packageReferences = (
+				6FFC187B2BE9C3860015C6B3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
+			);
 			productRefGroup = 6FF14DB12BE16F760004D52C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -371,6 +379,7 @@
 				DEVELOPMENT_TEAM = 67AYPRFZH8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Hestia;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Aceite para liberar o microfone";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -383,7 +392,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = AppleAcademy;
+				PRODUCT_BUNDLE_IDENTIFIER = Challenge02Hestia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -402,6 +411,7 @@
 				DEVELOPMENT_TEAM = 67AYPRFZH8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Hestia;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Aceite para liberar o microfone";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -414,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = AppleAcademy;
+				PRODUCT_BUNDLE_IDENTIFIER = Challenge02Hestia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -444,6 +454,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6FFC187B2BE9C3860015C6B3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6FFC187C2BE9C3860015C6B3 /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FFC187B2BE9C3860015C6B3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6FF14DA82BE16F760004D52C /* Project object */;
 }

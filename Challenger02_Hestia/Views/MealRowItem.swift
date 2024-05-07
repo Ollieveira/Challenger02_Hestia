@@ -16,7 +16,7 @@ struct MealRow: View {
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: UIScreen.main.bounds.width * 0.4, height: dynamicHeight)
+            .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
             .cornerRadius(10)
             .overlay(
                 VStack(alignment: .leading) {
@@ -28,6 +28,7 @@ struct MealRow: View {
                         Text(meal.strCategory)
                             .font(.subheadline)
                             .foregroundStyle(.white)
+                        Text(indexInGrid.description)
                         Spacer()
                     }
                     .padding(5)
@@ -37,7 +38,7 @@ struct MealRow: View {
                 .clipped()  // Ensure that the overlay does not exceed the bounds of the rounded corners
             )
         }
-        .frame(width: UIScreen.main.bounds.width * 0.4, height: dynamicHeight)
+        .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
     }
     
     private func calculateHeight(isOdd: Bool, isLeftColumn: Bool) -> CGFloat {
