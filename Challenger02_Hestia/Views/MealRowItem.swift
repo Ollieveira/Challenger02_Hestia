@@ -42,7 +42,7 @@ struct MealRow: View {
     }
     
     private func calculateHeight(isOdd: Bool, isLeftColumn: Bool) -> CGFloat {
-        if (isLeftColumn && isOdd) || (!isLeftColumn && !isOdd) {
+        if (isLeftColumn && isOdd) || (!isLeftColumn && !isOdd){
             return UIScreen.main.bounds.height * 0.25 // Larger size for odd items in left column or even items in right column
         } else {
             return UIScreen.main.bounds.height * 0.20
