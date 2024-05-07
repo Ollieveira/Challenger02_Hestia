@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F6354B52BEAAA1600CFB729 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 6F6354B42BEAAA1600CFB729 /* WaterfallGrid */; };
 		6FF14DB42BE16F760004D52C /* Challenger02_HestiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF14DB32BE16F760004D52C /* Challenger02_HestiaApp.swift */; };
 		6FF14DB82BE16F770004D52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DB72BE16F770004D52C /* Assets.xcassets */; };
 		6FF14DBB2BE16F770004D52C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DBA2BE16F770004D52C /* Preview Assets.xcassets */; };
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F6354B52BEAAA1600CFB729 /* WaterfallGrid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +168,7 @@
 			);
 			name = Challenger02_Hestia;
 			packageProductDependencies = (
+				6F6354B42BEAAA1600CFB729 /* WaterfallGrid */,
 			);
 			productName = Challenger02_Hestia;
 			productReference = 6FF14DB02BE16F760004D52C /* Challenger02_Hestia.app */;
@@ -462,6 +465,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6F6354B42BEAAA1600CFB729 /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FFC187B2BE9C3860015C6B3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6FF14DA82BE16F760004D52C /* Project object */;
 }
