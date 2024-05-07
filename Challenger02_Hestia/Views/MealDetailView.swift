@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct MealDetailView: View {
-    @Binding var router: Router
+//    @Binding var router: Router
     @Binding var meal: Meal
     
     var body: some View {
         VStack{
             HStack{
                 Button(action: {
-                    router = .theTabView
+//                    router = .theTabView
                 }) {
                     Image(systemName: "arrowshape.turn.up.backward")
                         .resizable()
@@ -16,7 +16,7 @@ struct MealDetailView: View {
                 }
                 Spacer()
                 Button(action: {
-                    router = .speechView
+//                    router = .speechView
                 }) {
                     Image(systemName: "play.fill")
                         .resizable()
@@ -67,6 +67,8 @@ struct MealDetailView: View {
             }
             .safeAreaPadding(.all)
         }
-        .padding(.vertical, 40)
+        .edgesIgnoringSafeArea(.all)
+        .background(Color.backgroundCor)
+
     }
 }

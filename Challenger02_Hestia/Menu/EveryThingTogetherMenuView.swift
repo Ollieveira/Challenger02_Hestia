@@ -13,16 +13,13 @@ struct EverythingTogetherMenuView: View {
     @State var favorite: Bool = false
     
     var body: some View {
-        ZStack {
-            Color(.backgroundcolor)
-                .ignoresSafeArea()
-            
-            VStack{
+        NavigationStack {
+            VStack {
                 (
                     Text("It's time to cook your")
                     +
                     Text(" hungry ")
-                        .foregroundStyle(.buttoncolor)
+                        .foregroundStyle(.textTitleCor)
                     +
                     Text("out!")
                 )
@@ -32,15 +29,13 @@ struct EverythingTogetherMenuView: View {
                 .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(16)
-        
+                
                 ButtonStyleMenuView()
                 
-                
-                MealsListView(router: $router, chosenMeal: $chosenMeal)
-                
-
+                MealsListView()
                 
             }
+            .background(Color.backgroundCor)
         }
     }
 }

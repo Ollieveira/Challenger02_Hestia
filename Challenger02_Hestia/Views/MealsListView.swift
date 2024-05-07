@@ -95,49 +95,48 @@ import SwiftUI
 import WaterfallGrid
 
 struct MealsListView: View {
-    @Binding var router: Router
-    @Binding var chosenMeal: Meal?
-    
     @StateObject var viewModel = MealViewModel()
-    let alphabet = Array("abcdefghijklmnoprstvwy")  //Retiramos q u x z
-    @State var currentLetterIndex:Int = 0
-    
+    let alphabet = Array("abcdefghijklmnoprstvwy") // Retiramos q u x z
+    @State var currentLetterIndex: Int = 0
+
     var body: some View {
-        VStack {
-            ScrollView {
-                WaterfallGrid(viewModel.meals.indices, id: \.self) { index in
-                    Button(action: {
-                        chosenMeal = viewModel.meals[index]
-                        router = .mealDetailView
-                    }) {
-                        MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: viewModel.getMealType(for: index))
-                    }
-                    .onAppear {
-                        if index == viewModel.meals.count - 1 && currentLetterIndex < alphabet.count {
-                            loadMoreMeals()
+            VStack {
+                ScrollView {
+                    WaterfallGrid(viewModel.meals.indices, id: \.self) { index in
+                        NavigationLink(
+                            destination: MealDetailView(meal: $viewModel.meals[index]),
+                            label: {
+                                MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: viewModel.getMealType(for: index))
+                            }
+                        )
+                        .onAppear {
+                            if index == viewModel.meals.count - 1 && currentLetterIndex < alphabet.count {
+                                loadMoreMeals()
+                            }
                         }
                     }
+                    .gridStyle(
+                        columnsInPortrait: 2,
+                        columnsInLandscape: 3,
+                        spacing: 16 // Defina o espaçamento horizontal desejado aqui
+                    )
+                    .padding(.horizontal, 16)
                 }
-                .gridStyle(
-                    columnsInPortrait: 2,
-                    columnsInLandscape: 3,
-                    spacing: 16
-                )
             }
-        }
+            .padding(.top, 32)
         .onAppear {
             if viewModel.meals.isEmpty {
                 loadMoreMeals()
             }
         }
     }
-    
+
     func loadMoreMeals() {
         if currentLetterIndex < alphabet.count {
             viewModel.searchQuery = String(alphabet[currentLetterIndex])
             Task {
                 await viewModel.getAllMeals(for: alphabet[currentLetterIndex])
-                currentLetterIndex += 1 // Move a linha de incremento aqui
+                currentLetterIndex += 1
             }
         }
     }

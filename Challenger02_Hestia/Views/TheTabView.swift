@@ -12,7 +12,7 @@ struct TheTabView: View {
                     Image(systemName: "book")
                     Text("Menu")
                 }
-                .toolbarBackground(.buttoncolor, for: .tabBar)
+                .toolbarBackground(.tabViewCor, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
             
             CategoryListView()
@@ -20,7 +20,7 @@ struct TheTabView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
-                .toolbarBackground(.buttoncolor, for: .tabBar)
+                .toolbarBackground(.tabViewCor, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
             
             Text("Terceira Aba")
@@ -28,10 +28,10 @@ struct TheTabView: View {
                     Image(systemName: "square.and.pencil")
                     Text("Your recipes")
                 }
-                .toolbarBackground(.buttoncolor, for: .tabBar)
+                .toolbarBackground(.tabViewCor, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
         }
-        .tint(.backgroundcolor)
+        .tint(.tabViewItemCor)
     }
 }
 

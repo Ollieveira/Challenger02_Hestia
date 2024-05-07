@@ -19,10 +19,10 @@ struct RouterViews: View {
         ZStack {
             switch router {
             case .mealsListView:
-                MealsListView(router: $router, chosenMeal: $choosenMeal)
+                MealsListView()
                 
             case .mealDetailView:
-                MealDetailView(router: $router, meal: Binding.constant(choosenMeal!))
+                MealDetailView(meal: Binding.constant(choosenMeal!))
                 
             case .speechView:
                 SpeechView(recipeSteps: choosenMeal!.instructionSteps)
