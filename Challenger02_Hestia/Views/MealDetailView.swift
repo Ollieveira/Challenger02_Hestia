@@ -49,62 +49,24 @@ struct MealDetailView: View {
                         Spacer()
                         
                         VStack (alignment: .center, spacing: 8){
-                            Button(action: {
+                            
+                            CircleIconButton(systemName: "play.fill", width: 50, height: 50, font: .headline) {
                                 
-                            }, label: {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 50, height: 50)
-                                        .foregroundStyle(Color.tabViewCor)
-                                    Image(systemName: "play.fill")
-                                        .font(.headline)
-                                        .fontWeight(.semibold)
+                            }
+                            
+                            CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption) {
+                                
+                            }
+                            
+                            CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, action: {
+                                if let youtubeURL = meal.strYoutube {
+                                    openURL(youtubeURL)
                                 }
                             })
                             
-                            Button(action: {
+                            CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline) {
                                 
-                            }, label: {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 32, height: 32)
-                                        .foregroundStyle(Color.tabViewCor)
-                                    Image(systemName: "headphones")
-                                        .font(.caption)
-                                        .fontWeight(.semibold)
-
-                                }
-                            })
-
-                            Button(action: {
-                                if let youtubeURL = meal.strYoutube {
-                                        openURL(youtubeURL)
-                                    }
-                            }, label: {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 32, height: 32)
-                                        .foregroundStyle(Color.tabViewCor)
-                                    Image(systemName: "play.rectangle.fill")
-                                        .font(.caption2)
-                                        .fontWeight(.semibold)
-                                }
-                            })
-
-                            Button(action: {
-                                
-                            }, label: {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 32, height: 32)
-                                        .foregroundStyle(Color.tabViewCor)
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-
-                                }
-                            })
-
+                            }
                         }
                         .padding(.top, 20)
 
@@ -142,7 +104,6 @@ struct MealDetailView: View {
 //                    }
 //                    .padding()
                 }
-                .padding(.bottom, 60)
             }
             .background(
                 RoundedRectangle(cornerRadius: 44)
@@ -186,6 +147,28 @@ struct MealDetailView: View {
             }
         }
     }
+    
+    struct CircleIconButton: View {
+        var systemName: String
+        var width: CGFloat
+        var height: CGFloat
+        var font: Font
+        var action: () -> Void
+        
+        var body: some View {
+            Button(action: action, label: {
+                ZStack {
+                    Circle()
+                        .frame(width: width, height: height)
+                        .foregroundStyle(Color.tabViewCor)
+                    Image(systemName: systemName)
+                        .font(font)
+                        .fontWeight(.semibold)
+                }
+            })
+        }
+    }
+
     
     func openURL(_ url: URL) {
         UIApplication.shared.open(url)

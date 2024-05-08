@@ -98,33 +98,47 @@ struct MealsListView: View {
     @StateObject var viewModel = MealViewModel()
     let alphabet = Array("abcdefghijklmnoprstvwy") // Retiramos q u x z
     @State var currentLetterIndex: Int = 0
+    @Binding var isFirstLoad: Bool
 
     var body: some View {
             VStack {
-                ScrollView {
-                    WaterfallGrid(viewModel.meals.indices, id: \.self) { index in
-                        NavigationLink(
-                            destination: MealDetailView(meal: $viewModel.meals[index]),
-                            label: {
-                                MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: viewModel.getMealType(for: index))
-                            }
-                        )
-                        .onAppear {
-                            if index == viewModel.meals.count - 1 && currentLetterIndex < alphabet.count {
-                                loadMoreMeals()
+                if isFirstLoad {
+                    Spacer()
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .textTitleCor))
+                        .scaleEffect(2)
+                    Spacer()
+                } else {
+                    ScrollView {
+                        WaterfallGrid(viewModel.meals.indices, id: \.self) { index in
+                            NavigationLink(
+                                destination: MealDetailView(meal: $viewModel.meals[index])
+                                    .toolbar(.hidden, for: .tabBar)
+                                ,
+                                label: {
+                                    MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: viewModel.getMealType(for: index))
+                                }
+                            )
+                            .onAppear {
+                                if index == viewModel.meals.count - 1 && currentLetterIndex < alphabet.count {
+                                    loadMoreMeals()
+                                }
                             }
                         }
+                        .gridStyle(
+                            columnsInPortrait: 2,
+                            columnsInLandscape: 3,
+                            spacing: 16 // Defina o espaçamento horizontal desejado aqui
+                        )
+                        .padding(.horizontal, 16)
                     }
-                    .gridStyle(
-                        columnsInPortrait: 2,
-                        columnsInLandscape: 3,
-                        spacing: 16 // Defina o espaçamento horizontal desejado aqui
-                    )
-                    .padding(.horizontal, 16)
                 }
             }
             .padding(.top, 32)
         .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                isFirstLoad = false
+            }
             if viewModel.meals.isEmpty {
                 loadMoreMeals()
             }
@@ -132,6 +146,7 @@ struct MealsListView: View {
     }
 
     func loadMoreMeals() {
+        
         if currentLetterIndex < alphabet.count {
             viewModel.searchQuery = String(alphabet[currentLetterIndex])
             Task {

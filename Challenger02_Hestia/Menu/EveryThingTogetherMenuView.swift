@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EverythingTogetherMenuView: View {
     @State var favorite: Bool = false
+    @State var isFirstLoad: Bool = true
     
     var body: some View {
         NavigationStack {
@@ -30,7 +31,7 @@ struct EverythingTogetherMenuView: View {
                 
                 ButtonStyleMenuView()
                 
-                MealsListView()
+                MealsListView(isFirstLoad: $isFirstLoad)
                 
             }
             .background(Color.backgroundCor)
