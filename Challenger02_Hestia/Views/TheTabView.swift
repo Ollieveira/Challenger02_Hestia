@@ -1,13 +1,10 @@
 import SwiftUI
 
 struct TheTabView: View {
-    @Binding var router: Router
-    @Binding var chosenMeal: Meal?
-
 
     var body: some View {
         TabView {
-            EverythingTogetherMenuView(router: $router, chosenMeal: $chosenMeal)
+            EverythingTogetherMenuView()
                 .tabItem {
                     Image(systemName: "book")
                     Text("Menu")

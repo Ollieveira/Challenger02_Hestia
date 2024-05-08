@@ -11,7 +11,7 @@ import SwiftUI
 struct Challenge2App: App {
     var body: some Scene {
         WindowGroup {
-            RouterViews()
+            TheTabView()
         }
     }
 }

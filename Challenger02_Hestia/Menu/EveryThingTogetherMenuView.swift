@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct EverythingTogetherMenuView: View {
-    @Binding var router: Router
-    @Binding var chosenMeal: Meal?
     @State var favorite: Bool = false
     
     var body: some View {

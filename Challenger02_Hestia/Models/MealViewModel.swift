@@ -98,8 +98,6 @@ import SwiftUI
 @MainActor
 class MealViewModel: ObservableObject {
     @Published var meals: [Meal] = []
-    @Published var chosenMeal: Meal?
-    @Published var router: Router?
     @Published var searchQuery: String = ""
     @Published var searchType: SearchType = .letter // Can be .name or .letter
     @Published var isLoading = false
@@ -143,12 +141,6 @@ class MealViewModel: ObservableObject {
         }
     }
     
-    func getMealAction(for index: Int) -> () -> Void {
-        return {
-            self.chosenMeal = self.meals[index]
-            self.router = .mealDetailView
-        }
-    }
 
     func getMealType(for index: Int) -> Bool {
         return index % 2 == 0
