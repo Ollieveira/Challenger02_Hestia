@@ -28,7 +28,7 @@ struct MealRow: View {
                         Text(meal.strCategory)
                             .font(.subheadline)
                             .foregroundStyle(.white)
-                        Text(indexInGrid.description)
+                        Text(meal.dietaryRestrictions.description)
                         Spacer()
                     }
                     .padding(5)

@@ -16,6 +16,6 @@ struct Challenge2App: App {
     }
 }
 
-//#Preview {
-//    ContentView()
-//}
+#Preview {
+    TheTabView()
+}

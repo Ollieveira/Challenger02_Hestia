@@ -1,7 +1,7 @@
 import Foundation
 
-struct Meal: Identifiable, Codable, Equatable, Hashable {
-    var ide = UUID() 
+
+struct Meal: Identifiable, Codable {
     var id: String { idMeal }
     let idMeal: String
     let strMeal: String
@@ -14,6 +14,7 @@ struct Meal: Identifiable, Codable, Equatable, Hashable {
     let strYoutube: URL?
 
     var ingredients: [String: String]
+    var dietaryRestrictions: [String]
 
     enum CodingKeys: String, CodingKey {
         case idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube
@@ -39,11 +40,7 @@ struct Meal: Identifiable, Codable, Equatable, Hashable {
         strInstructions = try container.decode(String.self, forKey: .strInstructions)
         strMealThumb = try container.decode(URL.self, forKey: .strMealThumb)
         strTags = try container.decodeIfPresent(String.self, forKey: .strTags)
-        if let urlString = try container.decodeIfPresent(String.self, forKey: .strYoutube), let url = URL(string: urlString) {
-            strYoutube = url
-        } else {
-            strYoutube = nil
-        }
+        strYoutube = try container.decodeIfPresent(String.self, forKey: .strYoutube).flatMap(URL.init)
 
         instructionSteps = strInstructions
             .split(whereSeparator: { $0.isNewline || $0 == "." })
@@ -62,6 +59,41 @@ struct Meal: Identifiable, Codable, Equatable, Hashable {
             }
         }
         self.ingredients = ingredientsDict
+
+        // Determine dietary restrictions based on ingredients
+        self.dietaryRestrictions = []
+        self.dietaryRestrictions = determineDietaryRestrictions()
+    }
+
+    private func determineDietaryRestrictions() -> [String] {
+        var restrictions: [String] = []
+
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonDairyFreeIngredients.contains) {
+            restrictions.append("Non-Dairy-Free")
+        }
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonGlutenFreeIngredients.contains) {
+            restrictions.append("Non-Gluten-Free")
+        }
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonEggFreeIngredients.contains) {
+            restrictions.append("Non-Egg-Free")
+        }
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonVeganIngredients.contains) {
+            restrictions.append("Non-Vegan")
+        }
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonSeafoodFreeIngredients.contains) {
+            restrictions.append("Non-Seafood-Free")
+        }
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonPeanutFreeIngredients.contains) {
+            restrictions.append("Non-Peanut-Free")
+        }
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonSoyFreeIngredients.contains) {
+            restrictions.append("Non-Soy-Free")
+        }
+        if ingredients.keys.contains(where: DietaryRestrictionsData.nonSugarFreeIngredients.contains) {
+            restrictions.append("Non-Sugar-Free")
+        }
+
+        return restrictions
     }
 }
 
