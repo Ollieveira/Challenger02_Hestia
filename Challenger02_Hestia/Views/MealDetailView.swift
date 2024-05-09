@@ -53,9 +53,20 @@ struct MealDetailView: View {
                         
                         VStack (alignment: .center, spacing: 8){
                             
-                            CircleIconButton(systemName: "play.fill", width: 50, height: 50, font: .headline) {
-                                
-                            }
+                            NavigationLink (
+                                destination: MealSpeechView(meal: $meal)
+                                ,
+                                label: {
+                                    ZStack {
+                                        Circle()
+                                            .frame(width: 50, height: 50)
+                                            .foregroundStyle(Color.tabViewCor)
+                                        Image(systemName: "play.fill")
+                                            .font(.headline)
+                                            .fontWeight(.semibold)
+                                    }
+                                }
+                            )
                             
                             CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption) {
                                 if speechToText.isSpeaking && !speechToText.isPaused {
