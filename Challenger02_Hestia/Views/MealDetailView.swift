@@ -125,6 +125,8 @@ struct MealDetailView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             dismiss()
+            speechToText.stopSpeaking()
+
         }) {
             Image(systemName: "arrowshape.left.fill") 
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
