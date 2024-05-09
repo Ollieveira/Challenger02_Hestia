@@ -3,7 +3,7 @@ import SwiftUI
 struct MealDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var meal: Meal
-    @State private var isReadingSteps = false
+    @State private var isReading = false
     @StateObject private var speechToText = SpeechToText(language: "en-US")
 
     
@@ -58,15 +58,33 @@ struct MealDetailView: View {
                             }
                             
                             CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption) {
-                                if isReadingSteps {
+                                if speechToText.isSpeaking && !speechToText.isPaused {
                                     // Se a leitura está em andamento, pare a leitura
                                     speechToText.stopSpeaking()
-                                    isReadingSteps = false
+                                    isReading = false
+                                    print(isReading)
                                 } else {
-                                    // Se a leitura não está em andamento, comece a ler os passos da receita
-                                    isReadingSteps = true
+                                    // Se a leitura não está em andamento, comece a ler os ingredientes
+                                    isReading = true
+                                    
+                                    print(isReading)
+
+                                    
+                                    speechToText.speak(text: "Let's start with the ingredients and then we'll move on to the preparation steps.", rate: 0.3)
+
+                                    speechToText.speak(text: "Ingredients", rate: 0.3)
+                                    
+                                    for (ingredient, measure) in meal.ingredients.sorted(by: >) {
+                                        let formattedKey = ingredient.prefix(1).capitalized + ingredient.dropFirst()
+                                        let ingredientText = "\(measure) of \(formattedKey)"
+                                        speechToText.speak(text: ingredientText, rate: 0.3)
+                                    }
+                                    
+                                    speechToText.speak(text: "Directions", rate: 0.3)
+
+                                    
                                     for step in meal.instructionSteps {
-                                        // Configure a velocidade da leitura aqui (0.5 é metade da velocidade normal)
+                                        // Configure a velocidade da leitura aqui (0.3 é 30% da velocidade normal)
                                         speechToText.speak(text: step, rate: 0.3)
                                     }
                                 }

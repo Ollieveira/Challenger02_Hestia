@@ -63,6 +63,15 @@ class SpeechToText: ObservableObject {
         }
     }
     
+    var isSpeaking: Bool {
+        return synthesizer.isSpeaking
+    }
+    
+    var isPaused: Bool {
+        return synthesizer.isPaused
+    }
+
+    
 // Metodo para ler um texto
     
     func speak(text: String, rate: Float = 1.0) {
@@ -71,6 +80,8 @@ class SpeechToText: ObservableObject {
         
         // Defina a velocidade da leitura
         utterance.rate = rate
+        utterance.postUtteranceDelay = 1.0
+
         
         synthesizer.speak(utterance)
     }
