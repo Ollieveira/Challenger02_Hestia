@@ -73,36 +73,29 @@ struct MealDetailView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.leading, 32)
-                    .padding(.trailing, 16)
+                    .padding(.trailing, 24)
 
                     
-                    VStack {
+                    VStack (spacing: 16) {
                         ForEach(meal.ingredients.sorted(by: >), id: \.key) { key, value in
-                            BulletPointView(text: "\(key): \(value)")
+                            let formattedKey = key.prefix(1).capitalized + key.dropFirst()
+                            BulletPointView(text: "\(formattedKey): \(value)")
                         }
                     }
                     .padding(.leading, 48)
                     
-//                    VStack(alignment: .leading, spacing: 20) {
-//                        
-//                        
-//                        Text("Category: \(meal.strCategory)")
-//                        Text("Cuisine: \(meal.strArea)")
-//                        if let tags = meal.strTags {
-//                            Text("Tags: \(tags)")
-//                        }
-//                        
-//                        VStack(alignment: .leading) {
-//                            Text("Instructions:")
-//                                .fontWeight(.semibold)
-//                            ForEach(meal.instructionSteps, id: \.self) { step in
-//                                Text(step)
-//                                    .padding(.bottom, 2)
-//                                Divider()
-//                            }
-//                        }
-//                    }
-//                    .padding()
+                    Text("Directions")
+                        .frame(maxWidth: .infinity, alignment: .leading).font(.title2).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .padding(.top, 30)
+                        .padding(.bottom, 16)
+                        .padding(.leading, 32)
+
+                    VStack (spacing: 16) {
+                        ForEach(meal.instructionSteps, id: \.self) { step in
+                            BulletPointView(text: "\(step)")
+                        }
+                    }
+                    .padding(.leading, 48)
                 }
             }
             .background(
@@ -138,8 +131,9 @@ struct MealDetailView: View {
         let text: String
 
         var body: some View {
-            HStack(alignment: .center) {
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("•")
+                    .offset(y: 4)
                     .font(.largeTitle)
                     .foregroundStyle(Color.tabViewCor)
                 Text(text)
@@ -168,14 +162,23 @@ struct MealDetailView: View {
             })
         }
     }
-
     
     func openURL(_ url: URL) {
         UIApplication.shared.open(url)
     }
-
-
 }
+
+
+
+
+
+//Text("Category: \(meal.strCategory)")
+//
+//
+//if let tags = meal.strTags {
+//    Text("Tags: \(tags)")
+//}
+
 
 
 
