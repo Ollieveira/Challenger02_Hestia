@@ -3,6 +3,9 @@ import SwiftUI
 struct MealDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var meal: Meal
+    @State private var isReadingSteps = false
+    @StateObject private var speechToText = SpeechToText(language: "en-US")
+
     
     var body: some View {
         VStack{
@@ -55,9 +58,20 @@ struct MealDetailView: View {
                             }
                             
                             CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption) {
-                                
+                                if isReadingSteps {
+                                    // Se a leitura está em andamento, pare a leitura
+                                    speechToText.stopSpeaking()
+                                    isReadingSteps = false
+                                } else {
+                                    // Se a leitura não está em andamento, comece a ler os passos da receita
+                                    isReadingSteps = true
+                                    for step in meal.instructionSteps {
+                                        // Configure a velocidade da leitura aqui (0.5 é metade da velocidade normal)
+                                        speechToText.speak(text: step, rate: 0.3)
+                                    }
+                                }
                             }
-                            
+
                             CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, action: {
                                 if let youtubeURL = meal.strYoutube {
                                     openURL(youtubeURL)

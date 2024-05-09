@@ -65,9 +65,12 @@ class SpeechToText: ObservableObject {
     
 // Metodo para ler um texto
     
-    func speak(text: String) {
+    func speak(text: String, rate: Float = 1.0) {
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
+        
+        // Defina a velocidade da leitura
+        utterance.rate = rate
         
         synthesizer.speak(utterance)
     }
