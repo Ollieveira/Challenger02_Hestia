@@ -10,6 +10,7 @@
 		6F3CBAD82BEBFDCE0047BEAD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3CBAD72BEBFDCE0047BEAD /* Data.swift */; };
 		6F6354B52BEAAA1600CFB729 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 6F6354B42BEAAA1600CFB729 /* WaterfallGrid */; };
 		6FE47A5E2BED475200BA9263 /* MealSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE47A5D2BED475200BA9263 /* MealSpeechView.swift */; };
+		6FE47A612BEEB47200BA9263 /* CodableExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6FE47A602BEEB47200BA9263 /* CodableExtensions */; };
 		6FF14DB42BE16F760004D52C /* Challenger02_HestiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF14DB32BE16F760004D52C /* Challenger02_HestiaApp.swift */; };
 		6FF14DB82BE16F770004D52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DB72BE16F770004D52C /* Assets.xcassets */; };
 		6FF14DBB2BE16F770004D52C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DBA2BE16F770004D52C /* Preview Assets.xcassets */; };
@@ -60,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6354B52BEAAA1600CFB729 /* WaterfallGrid in Frameworks */,
+				6FE47A612BEEB47200BA9263 /* CodableExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +177,7 @@
 			name = Challenger02_Hestia;
 			packageProductDependencies = (
 				6F6354B42BEAAA1600CFB729 /* WaterfallGrid */,
+				6FE47A602BEEB47200BA9263 /* CodableExtensions */,
 			);
 			productName = Challenger02_Hestia;
 			productReference = 6FF14DB02BE16F760004D52C /* Challenger02_Hestia.app */;
@@ -206,6 +209,7 @@
 			mainGroup = 6FF14DA72BE16F760004D52C;
 			packageReferences = (
 				6FFC187B2BE9C3860015C6B3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
+				6FE47A5F2BEEB47200BA9263 /* XCRemoteSwiftPackageReference "CodableExtensions" */,
 			);
 			productRefGroup = 6FF14DB12BE16F760004D52C /* Products */;
 			projectDirPath = "";
@@ -464,6 +468,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6FE47A5F2BEEB47200BA9263 /* XCRemoteSwiftPackageReference "CodableExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rvenieris/CodableExtensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		6FFC187B2BE9C3860015C6B3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid.git";
@@ -479,6 +491,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6FFC187B2BE9C3860015C6B3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
 			productName = WaterfallGrid;
+		};
+		6FE47A602BEEB47200BA9263 /* CodableExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FE47A5F2BEEB47200BA9263 /* XCRemoteSwiftPackageReference "CodableExtensions" */;
+			productName = CodableExtensions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

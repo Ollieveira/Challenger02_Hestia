@@ -151,6 +151,10 @@ struct MealDetailView: View {
         }
         .background(Color.backgroundCor)
         .edgesIgnoringSafeArea(.all)
+        .onDisappear {
+            speechToText.stopSpeaking()
+        }
+
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             dismiss()

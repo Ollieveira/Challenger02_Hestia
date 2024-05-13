@@ -1,6 +1,15 @@
 {
-  "originHash" : "f3037c28d29a1e5ecd5f4bec848a94345bea7f316865c4ee0706d0c96edf82a6",
+  "originHash" : "687697667c4592f1b90e2a7a81009025bc0f8e8dccb50d548d9b24f8ebd48907",
   "pins" : [
+    {
+      "identity" : "codableextensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rvenieris/CodableExtensions.git",
+      "state" : {
+        "revision" : "e671737b81ffe39c17523f0caac73e93cce36927",
+        "version" : "1.0.0"
+      }
+    },
     {
       "identity" : "waterfallgrid",
       "kind" : "remoteSourceControl",
