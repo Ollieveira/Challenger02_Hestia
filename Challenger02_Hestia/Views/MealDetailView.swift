@@ -18,7 +18,6 @@ struct MealDetailView: View {
                 .aspectRatio(contentMode: .fit)
                 .scaledToFill()
                 .frame(maxWidth: .infinity, maxHeight: 265)
-                .clipShape(RoundedRectangle(cornerRadius: 40))
                 
                 // Adição de um efeito sombreado gradiente na parte superior do banner para deixar mais visivel os botões superiores
                 
@@ -38,7 +37,7 @@ struct MealDetailView: View {
                             Text(meal.strArea)
                                 .font(.caption2)
                                 .fontWeight(.semibold)
-                                .foregroundStyle(Color.textTitleCor)
+                                .foregroundStyle(Color.tabViewCor)
                             
                             Spacer()
                             
@@ -64,12 +63,13 @@ struct MealDetailView: View {
                                         Image(systemName: "play.fill")
                                             .font(.headline)
                                             .fontWeight(.semibold)
+                                            .foregroundStyle(Color.buttonsContentCor)
                                     }
                                 }
                             )
                             
                             CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption) {
-                                if speechToText.isSpeaking && !speechToText.isPaused {
+                                if speechToText.getIsSpeaking() && !speechToText.getIsPaused() {
                                     // Se a leitura está em andamento, pare a leitura
                                     speechToText.stopSpeaking()
                                     isReading = false
@@ -162,15 +162,18 @@ struct MealDetailView: View {
 
         }) {
             Image(systemName: "arrowshape.left.fill") 
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                .fontWeight(.bold)
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundStyle(Color.buttonsContentCor)
         })
         .navigationBarItems(trailing: Button(action: {
             // Colocar funcionalidade de adicionar receita aos favoritos
         }) {
             Image(systemName: "star.fill")
                 .font(.title2)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
+                .foregroundStyle(Color.buttonsContentCor)
+
         })
 
 
@@ -207,6 +210,7 @@ struct MealDetailView: View {
                     Image(systemName: systemName)
                         .font(font)
                         .fontWeight(.semibold)
+                        .foregroundStyle(Color.buttonsContentCor)
                 }
             })
         }

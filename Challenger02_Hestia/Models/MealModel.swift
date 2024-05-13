@@ -1,7 +1,7 @@
 import Foundation
 
 
-struct Meal: Identifiable, Codable {
+struct Meal: Identifiable, Codable, Hashable {
     var id: String { idMeal }
     let idMeal: String
     let strMeal: String

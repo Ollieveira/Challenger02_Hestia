@@ -18,7 +18,7 @@ struct EverythingTogetherMenuView: View {
                     Text("It's time to cook your")
                     +
                     Text(" hungry ")
-                        .foregroundStyle(.textTitleCor)
+                        .foregroundStyle(.tabViewCor)
                     +
                     Text("out!")
                 )
@@ -31,8 +31,7 @@ struct EverythingTogetherMenuView: View {
                 
                 ButtonStyleMenuView()
                 
-                MealsListView(isFirstLoad: $isFirstLoad)
-                
+                MealsListView()
             }
             .background(Color.backgroundCor)
         }

@@ -92,66 +92,115 @@
 //    }
  
 import SwiftUI
-import WaterfallGrid
 
 struct MealsListView: View {
-    @StateObject var viewModel = MealViewModel()
+    @StateObject var viewModel = MealViewModel.instance
     let alphabet = Array("abcdefghijklmnoprstvwy") // Retiramos q u x z
-    @State var currentLetterIndex: Int = 0
-    @Binding var isFirstLoad: Bool
 
     var body: some View {
-            VStack {
-                if isFirstLoad {
-                    Spacer()
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .textTitleCor))
-                        .scaleEffect(2)
-                    Spacer()
-                } else {
-                    ScrollView {
-                        WaterfallGrid(viewModel.meals.indices, id: \.self) { index in
-                            NavigationLink(
-                                destination: MealDetailView(meal: $viewModel.meals[index])
-                                    .toolbar(.hidden, for: .tabBar)
-                                ,
-                                label: {
-                                    MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: viewModel.getMealType(for: index))
+        VStack {
+            if viewModel.isLoading {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .tabViewCor))
+                    .scaleEffect(2)
+                Spacer()
+            } else {
+//                ScrollView {
+//                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 16) {
+//                        ForEach(viewModel.meals.indices, id: \.self) { index in
+//                            NavigationLink(
+//                                destination: MealDetailView(meal: $viewModel.meals[index])
+//                                    .toolbar(.hidden, for: .tabBar)
+//                            ) {
+//                                MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: index % 2 == 0)
+//                            }
+//                            .onAppear {
+//                                if index == viewModel.meals.count - 1 {
+//                                    // Load more meals if needed
+//                                    if let lastMeal = viewModel.meals.last {
+//                                        if let lastLetter = lastMeal.strMeal.first,
+//                                           let nextLetterIndex = alphabet.firstIndex(of: lastLetter)?.advanced(by: 1),
+//                                           nextLetterIndex < alphabet.count {
+//                                            Task {
+//                                                await viewModel.getAllMeals(for: alphabet[nextLetterIndex])
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    .padding(.horizontal, 16)
+//                }
+                ScrollView {
+                    HStack(spacing: 20) {
+                        LazyVStack (spacing:20){
+                            ForEach(Array(viewModel.meals.indices.filter { $0 % 2 == 0 }), id: \.self) { index in
+                                NavigationLink(
+                                    destination: MealDetailView(meal: $viewModel.meals[index])
+                                        .toolbar(.hidden, for: .tabBar)
+                                ) {
+                                    MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: true)
                                 }
-                            )
-                            .onAppear {
-                                if index == viewModel.meals.count - 1 && currentLetterIndex < alphabet.count {
-                                    loadMoreMeals()
+                                .onAppear {
+                                    if index == viewModel.meals.count - 1 {
+                                        // Load more meals if needed
+                                        if let lastMeal = viewModel.meals.last {
+                                            if let lastLetter = lastMeal.strMeal.first,
+                                               let nextLetterIndex = alphabet.firstIndex(of: lastLetter)?.advanced(by: 1),
+                                               nextLetterIndex < alphabet.count {
+                                                Task {
+                                                    await viewModel.getAllMeals(for: alphabet[nextLetterIndex])
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
+                            Spacer()
                         }
-                        .gridStyle(
-                            columnsInPortrait: 2,
-                            columnsInLandscape: 3,
-                            spacing: 16 // Defina o espaçamento horizontal desejado aqui
-                        )
-                        .padding(.horizontal, 16)
+                        VStack{
+                            LazyVStack (spacing: 20) {
+                                ForEach(Array(viewModel.meals.indices.filter { $0 % 2 != 0 }), id: \.self) { index in
+                                    NavigationLink(
+                                        destination: MealDetailView(meal: $viewModel.meals[index])
+                                            .toolbar(.hidden, for: .tabBar)
+                                    ) {
+                                        MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: false)
+                                    }
+                                    .onAppear {
+                                        if index == viewModel.meals.count - 1 {
+                                            // Load more meals if needed
+                                            if let lastMeal = viewModel.meals.last {
+                                                if let lastLetter = lastMeal.strMeal.first,
+                                                   let nextLetterIndex = alphabet.firstIndex(of: lastLetter)?.advanced(by: 1),
+                                                   nextLetterIndex < alphabet.count {
+                                                    Task {
+                                                        await viewModel.getAllMeals(for: alphabet[nextLetterIndex])
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                               
+                            }
+                            Spacer()
+                        }
+                     
                     }
+                    .padding(.horizontal)
                 }
             }
-            .padding(.top, 32)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                isFirstLoad = false
-            }
-            if viewModel.meals.isEmpty {
-                loadMoreMeals()
-            }
         }
-    }
-
-    func loadMoreMeals() {
-        
-        if currentLetterIndex < alphabet.count {
-            viewModel.searchQuery = String(alphabet[currentLetterIndex])
-            Task {
-                await viewModel.getAllMeals(for: alphabet[currentLetterIndex])
-                currentLetterIndex += 1
+        .padding(.top, 32)
+        .onAppear {
+            // Load meals if empty
+            if viewModel.meals.isEmpty {
+                Task {
+                    viewModel.loadAllMeals()
+                }
             }
         }
     }

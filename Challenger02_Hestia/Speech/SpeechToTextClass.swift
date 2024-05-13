@@ -63,14 +63,22 @@ class SpeechToText: ObservableObject {
         }
     }
     
-    var isSpeaking: Bool {
-        return synthesizer.isSpeaking
-    }
+//    var isSpeaking: Bool {
+//        return synthesizer.isSpeaking
+//    }
     
-    var isPaused: Bool {
+//    var isPaused: Bool {
+//        return synthesizer.isPaused
+    //    }
+    //
+    
+    func getIsPaused() -> Bool {
         return synthesizer.isPaused
     }
-
+    
+    func getIsSpeaking() -> Bool {
+        return synthesizer.isSpeaking
+    }
     
 // Metodo para ler um texto
     

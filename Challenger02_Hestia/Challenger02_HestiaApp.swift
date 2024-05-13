@@ -9,9 +9,29 @@ import SwiftUI
 
 @main
 struct Challenge2App: App {
+    
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some Scene {
         WindowGroup {
             TheTabView()
+        }
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .background:
+                do {
+                    try MealViewModel.instance.meals.save()
+                    print("salvou")
+                } catch {
+                    print("Se ferrou!", error)
+                }
+            case .inactive:
+                break
+            case .active:
+                break
+            @unknown default:
+                break
+            }
         }
     }
 }

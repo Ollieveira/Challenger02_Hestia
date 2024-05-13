@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "IconTalksView.pdf",
+      "filename" : "IconsTalksViewLight.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "IconsTalksViewDark.pdf",
       "idiom" : "universal"
     }
   ],

@@ -24,7 +24,7 @@ struct MealSpeechView: View {
             
             Spacer()
             
-            Image(speechToText.isSpeaking ? "IconTalksViewTrue" : "IconTalksView")
+            Image(speechToText.getIsSpeaking() ? "IconTalksViewTrue" : "IconTalksView")
             
             Spacer()
             
@@ -106,6 +106,8 @@ struct MealSpeechView: View {
                     Image(systemName: systemName)
                         .font(font)
                         .fontWeight(.semibold)
+                        .foregroundStyle(Color.buttonsContentCor)
+
                 }
             })
         }

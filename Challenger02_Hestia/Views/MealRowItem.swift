@@ -19,23 +19,27 @@ struct MealRow: View {
             .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
             .cornerRadius(10)
             .overlay(
-                VStack(alignment: .leading) {
-                    Spacer()
-                    HStack {
-                        Text(meal.strMeal)
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                        Text(meal.strCategory)
-                            .font(.subheadline)
-                            .foregroundStyle(.white)
-                        Text(meal.dietaryRestrictions.description)
+                //LinearGradient(gradient: Gradient(colors: [Color.tabViewCor.opacity(0.5), Color.clear]), startPoint: .bottom, endPoint: .top)
+                LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.75), Color.clear]), startPoint: .bottom, endPoint: .top)
+                .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
+                .aspectRatio(1.0, contentMode: .fit)
+                .cornerRadius(10)
+                .opacity(0.5)
+                .overlay(
+                    VStack(alignment: .leading) {
                         Spacer()
+                        HStack {
+                            Text(meal.strMeal)
+                                .font(.subheadline)
+                                .foregroundStyle(.white)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .multilineTextAlignment(.leading)
+                            // Alterado para branco para melhorar a legibilidade
+                            Spacer()
+                        }
+                        .padding(5)
                     }
-                    .padding(5)
-                }
-                .background(Color.black.opacity(0.3))
-                .cornerRadius(10)  // Apply the same corner radius as the image
-                .clipped()  // Ensure that the overlay does not exceed the bounds of the rounded corners
+                )
             )
         }
         .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
