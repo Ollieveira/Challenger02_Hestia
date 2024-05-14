@@ -101,8 +101,14 @@ class MealViewModel: ObservableObject {
     static var instance = MealViewModel()
     static let alphabet = "abcdefghijklmnoprstvwy" // Retiramos q u x z
     var searchType: SearchType = .letter
+    var searchInput: String = "" {
+        didSet { filterMeals() }
+    }
+    
     var meals: [Meal] = []
     var allMeals: [Meal] = []
+    var filteredMeals: [Meal] = []
+    
     var activeFilters: Set<String> = []
     var isLoading = false
     
@@ -114,6 +120,7 @@ class MealViewModel: ObservableObject {
     private init() {
         if let loadedMeals: Set<Meal> = try? .load(), !loadedMeals.isEmpty {
             self.meals = Array(loadedMeals)
+            self.allMeals = self.meals
             print("Using cached meals")
         } else {
             print("No cached meals found")
@@ -125,8 +132,19 @@ class MealViewModel: ObservableObject {
             for letter in Self.alphabet {
                 await getAllMeals(for: letter)
             }
+            self.allMeals = self.meals
         }
     }
+    
+    func filterMeals() {
+            if searchInput.isEmpty {
+                filteredMeals = allMeals
+            } else {
+                filteredMeals = allMeals.filter { meal in
+                    meal.strMeal.lowercased().contains(searchInput.lowercased())
+                }
+            }
+        }
     
     func getAllMeals(for letter: Character) async {
         isLoading = true

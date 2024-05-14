@@ -12,14 +12,14 @@ struct TheTabView: View {
                 .toolbarBackground(.tabViewCor, for: .tabBar)
                 .toolbarBackground(.visible, for: .tabBar)
             
-//            CategoryListView()
-//                .tabItem {
-//                    Image(systemName: "magnifyingglass")
-//                    Text("Search")
-//                }
-//                .toolbarBackground(.tabViewCor, for: .tabBar)
-//                .toolbarBackground(.visible, for: .tabBar)
-//            
+            MealSearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
+                .toolbarBackground(.tabViewCor, for: .tabBar)
+                .toolbarBackground(.visible, for: .tabBar)
+            
 //            Text("Terceira Aba")
 //                .tabItem {
 //                    Image(systemName: "square.and.pencil")
