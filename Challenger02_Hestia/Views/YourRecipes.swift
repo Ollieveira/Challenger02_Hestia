@@ -1,0 +1,48 @@
+//
+//  YourRecipes.swift
+//  Challenger02_Hestia
+//
+//  Created by Willys Oliveira on 14/05/24.
+//
+
+import SwiftUI
+
+struct YourRecipes: View {
+    
+    @StateObject var viewModel = MealViewModel.instance
+
+    
+    var body: some View {
+            VStack {
+                (
+                    Text("Check out yout")
+                    +
+                    Text(" favorites ")
+                        .foregroundStyle(.tabViewCor)
+                    +
+                    Text("!")
+                )
+                .font(.title2)
+                .fontDesign(.rounded)
+                .bold()
+                .lineLimit(1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
+                
+                ForEach(viewModel.favoriteMeals, id: \.id) { meal in
+                    // Substitua isso pelo código para renderizar cada refeição
+                    
+                    FavoriteCard(imageUrl: meal.strMealThumb, recipeTitle: meal.strMeal, region: meal.strArea)
+                }
+
+                
+            }
+            .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+            .background(Color.backgroundCor.edgesIgnoringSafeArea(.all))
+
+    }
+}
+
+//#Preview {
+//    YourRecipes()
+//}

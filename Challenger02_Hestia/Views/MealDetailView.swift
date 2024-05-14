@@ -3,6 +3,7 @@ import SwiftUI
 struct MealDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var meal: Meal
+    @StateObject var viewModel = MealViewModel.instance
     @State private var isReading = false
     @StateObject private var speechToText = SpeechToText(language: "en-US")
 
@@ -168,6 +169,7 @@ struct MealDetailView: View {
         })
         .navigationBarItems(trailing: Button(action: {
             // Colocar funcionalidade de adicionar receita aos favoritos
+            viewModel.addToFavorites(meal: meal)
         }) {
             Image(systemName: "star.fill")
                 .font(.title2)

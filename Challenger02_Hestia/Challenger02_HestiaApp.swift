@@ -21,6 +21,7 @@ struct Challenge2App: App {
             case .background:
                 do {
                     try MealViewModel.instance.meals.save()
+                    try MealViewModel.instance.favoriteMeals.save()
                     print("salvou")
                 } catch {
                     print("Se ferrou!", error)

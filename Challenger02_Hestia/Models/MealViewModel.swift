@@ -103,6 +103,7 @@ class MealViewModel: ObservableObject {
     var searchType: SearchType = .letter
     var meals: [Meal] = []
     var allMeals: [Meal] = []
+    var favoriteMeals: [Meal] = [] // Adicione esta linha
     var activeFilters: Set<String> = []
     var isLoading = false
     
@@ -118,7 +119,17 @@ class MealViewModel: ObservableObject {
         } else {
             print("No cached meals found")
         }
+        
+        if let loadedFavoriteMeals: Set<Meal> = try? .load(from: "favoriteMeals"), !loadedFavoriteMeals.isEmpty {
+                    self.favoriteMeals = Array(loadedFavoriteMeals)
+                    print("Using cached favorite meals")
+                } else {
+                    print("No cached favorite meals found")
+                }
+
     }
+    
+    
     
     func loadAllMeals() {
         Task {
@@ -200,5 +211,22 @@ class MealViewModel: ObservableObject {
         isLoading = false
     }
     
+    func addToFavorites(meal: Meal) {
+        if !favoriteMeals.contains(where: { $0.id == meal.id }) {
+            favoriteMeals.append(meal)
+            
+            
+        }
+    }
+
+    func removeFromFavorites(meal: Meal) {
+        favoriteMeals.removeAll(where: { $0.id == meal.id })
+        
+
+    }
     
 }
+
+    
+    
+
