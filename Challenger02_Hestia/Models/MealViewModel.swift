@@ -6,10 +6,18 @@ class MealViewModel: ObservableObject {
     static var instance = MealViewModel()
     static let alphabet = "abcdefghijklmnoprstvwy" // Retiramos q u x z
     var searchType: SearchType = .letter
+    
     var meals: [Meal] = []
     var allMeals: [Meal] = []
+    
     var favoriteMeals: [Meal] = [] // Adicione esta linha
+    var filteredIndices: [Int] = []
+    
     var activeFilters: Set<String> = []
+    var searchInput: String = "" {
+           didSet { filterMeals() }
+       }
+
     var isLoading = false
     
     enum SearchType {
@@ -49,6 +57,16 @@ class MealViewModel: ObservableObject {
         isLoading = false
         allMeals = meals
     }
+    
+    public func filterMeals() {
+          if searchInput.isEmpty {
+              filteredIndices = Array(meals.indices)
+          } else {
+              filteredIndices = meals.indices.filter { index in
+                  meals[index].strMeal.lowercased().contains(searchInput.lowercased())
+              }
+          }
+      }
     
     func performSearch(query: String) async {
         guard !query.isEmpty else { return }
@@ -111,7 +129,6 @@ class MealViewModel: ObservableObject {
             }
         }
         isLoading = false
-        print(self.meals)
     }
     
     func addToFavorites(meal: Meal) {

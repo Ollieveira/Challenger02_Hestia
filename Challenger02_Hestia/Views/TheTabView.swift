@@ -13,7 +13,7 @@ struct TheTabView: View {
                     .toolbarBackground(.tabViewCor, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
                 
-                CategoryListView()
+                MealSearchView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Search")
