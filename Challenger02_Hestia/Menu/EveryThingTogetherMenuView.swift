@@ -25,7 +25,6 @@ struct EverythingTogetherMenuView: View {
                 .font(.title2)
                 .fontDesign(.rounded)
                 .bold()
-                .lineLimit(1)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(16)
                 
