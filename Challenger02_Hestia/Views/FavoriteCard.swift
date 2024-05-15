@@ -17,14 +17,14 @@ struct FavoriteCard: View {
     let region: String
 //    let tags: [String]?
     let deleteIcon: String
-    let meal: Meal
+    @Binding var meal: Meal
     @State private var showingAlert = false
 
     
     
     var body: some View {
         NavigationLink (
-            destination: MealDetailView(meal: meal)
+            destination: MealDetailView(meal: $meal)
             ,
                        label: {
             HStack (alignment: .top){
