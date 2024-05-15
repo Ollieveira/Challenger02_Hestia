@@ -20,8 +20,8 @@ struct Challenge2App: App {
             switch scenePhase {
             case .background:
                 do {
-                    try MealViewModel.instance.meals.save()
-                    try MealViewModel.instance.favoriteMeals.save()
+                    try MealViewModel.instance.meals.save(in: "meals")
+                    try MealViewModel.instance.favoriteMeals.save(in: "favoriteMeals")
                     print("salvou")
                 } catch {
                     print("Se ferrou!", error)

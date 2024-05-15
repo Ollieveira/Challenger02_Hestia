@@ -113,20 +113,18 @@ class MealViewModel: ObservableObject {
     
     
     private init() {
-        if let loadedMeals: Set<Meal> = try? .load(), !loadedMeals.isEmpty {
-            self.meals = Array(loadedMeals)
+        if let loadedMeals = try? [Meal].load(from: "meals"), !loadedMeals.isEmpty {
+            self.meals = loadedMeals
             print("Using cached meals")
         } else {
             print("No cached meals found")
         }
-        
-        if let loadedFavoriteMeals: Set<Meal> = try? .load(from: "favoriteMeals"), !loadedFavoriteMeals.isEmpty {
-                    self.favoriteMeals = Array(loadedFavoriteMeals)
-                    print("Using cached favorite meals")
-                } else {
-                    print("No cached favorite meals found")
-                }
-
+        if let loadedFavoriteMeals = try? [Meal].load(from: "favoriteMeals"), !loadedFavoriteMeals.isEmpty {
+            self.favoriteMeals = loadedFavoriteMeals
+            print("Using cached favorite meals")
+        } else {
+            print("No cached favorite meals found")
+        }
     }
     
     
@@ -171,8 +169,6 @@ class MealViewModel: ObservableObject {
                 }
             }
             
-            // Save updated meals locally
-            try meals.save()
             
             print("Fetch completed for:", query)
         } catch {
@@ -218,11 +214,11 @@ class MealViewModel: ObservableObject {
             
         }
     }
-
+    
     func removeFromFavorites(meal: Meal) {
         favoriteMeals.removeAll(where: { $0.id == meal.id })
         
-
+        
     }
     
 }
