@@ -138,7 +138,7 @@ struct MealsListView: View {
                         LazyVStack (spacing:20){
                             ForEach(Array(viewModel.meals.indices.filter { $0 % 2 == 0 }), id: \.self) { index in
                                 NavigationLink(
-                                    destination: MealDetailView(meal: $viewModel.meals[index])
+                                    destination: MealDetailView(meal: viewModel.meals[index])
                                         .toolbar(.hidden, for: .tabBar)
                                 ) {
                                     MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: true)
@@ -164,7 +164,7 @@ struct MealsListView: View {
                             LazyVStack (spacing: 20) {
                                 ForEach(Array(viewModel.meals.indices.filter { $0 % 2 != 0 }), id: \.self) { index in
                                     NavigationLink(
-                                        destination: MealDetailView(meal: $viewModel.meals[index])
+                                        destination: MealDetailView(meal: viewModel.meals[index])
                                             .toolbar(.hidden, for: .tabBar)
                                     ) {
                                         MealRow(meal: viewModel.meals[index], indexInGrid: index, isLeftColumn: false)
