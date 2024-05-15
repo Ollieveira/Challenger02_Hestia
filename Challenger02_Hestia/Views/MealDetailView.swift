@@ -5,6 +5,7 @@ struct MealDetailView: View {
     @Binding var meal: Meal
     @StateObject var viewModel = MealViewModel.instance
     @State private var isReading = false
+    @State var isFavorite = false
     @StateObject private var speechToText = SpeechToText(language: "en-US")
 
     
@@ -169,14 +170,21 @@ struct MealDetailView: View {
         })
         .navigationBarItems(trailing: Button(action: {
             // Colocar funcionalidade de adicionar receita aos favoritos
-            viewModel.addToFavorites(meal: meal)
+            if isFavorite {
+                viewModel.removeFromFavorites(meal: meal)
+            } else {
+                viewModel.addToFavorites(meal: meal)
+            }
+            isFavorite.toggle()
         }) {
-            Image(systemName: "star.fill")
+            Image(systemName: isFavorite ? "star.fill" : "star")
                 .font(.title2)
                 .fontWeight(.semibold)
-                .foregroundStyle(Color.buttonsContentCor)
-
+                .foregroundStyle(isFavorite ? Color.tabViewCor : Color.buttonsContentCor)
         })
+        .onAppear {
+            isFavorite = viewModel.favoriteMeals.contains(where: { $0.id == meal.id })
+        }
 
 
     }

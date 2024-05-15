@@ -40,7 +40,7 @@ struct YourRecipes: View {
                 
                 Spacer()
                 
-                Text("Você ainda não tem nenhuma receita favorita.")
+                Text("You don't have any favorite recipes yet")
                     .font(.title2)
                     .fontDesign(.rounded)
                     .bold()
