@@ -14,15 +14,40 @@ struct MealSearchView: View {
                     +
                     Text("today?")
                 )
-                    .font(.title2)
-                    .fontDesign(.rounded)
-                    .bold()
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(16)
-                TextField("Search meals...", text: $viewModel.searchInput)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                .font(.title2)
+                .fontDesign(.rounded)
+                .bold()
+                .lineLimit(1)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
+                
+                ZStack (alignment: .trailing){
+                    TextField("Search meals...", text: $viewModel.searchInput)
+                        .font(.subheadline)
+                        .padding(12)
+                        .background(.thinMaterial,
+                                    in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+//                        .padding(.top, 50)
+                        .shadow(radius: 6)
+                    
+                    if !viewModel.searchInput.isEmpty {
+                        Button(action: {
+                            viewModel.searchInput = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 12)
+//                                .padding(.top, 50)
+                        }
+                    }
+                }
+                .padding()
+
+
+                
+
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
 
                 ScrollView {
                     HStack(spacing: 20) {
