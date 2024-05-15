@@ -69,7 +69,7 @@ struct FavoriteCard: View {
                     Alert(
                         title: Text("Delete Favorite"),
                         message: Text("Are you sure you want to delete \(recipeTitle)"),
-                        primaryButton: .destructive(Text("Deletar")) {
+                        primaryButton: .destructive(Text("Delete")) {
                             viewModel.removeFromFavorites(meal: meal)
                         },
                         secondaryButton: .cancel()
