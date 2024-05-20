@@ -18,7 +18,7 @@ struct MenuCategory: Identifiable, Equatable {
 struct ButtonStyleMenuView: View {
     @StateObject var viewModel = MealViewModel.instance
     @State private var menus = [
-        MenuCategory(name: "Favorites", filterName: "nonFavorite", icons: [Image("Favorites_Selected"), Image ("Favorites_Unselected")] , isFavorite: false),
+//        MenuCategory(name: "Favorites", filterName: "nonFavorite", icons: [Image("Favorites_Selected"), Image ("Favorites_Unselected")] , isFavorite: false),
         MenuCategory(name: "Vegan", filterName: "Non-Vegan", icons: [Image("Vegan_Symbol_Selected"), Image ("Vegan_Symbol_Unselected") ], isFavorite: false),
         MenuCategory(name: "Dairy Free", filterName: "Non-Dairy-Free",  icons: [Image("Dairy_Free_Symbol_Selected"), Image ("Dairy_Free_Symbol_Unselected")] , isFavorite: false),
         MenuCategory(name: "Gluten Free", filterName: "Non-Gluten-Free", icons: [Image("Gluten_Free_Symbol_Selected"), Image ("Gluten_Free_Symbol_Unselected")] , isFavorite: false),

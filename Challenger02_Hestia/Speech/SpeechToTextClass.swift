@@ -175,7 +175,7 @@ class SpeechToText: ObservableObject {
         request.shouldReportPartialResults = true
         
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .defaultToSpeaker)
+        try audioSession.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode
         

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F2CEC292BF67E0800F7EC5C /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CEC282BF67E0800F7EC5C /* OnBoardingView.swift */; };
+		6F2CEC2B2BF67F5500F7EC5C /* OnBoarding2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CEC2A2BF67F5500F7EC5C /* OnBoarding2.swift */; };
+		6F2CEC2D2BF67F5D00F7EC5C /* OnBoarding3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CEC2C2BF67F5D00F7EC5C /* OnBoarding3.swift */; };
+		6F2CEC2F2BF6845E00F7EC5C /* OnBoarding1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CEC2E2BF6845E00F7EC5C /* OnBoarding1.swift */; };
 		6F3CBAD82BEBFDCE0047BEAD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3CBAD72BEBFDCE0047BEAD /* Data.swift */; };
 		6F656F2A2BF5471900A1CF3A /* MealsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F656F292BF5471900A1CF3A /* MealsSearchView.swift */; };
 		6FE1301B2BF3DF8700F40F26 /* YourRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301A2BF3DF8700F40F26 /* YourRecipes.swift */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F2CEC282BF67E0800F7EC5C /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		6F2CEC2A2BF67F5500F7EC5C /* OnBoarding2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding2.swift; sourceTree = "<group>"; };
+		6F2CEC2C2BF67F5D00F7EC5C /* OnBoarding3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding3.swift; sourceTree = "<group>"; };
+		6F2CEC2E2BF6845E00F7EC5C /* OnBoarding1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding1.swift; sourceTree = "<group>"; };
 		6F3CBAD72BEBFDCE0047BEAD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		6F656F292BF5471900A1CF3A /* MealsSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsSearchView.swift; sourceTree = "<group>"; };
 		6F6CC9312BF2AE1D0098C2E8 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -143,6 +151,10 @@
 				6FE1301A2BF3DF8700F40F26 /* YourRecipes.swift */,
 				6FE1301C2BF3E07300F40F26 /* FavoriteCard.swift */,
 				6F656F292BF5471900A1CF3A /* MealsSearchView.swift */,
+				6F2CEC282BF67E0800F7EC5C /* OnBoardingView.swift */,
+				6F2CEC2A2BF67F5500F7EC5C /* OnBoarding2.swift */,
+				6F2CEC2C2BF67F5D00F7EC5C /* OnBoarding3.swift */,
+				6F2CEC2E2BF6845E00F7EC5C /* OnBoarding1.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,8 +261,12 @@
 				9964D9CF2BE2AA60008CE95B /* MealDetailView.swift in Sources */,
 				6FF1E15C2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift in Sources */,
 				9964D9C52BE2A9CB008CE95B /* MealViewModel.swift in Sources */,
+				6F2CEC292BF67E0800F7EC5C /* OnBoardingView.swift in Sources */,
+				6F2CEC2F2BF6845E00F7EC5C /* OnBoarding1.swift in Sources */,
+				6F2CEC2B2BF67F5500F7EC5C /* OnBoarding2.swift in Sources */,
 				9964D9CB2BE2AA34008CE95B /* WebService.swift in Sources */,
 				6F656F2A2BF5471900A1CF3A /* MealsSearchView.swift in Sources */,
+				6F2CEC2D2BF67F5D00F7EC5C /* OnBoarding3.swift in Sources */,
 				993DD3DB2BE4166F0007EEEE /* SpeechView.swift in Sources */,
 				9964D9D12BE2AA6E008CE95B /* MealRowItem.swift in Sources */,
 				9964D9C32BE2A9B8008CE95B /* MealModel.swift in Sources */,
@@ -402,8 +418,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Hestia;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Aceite para liberar o microfone";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need this to hear your instructions during the recipe.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We need your permission to understand what you are saying!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -438,8 +454,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Hestia;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Aceite para liberar o microfone";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need this to hear your instructions during the recipe.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We need your permission to understand what you are saying!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

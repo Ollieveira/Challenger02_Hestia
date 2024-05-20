@@ -6,7 +6,9 @@ struct MealSpeechView: View {
     @State private var currentStepIndex = 0
     @State private var isReading = false
     @State private var isListening = false
-
+    @State var hasSeenOnboarding = false
+    
+    
     
     @StateObject private var speechToText = SpeechToText(language: "en-US")
     
@@ -15,80 +17,91 @@ struct MealSpeechView: View {
     
     
     var body: some View {
-        VStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-            
-            Spacer()
-            
-            Text(meal.strMeal)
-                .font(.largeTitle).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            
-            Spacer()
-            
-            Image(speechToText.getIsSpeaking() ? "IconTalksViewTrue" : "IconTalksView")
-            
-            Spacer()
-            
-            Text(meal.instructionSteps[currentStepIndex])
-                .font(.title2).fontWeight(.semibold)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 16)
-
-            
-            Spacer()
-            
-            HStack {
-                Spacer()
-                
-                CircleIconButton(systemName: "arrowshape.left.fill", width: 50, height: 50, font: .headline) {
-                    if currentStepIndex > 0 { // Verifica se currentStepIndex é maior que 0
-                        currentStepIndex -= 1
-                    }
-                }
-                .disabled(currentStepIndex == 0)
-
+        if hasSeenOnboarding {
+            VStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
                 
                 Spacer()
                 
-                CircleIconButton(systemName: "arrowshape.right.fill", width: 50, height: 50, font: .headline) {
-                    if currentStepIndex < meal.instructionSteps.count - 1 {
-                        currentStepIndex += 1
+                Text(meal.strMeal)
+                    .font(.largeTitle).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                
+                Spacer()
+                
+                Image(speechToText.getIsSpeaking() ? "IconTalksViewTrue" : "IconTalksView")
+                
+                Spacer()
+                
+                Text(meal.instructionSteps[currentStepIndex])
+                    .font(.title2).fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 16)
+                
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    CircleIconButton(systemName: "arrowshape.left.fill", width: 50, height: 50, font: .headline) {
+                        if currentStepIndex > 0 { // Verifica se currentStepIndex é maior que 0
+                            currentStepIndex -= 1
+                        }
                     }
+                    .disabled(currentStepIndex == 0)
+                    
+                    
+                    Spacer()
+                    
+                    CircleIconButton(systemName: "arrowshape.right.fill", width: 50, height: 50, font: .headline) {
+                        if currentStepIndex < meal.instructionSteps.count - 1 {
+                            currentStepIndex += 1
+                        }
+                    }
+                    .disabled(currentStepIndex == meal.instructionSteps.count - 1)
+                    
+                    
+                    Spacer()
                 }
-                .disabled(currentStepIndex == meal.instructionSteps.count - 1)
-
                 
                 Spacer()
             }
-            
-            Spacer()
-        }
-        .onAppear {
-            speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-            speechToText.startTranscribing()
-        }
-        .onDisappear {
-            dismiss()
-            speechToText.stopTranscribing()
-            speechToText.stopSpeaking()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity) // Faz a VStack ocupar toda a view
-        .background(Color.backgroundCor.edgesIgnoringSafeArea(.all)) // Aplica a cor do background em toda a view
-        .onChange(of: speechToText.currentWord) { oldWord, newWord in
-            switch newWord {
-            case "next":
-                goToNextStep()
-            case "back":
-                goToPreviousStep()
-            case "pause":
-                pauseReading()
-            case "continue":
-                continueReading()
-            default:
-                break
+            .onAppear {
+                speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+                speechToText.startTranscribing()
             }
+            .onDisappear {
+                dismiss()
+                speechToText.stopTranscribing()
+                speechToText.stopSpeaking()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity) // Faz a VStack ocupar toda a view
+            .background(Color.backgroundCor.edgesIgnoringSafeArea(.all)) // Aplica a cor do background em toda a view
+            .onChange(of: speechToText.currentWord) { oldWord, newWord in
+                switch newWord {
+                case "next":
+                    goToNextStep()
+                case "back":
+                    goToPreviousStep()
+                case "read":
+                    speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+                case "pause":
+                    pauseReading()
+                case "continue":
+                    continueReading()
+                default:
+                    break
+                }
+            }
+        } else {
+            OnBoardingView(hasSeenOnboarding: $hasSeenOnboarding)
+                .onDisappear {
+                    hasSeenOnboarding = true
+                    print(hasSeenOnboarding)
+                }
         }
-
+        
     }
+    
     
     struct CircleIconButton: View {
         var systemName: String
@@ -107,7 +120,7 @@ struct MealSpeechView: View {
                         .font(font)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.buttonsContentCor)
-
+                    
                 }
             })
         }
@@ -132,10 +145,10 @@ struct MealSpeechView: View {
     }
 }
 
-    
-    
-    
-    
+
+
+
+
 //    VStack {
 //        Text("Última palavra: \(speechToText.currentWord)")
 //        Text("Passo atual: \(meal.instructionSteps)")
@@ -168,7 +181,7 @@ struct MealSpeechView: View {
 ////        .sheet(isPresented: $shouldChangePage) {
 ////            Text("Nova Pagina")
 ////        }
-//    
+//
 //}
 //
 //func goToNextStep() {

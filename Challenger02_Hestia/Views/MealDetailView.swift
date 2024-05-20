@@ -8,7 +8,6 @@ struct MealDetailView: View {
     @State var isFavorite = false
     @StateObject private var speechToText = SpeechToText(language: "en-US")
 
-    
     var body: some View {
         VStack{
             ZStack (alignment: .top) {
