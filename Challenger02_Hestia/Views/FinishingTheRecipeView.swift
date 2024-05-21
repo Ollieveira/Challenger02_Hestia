@@ -73,8 +73,8 @@ struct FinishingTheRecipeView: View {
                 .fill(Color.backgroundCor)
             )
             .edgesIgnoringSafeArea(.all)
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
 
     }
     

@@ -69,15 +69,15 @@ struct MealSpeechView: View {
                 Spacer()
             }
             .onChange(of: currentStepIndex) { oldValue, newValue in
-                        // Verificar se atingiu o último item
+                // Verificar se atingiu o último item
                 if newValue == meal.instructionSteps.count - 1 {
-                            showFinishedSheet = true
-                        }
-                    }
-                    .fullScreenCover(isPresented: $showFinishedSheet) {
-                        // View específica a ser exibida
-                        FinishingTheRecipeView(isPresented: $showFinishedSheet, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
-                    }
+                    showFinishedSheet = true
+                }
+            }
+            .fullScreenCover(isPresented: $showFinishedSheet) {
+                // View específica a ser exibida
+                FinishingTheRecipeView(isPresented: $showFinishedSheet, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
+            }
             
             .onAppear {
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
