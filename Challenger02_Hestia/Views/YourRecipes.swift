@@ -15,7 +15,7 @@ struct YourRecipes: View {
     var body: some View {
         VStack {
             (
-                Text("Check out yout")
+                Text("Check out your")
                 +
                 Text(" favorites ")
                     .foregroundStyle(.tabViewCor)
