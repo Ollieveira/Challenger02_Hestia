@@ -15,16 +15,16 @@ struct TheTabView: View {
                 
                 MealSearchView()
                     .tabItem {
-                        Image(systemName: "magnifyingglass")
-                        Text("Search")
+                        Image(systemName: "square.and.pencil")
+                        Text("My recipes")
                     }
                     .toolbarBackground(.tabViewCor, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
                 
                 YourRecipes()
                     .tabItem {
-                        Image(systemName: "square.and.pencil")
-                        Text("Your recipes")
+                        Image(systemName: "star.fill")
+                        Text("Favorites")
                     }
                     .toolbarBackground(.tabViewCor, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)

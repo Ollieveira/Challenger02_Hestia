@@ -9,7 +9,7 @@ struct MealDetailView: View {
     @State var isFavorite = false
     @State var showObservation = false
     @StateObject private var speechToText = SpeechToText(language: "en-US")
-
+    
     var body: some View {
         VStack{
             ZStack (alignment: .top) {
@@ -82,10 +82,10 @@ struct MealDetailView: View {
                                     isReading = true
                                     
                                     print(isReading)
-
+                                    
                                     
                                     speechToText.speak(text: "Let's start with the ingredients and then we'll move on to the preparation steps.", rate: 0.3)
-
+                                    
                                     speechToText.speak(text: "Ingredients", rate: 0.3)
                                     
                                     for (ingredient, measure) in meal.ingredients.sorted(by: >) {
@@ -95,7 +95,7 @@ struct MealDetailView: View {
                                     }
                                     
                                     speechToText.speak(text: "Directions", rate: 0.3)
-
+                                    
                                     
                                     for step in meal.instructionSteps {
                                         // Configure a velocidade da leitura aqui (0.3 é 30% da velocidade normal)
@@ -103,7 +103,7 @@ struct MealDetailView: View {
                                     }
                                 }
                             }
-
+                            
                             CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, hasNotes: false, action: {
                                 if let youtubeURL = meal.strYoutube {
                                     openURL(youtubeURL)
@@ -122,15 +122,15 @@ struct MealDetailView: View {
                                         showObservation = false
                                     }
                             })
-
+                            
                         }
                         .padding(.top, 20)
-
+                        
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.leading, 32)
                     .padding(.trailing, 24)
-
+                    
                     
                     VStack (spacing: 16) {
                         ForEach(meal.ingredients.sorted(by: >), id: \.key) { key, value in
@@ -145,7 +145,7 @@ struct MealDetailView: View {
                         .padding(.top, 30)
                         .padding(.bottom, 16)
                         .padding(.leading, 32)
-
+                    
                     VStack (spacing: 16) {
                         ForEach(meal.instructionSteps, id: \.self) { step in
                             BulletPointView(text: "\(step)")
@@ -159,22 +159,22 @@ struct MealDetailView: View {
                     .fill(Color.backgroundCor)
             )
             .offset(y: -32)
-
-
+            
+            
         }
         .background(Color.backgroundCor)
         .edgesIgnoringSafeArea(.all)
         .onDisappear {
             speechToText.stopSpeaking()
         }
-
+        
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             dismiss()
             speechToText.stopSpeaking()
-
+            
         }) {
-            Image(systemName: "arrowshape.left.fill") 
+            Image(systemName: "arrowshape.left.fill")
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundStyle(Color.buttonsContentCor)
@@ -196,13 +196,13 @@ struct MealDetailView: View {
         .onAppear {
             isFavorite = viewModel.favoriteMeals.contains(where: { $0.id == meal.id })
         }
-
-
+        
+        
     }
     
     struct BulletPointView: View {
         let text: String
-
+        
         var body: some View {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("•")
@@ -230,18 +230,18 @@ struct MealDetailView: View {
                         .frame(width: width, height: height)
                         .foregroundStyle(Color.tabViewCor)
                     if hasNotes {
-                        Image(systemName: "note.text")
+                        Image(systemName: "circle.fill")
                             .font(.caption)
-                            .foregroundColor(Color.notificationCor)
-                            .offset(x: 12, y: -12)
+                            .foregroundStyle(Color.notificationCor)
+                            .offset(x: -12, y: -12)
                     }
                     Image(systemName: systemName)
                         .font(font)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.buttonsContentCor)
-
+                    
                 }
-
+                
             })
         }
     }
