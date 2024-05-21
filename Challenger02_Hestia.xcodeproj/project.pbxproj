@@ -13,6 +13,7 @@
 		6F2CEC2F2BF6845E00F7EC5C /* OnBoarding1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CEC2E2BF6845E00F7EC5C /* OnBoarding1.swift */; };
 		6F3CBAD82BEBFDCE0047BEAD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3CBAD72BEBFDCE0047BEAD /* Data.swift */; };
 		6F656F2A2BF5471900A1CF3A /* MealsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F656F292BF5471900A1CF3A /* MealsSearchView.swift */; };
+		6F9726CD2BFBD6D600D7740F /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 6F9726CC2BFBD6D600D7740F /* TelemetryClient */; };
 		6FE1301B2BF3DF8700F40F26 /* YourRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301A2BF3DF8700F40F26 /* YourRecipes.swift */; };
 		6FE1301D2BF3E07300F40F26 /* FavoriteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301C2BF3E07300F40F26 /* FavoriteCard.swift */; };
 		6FE47A5E2BED475200BA9263 /* MealSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE47A5D2BED475200BA9263 /* MealSpeechView.swift */; };
@@ -75,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FE47A612BEEB47200BA9263 /* CodableExtensions in Frameworks */,
+				6F9726CD2BFBD6D600D7740F /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +200,7 @@
 			name = Challenger02_Hestia;
 			packageProductDependencies = (
 				6FE47A602BEEB47200BA9263 /* CodableExtensions */,
+				6F9726CC2BFBD6D600D7740F /* TelemetryClient */,
 			);
 			productName = Challenger02_Hestia;
 			productReference = 6FF14DB02BE16F760004D52C /* Challenger02_Hestia.app */;
@@ -229,6 +232,7 @@
 			mainGroup = 6FF14DA72BE16F760004D52C;
 			packageReferences = (
 				6FE47A5F2BEEB47200BA9263 /* XCRemoteSwiftPackageReference "CodableExtensions" */,
+				6F9726CB2BFBD6D600D7740F /* XCRemoteSwiftPackageReference "SwiftClient" */,
 			);
 			productRefGroup = 6FF14DB12BE16F760004D52C /* Products */;
 			projectDirPath = "";
@@ -502,6 +506,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6F9726CB2BFBD6D600D7740F /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftClient";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
 		6FE47A5F2BEEB47200BA9263 /* XCRemoteSwiftPackageReference "CodableExtensions" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rvenieris/CodableExtensions.git";
@@ -513,6 +525,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6F9726CC2BFBD6D600D7740F /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F9726CB2BFBD6D600D7740F /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
+		};
 		6FE47A602BEEB47200BA9263 /* CodableExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6FE47A5F2BEEB47200BA9263 /* XCRemoteSwiftPackageReference "CodableExtensions" */;

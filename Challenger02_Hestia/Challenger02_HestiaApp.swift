@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 @main
 struct Challenge2App: App {
     
     @Environment(\.scenePhase) var scenePhase
+    
+
     
     var body: some Scene {
         WindowGroup {
@@ -35,6 +38,16 @@ struct Challenge2App: App {
             }
         }
     }
+    
+    init() {
+        let configuration = TelemetryManagerConfiguration(
+            appID: "5465312F-7D61-413A-BA0E-9FC4E2438E10")
+        TelemetryManager.initialize(with: configuration)
+        
+        TelemetryManager.send("applicationDidFinishLaunching")
+
+    }
+
 }
 
 #Preview {
