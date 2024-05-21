@@ -1,4 +1,5 @@
 import SwiftUI
+import CodableExtensions
 
 struct MealDetailView: View {
     @Environment(\.dismiss) var dismiss
@@ -6,6 +7,7 @@ struct MealDetailView: View {
     @StateObject var viewModel = MealViewModel.instance
     @State private var isReading = false
     @State var isFavorite = false
+    @State var showObservation = false
     @StateObject private var speechToText = SpeechToText(language: "en-US")
 
     var body: some View {
@@ -69,7 +71,7 @@ struct MealDetailView: View {
                                 }
                             )
                             
-                            CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption) {
+                            CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption, hasNotes: false) {
                                 if speechToText.getIsSpeaking() && !speechToText.getIsPaused() {
                                     // Se a leitura está em andamento, pare a leitura
                                     speechToText.stopSpeaking()
@@ -102,15 +104,25 @@ struct MealDetailView: View {
                                 }
                             }
 
-                            CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, action: {
+                            CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, hasNotes: false, action: {
                                 if let youtubeURL = meal.strYoutube {
                                     openURL(youtubeURL)
                                 }
                             })
                             
-                            CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline) {
-                                
+                            CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline, hasNotes: !(meal.notes?.isEmpty ?? true)) {
+                                showObservation = true
                             }
+                            .sheet(isPresented: $showObservation, content: {
+                                AddObservationView(isPresented: $showObservation, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
+                                    .presentationDetents([.medium, .large])
+                                    .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                                    .presentationCornerRadius(44)
+                                    .onDisappear {
+                                        showObservation = false
+                                    }
+                            })
+
                         }
                         .padding(.top, 20)
 
@@ -204,11 +216,12 @@ struct MealDetailView: View {
     }
     
     struct CircleIconButton: View {
-        var systemName: String
-        var width: CGFloat
-        var height: CGFloat
-        var font: Font
-        var action: () -> Void
+        let systemName: String
+        let width: CGFloat
+        let height: CGFloat
+        let font: Font
+        let hasNotes: Bool
+        let action: () -> Void
         
         var body: some View {
             Button(action: action, label: {
@@ -216,11 +229,19 @@ struct MealDetailView: View {
                     Circle()
                         .frame(width: width, height: height)
                         .foregroundStyle(Color.tabViewCor)
+                    if hasNotes {
+                        Image(systemName: "note.text")
+                            .font(.caption)
+                            .foregroundColor(Color.notificationCor)
+                            .offset(x: 12, y: -12)
+                    }
                     Image(systemName: systemName)
                         .font(font)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.buttonsContentCor)
+
                 }
+
             })
         }
     }

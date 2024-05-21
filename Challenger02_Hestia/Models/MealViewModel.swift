@@ -41,6 +41,28 @@ class MealViewModel: ObservableObject {
         }
     }
     
+    func saveMealNotes(_ meal: Meal, notes: String) {
+        if let index = meals.firstIndex(where: { $0.id == meal.id }) {
+            meals[index].notes = notes
+            saveMeals()
+        }
+        if let index = favoriteMeals.firstIndex(where: { $0.id == meal.id }) {
+            favoriteMeals[index].notes = notes
+            saveMeals()
+        }
+    }
+    
+    func saveMeals() {
+        do {
+            try meals.save(in: "meals")
+            try favoriteMeals.save(in: "favoriteMeals")
+            print("Meals saved")
+        } catch {
+            print("Failed to save meals: \(error)")
+        }
+    }
+
+    
     
     
     func loadAllMeals() {
