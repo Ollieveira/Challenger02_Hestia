@@ -4,9 +4,12 @@ struct MealSpeechView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var meal: Meal
     @State private var currentStepIndex = 0
+    @State var showFinishedSheet = false
     @State private var isReading = false
     @State private var isListening = false
     @State var hasSeenOnboarding = false
+    @StateObject var viewModel = MealViewModel.instance
+
     
     
     
@@ -65,6 +68,17 @@ struct MealSpeechView: View {
                 
                 Spacer()
             }
+            .onChange(of: currentStepIndex) { oldValue, newValue in
+                        // Verificar se atingiu o último item
+                if newValue == meal.instructionSteps.count - 1 {
+                            showFinishedSheet = true
+                        }
+                    }
+                    .fullScreenCover(isPresented: $showFinishedSheet) {
+                        // View específica a ser exibida
+                        FinishingTheRecipeView(isPresented: $showFinishedSheet, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
+                    }
+            
             .onAppear {
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
                 speechToText.startTranscribing()
