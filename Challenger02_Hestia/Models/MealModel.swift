@@ -12,12 +12,14 @@ struct Meal: Identifiable, Codable, Hashable {
     let strMealThumb: URL
     let strTags: String?
     let strYoutube: URL?
+    var notes: String?  // Propriedade para armazenar anotações do usuário
+
 
     var ingredients: [String: String]
     var dietaryRestrictions: [String]
 
     enum CodingKeys: String, CodingKey {
-        case idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube
+        case idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, notes
     }
 
     enum DynamicCodingKeys: String, CodingKey {
@@ -41,6 +43,8 @@ struct Meal: Identifiable, Codable, Hashable {
         strMealThumb = try container.decode(URL.self, forKey: .strMealThumb)
         strTags = try container.decodeIfPresent(String.self, forKey: .strTags)
         strYoutube = try container.decodeIfPresent(String.self, forKey: .strYoutube).flatMap(URL.init)
+        notes = try container.decodeIfPresent(String.self, forKey: .notes)  // Decodifica as anotações
+
 
         instructionSteps = strInstructions
             .split(whereSeparator: { $0.isNewline || $0 == "." })
@@ -75,6 +79,8 @@ struct Meal: Identifiable, Codable, Hashable {
         try container.encode(strMealThumb, forKey: .strMealThumb)
         try container.encode(strTags, forKey: .strTags)
         try container.encode(strYoutube, forKey: .strYoutube)
+        try container.encode(notes, forKey: .notes)  // Codifica as anotações
+
 
         var dynamicContainer = encoder.container(keyedBy: DynamicCodingKeys.self)
         let ingredientsArray = Array(ingredients.keys)
