@@ -70,10 +70,9 @@ struct FinishingTheRecipeView: View {
             .padding(.horizontal, 36)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RoundedRectangle(cornerRadius: 44)
-                .fill(Color.backgroundCor)
+                .fill(Color.bgFavCardCor)
             )
             .edgesIgnoringSafeArea(.all)
-            .navigationBarBackButtonHidden(true)
         }
 
     }

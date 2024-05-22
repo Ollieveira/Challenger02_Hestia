@@ -5,22 +5,17 @@ struct MealSpeechView: View {
     @StateObject private var speechToText = SpeechToText(language: "en-US")
     @Binding var meal: Meal
     @State private var currentStepIndex = 0
-    @State var showFinishedSheet = false
+    @State private var navigateToNextView = false
     @State private var isReading = false
     @State private var isListening = false
     @State var hasSeenOnboarding = false
     @StateObject var viewModel = MealViewModel.instance
 
     
-    
-    
-    @StateObject private var speechToText = SpeechToText(language: "en-US")
-    
-    //    @State private var shouldChangePage = false
-    
-    
-    
     var body: some View {
+        
+        let isLastStep = currentStepIndex == meal.instructionSteps.count - 1
+        
         if hasSeenOnboarding {
             VStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
                 
@@ -31,7 +26,7 @@ struct MealSpeechView: View {
                 
                 Spacer()
                 
-                Image(speechToText.getIsSpeaking() ? "IconTalksViewTrue" : "IconTalksView")
+                Image("IconTalksView")
                 
                 Spacer()
                 
@@ -56,34 +51,29 @@ struct MealSpeechView: View {
                     
                     Spacer()
                     
-                    CircleIconButton(systemName: "arrowshape.right.fill", width: 50, height: 50, font: .headline) {
+                    CircleIconButton(systemName: isLastStep ? "checkmark" : "arrowshape.right.fill", width: 50, height: 50, font: .headline, action: {
                         if currentStepIndex < meal.instructionSteps.count - 1 {
                             currentStepIndex += 1
+                        } else if isLastStep {
+                            navigateToNextView = true
                         }
-                    }
-                    .disabled(currentStepIndex == meal.instructionSteps.count - 1)
-                    
+                    }, isLastStep: isLastStep)
                     
                     Spacer()
                 }
                 
                 Spacer()
-            }
-            .onChange(of: currentStepIndex) { oldValue, newValue in
-                // Verificar se atingiu o último item
-                if newValue == meal.instructionSteps.count - 1 {
-                    showFinishedSheet = true
+                
+                NavigationLink(value: navigateToNextView) {
+                    EmptyView()
                 }
             }
-            .fullScreenCover(isPresented: $showFinishedSheet) {
-                // View específica a ser exibida
-                FinishingTheRecipeView(isPresented: $showFinishedSheet, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
+            .navigationDestination(isPresented: $navigateToNextView) {
+                FinishingTheRecipeView(isPresented: $navigateToNextView, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
             }
-            
             .onAppear {
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
                 speechToText.startTranscribing()
-                
             }
             .onDisappear {
                 dismiss()
@@ -101,7 +91,6 @@ struct MealSpeechView: View {
                     hasSeenOnboarding = true
                 }
         }
-        
     }
     
     
@@ -111,18 +100,18 @@ struct MealSpeechView: View {
         var height: CGFloat
         var font: Font
         var action: () -> Void
+        var isLastStep: Bool?
         
         var body: some View {
             Button(action: action, label: {
                 ZStack {
                     Circle()
                         .frame(width: width, height: height)
-                        .foregroundStyle(Color.tabViewCor)
+                        .foregroundStyle(isLastStep ?? false ? Color.checkButtonCor : Color.tabViewCor)
                     Image(systemName: systemName)
                         .font(font)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.buttonsContentCor)
-                    
                 }
             })
         }
@@ -163,74 +152,6 @@ struct MealSpeechView: View {
                 break
             }
     }
-
 }
-
-
-
-
-
-//    VStack {
-//        Text("Última palavra: \(speechToText.currentWord)")
-//        Text("Passo atual: \(meal.instructionSteps)")
-//        Toggle("Reconhecimento de Voz", isOn: $isListening)
-//            .padding()
-//    }
-//    .onChange(of: isListening) { oldValue, newValue in
-//                if newValue {
-//                    speechToText.startTranscribing()
-//                } else {
-//                    speechToText.stopTranscribing()
-//                }
-//            }
-//    .onChange(of: speechToText.currentWord) { oldWord, newWord in
-//        switch newWord {
-//        case "next":
-//            goToNextStep()
-//        case "back":
-//            goToPreviousStep()
-//        case "read":
-//            startReading()
-//        case "pause":
-//            pauseReading()
-//        case "follow":
-//            continueReading()
-//        default:
-//            break
-//        }
-//    }
-////        .sheet(isPresented: $shouldChangePage) {
-////            Text("Nova Pagina")
-////        }
-//
-//}
-//
-//func goToNextStep() {
-//    currentStepIndex = min(currentStepIndex + 1, recipeSteps.count - 1)
-//    speechToText.speak(text: recipeSteps[currentStepIndex])
-//}
-//
-//func goToPreviousStep() {
-//    currentStepIndex = max(currentStepIndex - 1, 0)
-//    speechToText.speak(text: recipeSteps[currentStepIndex])
-//}
-//
-////    func changePage(to shouldChange: Bool) {
-////        shouldChangePage = shouldChange
-////    }
-//
-//func startReading() {
-//    let fullText = recipeSteps.joined(separator: ". ")
-//    speechToText.speak(text: fullText)
-//}
-//
-//func pauseReading() {
-//    speechToText.pauseSpeaking()
-//}
-//
-//func continueReading() {
-//    speechToText.continueSpeaking()
-//}
-
 
 

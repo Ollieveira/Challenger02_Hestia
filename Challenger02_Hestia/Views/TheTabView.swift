@@ -31,6 +31,7 @@ struct TheTabView: View {
             }
             .tint(.tabViewItemCor)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
