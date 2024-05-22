@@ -28,6 +28,8 @@ struct OnBoardingView: View {
             .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
         .background(Color.backgroundCor)
+        .navigationBarBackButtonHidden(true)
+
 
     }
 }

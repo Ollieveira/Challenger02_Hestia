@@ -2,19 +2,10 @@ import SwiftUI
 
 struct MealSpeechView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject private var speechToText = SpeechToText(language: "en-US")
     @Binding var meal: Meal
     @State private var currentStepIndex = 0
-    @State private var isReading = false
-    @State private var isListening = false
     @State var hasSeenOnboarding = false
-    
-    
-    
-    @StateObject private var speechToText = SpeechToText(language: "en-US")
-    
-    //    @State private var shouldChangePage = false
-    
-    
     
     var body: some View {
         if hasSeenOnboarding {
@@ -68,6 +59,7 @@ struct MealSpeechView: View {
             .onAppear {
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
                 speechToText.startTranscribing()
+                
             }
             .onDisappear {
                 dismiss()
@@ -77,26 +69,12 @@ struct MealSpeechView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity) // Faz a VStack ocupar toda a view
             .background(Color.backgroundCor.edgesIgnoringSafeArea(.all)) // Aplica a cor do background em toda a view
             .onChange(of: speechToText.currentWord) { oldWord, newWord in
-                switch newWord {
-                case "next":
-                    goToNextStep()
-                case "back":
-                    goToPreviousStep()
-                case "read":
-                    speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-                case "pause":
-                    pauseReading()
-                case "continue":
-                    continueReading()
-                default:
-                    break
-                }
+                handleVoiceCommand(command: newWord)
             }
         } else {
             OnBoardingView(hasSeenOnboarding: $hasSeenOnboarding)
                 .onDisappear {
                     hasSeenOnboarding = true
-                    print(hasSeenOnboarding)
                 }
         }
         
@@ -134,6 +112,7 @@ struct MealSpeechView: View {
     func goToPreviousStep() {
         currentStepIndex = max(currentStepIndex - 1, 0)
         speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+
     }
     
     func pauseReading() {
@@ -143,6 +122,24 @@ struct MealSpeechView: View {
     func continueReading() {
         speechToText.continueSpeaking()
     }
+    
+    private func handleVoiceCommand(command: String) {
+            switch command {
+            case "next":
+                goToNextStep()
+            case "back":
+                goToPreviousStep()
+            case "read":
+                speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+            case "pause":
+                pauseReading()
+            case "continue":
+                continueReading()
+            default:
+                break
+            }
+    }
+
 }
 
 

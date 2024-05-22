@@ -43,6 +43,15 @@ class SpeechToText: ObservableObject {
         self.request = request
         self.task = task
         self.recognizer = recognizer
+        
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth, .duckOthers])
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print(error.localizedDescription)
+            assertionFailure(error.localizedDescription)
+        }
     }
     
     convenience init(language: String) {
@@ -174,9 +183,7 @@ class SpeechToText: ObservableObject {
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
         
-        let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
-        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        
         let inputNode = audioEngine.inputNode
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)

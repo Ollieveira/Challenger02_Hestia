@@ -76,13 +76,9 @@ struct MealDetailView: View {
                                     // Se a leitura está em andamento, pare a leitura
                                     speechToText.stopSpeaking()
                                     isReading = false
-                                    print(isReading)
                                 } else {
                                     // Se a leitura não está em andamento, comece a ler os ingredientes
                                     isReading = true
-                                    
-                                    print(isReading)
-
                                     
                                     speechToText.speak(text: "Let's start with the ingredients and then we'll move on to the preparation steps.", rate: 0.3)
 
