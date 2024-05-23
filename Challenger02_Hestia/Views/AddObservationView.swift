@@ -4,6 +4,7 @@ struct AddObservationView: View {
     @FocusState private var isTextEditorFocused: Bool
     
     @Binding var isPresented: Bool
+    @State var isSheet: Bool
     @State var note: String = ""
     var meal: Meal
     var viewModel: MealViewModel
@@ -51,14 +52,14 @@ struct AddObservationView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
             }
+            .padding(.horizontal, 36).padding(.top, isSheet ? 48 : 120)
             
             Spacer()
         }
-        .contentShape(Rectangle()) // Ensure the entire VStack can receive tap events
+        .contentShape(Rectangle())
         .onTapGesture {
             isTextEditorFocused = false
         }
-        .padding(.horizontal, 36).padding(.vertical, 48)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(RoundedRectangle(cornerRadius: 44)
             .fill(Color.bgFavCardCor)

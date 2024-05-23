@@ -113,7 +113,7 @@ struct MealDetailView: View {
                                 showObservation = true
                             }
                             .sheet(isPresented: $showObservation, content: {
-                                AddObservationView(isPresented: $showObservation, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
+                                AddObservationView(isPresented: $showObservation, isSheet: true, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
                                     .presentationDetents([.medium, .large])
                                     .presentationBackgroundInteraction(.enabled(upThrough: .medium))
                                     .presentationCornerRadius(44)

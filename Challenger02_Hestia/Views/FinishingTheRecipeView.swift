@@ -8,7 +8,6 @@ struct FinishingTheRecipeView: View {
     
     
     var body: some View {
-        NavigationStack {
             VStack (alignment: .center, spacing: 40) {
                 VStack (alignment: .center){
                     Text("You've finished this recipe!")
@@ -41,7 +40,7 @@ struct FinishingTheRecipeView: View {
                     VStack (alignment: .center) {
                         
                         NavigationLink(
-                            destination: AddObservationView(isPresented: $isPresented, meal: meal, viewModel: viewModel)
+                            destination: AddObservationView(isPresented: $isPresented, isSheet: false, meal: meal, viewModel: viewModel)
                         ) {
                             CircleIconButton(systemName: "square.and.pencil", width: 70, height: 70, font: .title)
                         }
@@ -73,8 +72,6 @@ struct FinishingTheRecipeView: View {
                 .fill(Color.bgFavCardCor)
             )
             .edgesIgnoringSafeArea(.all)
-        }
-
     }
     
     struct CircleIconButton: View {
