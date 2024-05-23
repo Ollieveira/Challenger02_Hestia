@@ -79,12 +79,12 @@ struct MealDetailView: View {
                             CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption, hasNotes: false) {
                                 
                                 if speechToText.getIsSpeaking() && !speechToText.getIsPaused() {
-                                    TelemetryManager.send("buttonPress", with: ["button": "Interrompeu a leitura na MealDetailView"])
+                                    TelemetryManager.send("buttonPress", with: ["button": "Interrompeu a narração na MealDetailView"])
                                     // Se a leitura está em andamento, pare a leitura
                                     speechToText.stopSpeaking()
                                     isReading = false
                                 } else {
-                                    TelemetryManager.send("buttonPress", with: ["button": "Inicou a leitura na MealDetailView"])
+                                    TelemetryManager.send("buttonPress", with: ["button": "Inicou a narração na MealDetailView"])
 
                                     // Se a leitura não está em andamento, comece a ler os ingredientes
                                     isReading = true

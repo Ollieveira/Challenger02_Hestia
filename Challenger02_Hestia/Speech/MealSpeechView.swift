@@ -87,10 +87,8 @@ struct MealSpeechView: View {
                 if let viewAppearTime = viewAppearTime {
                     let viewDisappearTime = Date()
                     let duration = viewDisappearTime.timeIntervalSince(viewAppearTime)
-                    // Converte a duração para string
-                    let durationString = String(duration)
                     // Envia o sinal de telemetria com a duração
-                    TelemetryManager.send("viewDuration", with: ["page": "MealSpeechView", "duration": durationString])
+                    TelemetryManager.send("viewDuration", floatValue: duration, with: ["page": "MealSpeechView"])
                 }
                 dismiss()
                 speechToText.stopTranscribing()
