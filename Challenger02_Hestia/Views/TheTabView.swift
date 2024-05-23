@@ -15,8 +15,8 @@ struct TheTabView: View {
                 
                 MealSearchView()
                     .tabItem {
-                        Image(systemName: "square.and.pencil")
-                        Text("My recipes")
+                        Image(systemName: "magnifyingglass")
+                        Text("Search")
                     }
                     .toolbarBackground(.tabViewCor, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
