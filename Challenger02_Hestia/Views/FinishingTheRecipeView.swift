@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryClient
 
 struct FinishingTheRecipeView: View {
     @Binding var isPresented: Bool
@@ -29,7 +30,10 @@ struct FinishingTheRecipeView: View {
                         ) {
                             CircleIconButton(systemName: "book.fill", width: 70, height: 70, font: .title)
                         }
-                        
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // Envia o sinal de telemetria antes da navegação
+                            TelemetryManager.send("navigationLinkPress", with: ["destination": "Recipes - FinishedRecipeView"])
+                        })
                         
                         Text("Recipes")
                             .font(.subheadline)
@@ -44,6 +48,11 @@ struct FinishingTheRecipeView: View {
                         ) {
                             CircleIconButton(systemName: "square.and.pencil", width: 70, height: 70, font: .title)
                         }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // Envia o sinal de telemetria antes da navegação
+                            TelemetryManager.send("navigationLinkPress", with: ["destination": "Create a note - FinishedRecipeView"])
+                        })
+
                         
                         Text("Create a Note")
                             .font(.subheadline)
@@ -58,6 +67,11 @@ struct FinishingTheRecipeView: View {
                         ) {
                             CircleIconButton(systemName: "star.fill", width: 70, height: 70, font: .title)
                         }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // Envia o sinal de telemetria antes da navegação
+                            TelemetryManager.send("navigationLinkPress", with: ["destination": "Favorites - FinishedRecipeView"])
+                        })
+
                         
                         Text("Favorites")
                             .font(.subheadline)

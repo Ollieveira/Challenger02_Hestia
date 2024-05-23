@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryClient
 
 struct AddObservationView: View {
     @FocusState private var isTextEditorFocused: Bool
@@ -37,6 +38,8 @@ struct AddObservationView: View {
                 .font(.system(.body, design: .rounded))
                 
                 Button(action: {
+                    TelemetryManager.send("buttonPress", with: ["button": "Adicionou uma nota"])
+
                     viewModel.saveMealNotes(meal, notes: note)
                     isPresented = false
                     

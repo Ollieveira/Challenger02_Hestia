@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryClient
 
 struct MealSpeechView: View {
     @Environment(\.dismiss) var dismiss
@@ -10,6 +11,8 @@ struct MealSpeechView: View {
     @State private var isListening = false
     @State var hasSeenOnboarding = false
     @StateObject var viewModel = MealViewModel.instance
+    @State private var viewAppearTime: Date?
+
 
     
     var body: some View {
@@ -56,6 +59,8 @@ struct MealSpeechView: View {
                             currentStepIndex += 1
                         } else if isLastStep {
                             navigateToNextView = true
+                            TelemetryManager.send("buttonPress", with: ["button": "Concluiu todos os passos da receita"])
+
                         }
                     }, isLastStep: isLastStep)
                     
@@ -72,10 +77,21 @@ struct MealSpeechView: View {
                 FinishingTheRecipeView(isPresented: $navigateToNextView, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
             }
             .onAppear {
+                // Registra o momento em que a view aparece
+                viewAppearTime = Date()
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
                 speechToText.startTranscribing()
             }
             .onDisappear {
+                // Calcula o tempo que a view ficou visível
+                if let viewAppearTime = viewAppearTime {
+                    let viewDisappearTime = Date()
+                    let duration = viewDisappearTime.timeIntervalSince(viewAppearTime)
+                    // Converte a duração para string
+                    let durationString = String(duration)
+                    // Envia o sinal de telemetria com a duração
+                    TelemetryManager.send("viewDuration", with: ["page": "MealSpeechView", "duration": durationString])
+                }
                 dismiss()
                 speechToText.stopTranscribing()
                 speechToText.stopSpeaking()

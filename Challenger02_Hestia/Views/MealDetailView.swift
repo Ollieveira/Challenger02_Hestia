@@ -1,4 +1,5 @@
 import SwiftUI
+import TelemetryClient
 import CodableExtensions
 
 struct MealDetailView: View {
@@ -70,18 +71,23 @@ struct MealDetailView: View {
                                     }
                                 }
                             )
+                            .simultaneousGesture(TapGesture().onEnded {
+                                                // Envia o sinal de telemetria antes da navegação
+                                                TelemetryManager.send("navigationLinkPress", with: ["destination": "MealSpeechView"])
+                                            })
                             
                             CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption, hasNotes: false) {
+                                
                                 if speechToText.getIsSpeaking() && !speechToText.getIsPaused() {
+                                    TelemetryManager.send("buttonPress", with: ["button": "Interrompeu a leitura na MealDetailView"])
                                     // Se a leitura está em andamento, pare a leitura
                                     speechToText.stopSpeaking()
                                     isReading = false
                                 } else {
+                                    TelemetryManager.send("buttonPress", with: ["button": "Inicou a leitura na MealDetailView"])
+
                                     // Se a leitura não está em andamento, comece a ler os ingredientes
                                     isReading = true
-                                    
-                                    print(isReading)
-                                    
                                     
                                     speechToText.speak(text: "Let's start with the ingredients and then we'll move on to the preparation steps.", rate: 0.3)
                                     
@@ -104,12 +110,16 @@ struct MealDetailView: View {
                             }
                             
                             CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, hasNotes: false, action: {
+                                TelemetryManager.send("buttonPress", with: ["button": "Ver video no YouTube"])
+
                                 if let youtubeURL = meal.strYoutube {
                                     openURL(youtubeURL)
                                 }
                             })
                             
                             CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline, hasNotes: !(meal.notes?.isEmpty ?? true)) {
+                                TelemetryManager.send("buttonPress", with: ["button": "Abrir tela Sheet de Notas"])
+
                                 showObservation = true
                             }
                             .sheet(isPresented: $showObservation, content: {
@@ -182,8 +192,12 @@ struct MealDetailView: View {
             // Colocar funcionalidade de adicionar receita aos favoritos
             if isFavorite {
                 viewModel.removeFromFavorites(meal: meal)
+                TelemetryManager.send("buttonPress", with: ["button": "Removeu dos Favoritos"])
+
             } else {
                 viewModel.addToFavorites(meal: meal)
+                TelemetryManager.send("buttonPress", with: ["button": "Adicionou aos Favoritos"])
+
             }
             isFavorite.toggle()
         }) {

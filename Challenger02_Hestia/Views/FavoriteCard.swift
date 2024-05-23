@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct FavoriteCard: View {
     
@@ -71,6 +72,8 @@ struct FavoriteCard: View {
                         message: Text("Are you sure you want to delete \(recipeTitle)"),
                         primaryButton: .destructive(Text("Delete")) {
                             viewModel.removeFromFavorites(meal: meal)
+                            TelemetryManager.send("buttonPress", with: ["button": "Removeu Favorites - FavoritesView"])
+
                         },
                         secondaryButton: .cancel()
                     )

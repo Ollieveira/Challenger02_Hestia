@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct EverythingTogetherMenuView: View {
     @State var favorite: Bool = false
     @State var isFirstLoad: Bool = true
+    @State private var viewAppearTime: Date?
+
     
     var body: some View {
         NavigationStack {
@@ -31,6 +34,21 @@ struct EverythingTogetherMenuView: View {
                 ButtonStyleMenuView()
                 
                 MealsListView()
+            }
+            .onAppear {
+                // Registra o momento em que a view aparece
+                viewAppearTime = Date()
+            }
+            .onDisappear {
+                // Calcula o tempo que a view ficou visível
+                if let viewAppearTime = viewAppearTime {
+                    let viewDisappearTime = Date()
+                    let duration = viewDisappearTime.timeIntervalSince(viewAppearTime)
+                    // Converte a duração para string
+                    let durationString = String(duration)
+                    // Envia o sinal de telemetria com a duração
+                    TelemetryManager.send("viewDuration", with: ["page": "MainPage", "duration": durationString])
+                }
             }
             .background(Color.backgroundCor)
         }
