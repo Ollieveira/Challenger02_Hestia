@@ -19,6 +19,7 @@
 		6FE1301D2BF3E07300F40F26 /* FavoriteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301C2BF3E07300F40F26 /* FavoriteCard.swift */; };
 		6FE47A5E2BED475200BA9263 /* MealSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE47A5D2BED475200BA9263 /* MealSpeechView.swift */; };
 		6FE47A612BEEB47200BA9263 /* CodableExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6FE47A602BEEB47200BA9263 /* CodableExtensions */; };
+		6FEBE1642BFEBF560007D0E4 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 6F9726CC2BFBD6D600D7740F /* TelemetryClient */; };
 		6FF14DB42BE16F760004D52C /* Challenger02_HestiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF14DB32BE16F760004D52C /* Challenger02_HestiaApp.swift */; };
 		6FF14DB82BE16F770004D52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DB72BE16F770004D52C /* Assets.xcassets */; };
 		6FF14DBB2BE16F770004D52C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FF14DBA2BE16F770004D52C /* Preview Assets.xcassets */; };
@@ -78,8 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FEBE1642BFEBF560007D0E4 /* TelemetryClient in Frameworks */,
 				6FE47A612BEEB47200BA9263 /* CodableExtensions in Frameworks */,
-				6F9726CD2BFBD6D600D7740F /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
