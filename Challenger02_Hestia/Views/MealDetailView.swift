@@ -9,7 +9,7 @@ struct MealDetailView: View {
     @State private var isReading = false
     @State var isFavorite = false
     @State var showObservation = false
-    @StateObject private var speechToText = SpeechToText(language: "en-US")
+    @StateObject private var speechToText = SpeechToText(language: "pt-BR")
     
     var body: some View {
         VStack{

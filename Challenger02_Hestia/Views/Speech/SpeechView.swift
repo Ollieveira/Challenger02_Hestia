@@ -3,7 +3,7 @@ import SwiftUI
 struct SpeechView: View {
     @State var recipeSteps: [String]
     
-    @StateObject private var speechToText = SpeechToText(language: "en-US")
+    @StateObject private var speechToText = SpeechToText(language: "pt-BR")
 //    @State private var shouldChangePage = false
     @State private var isListening = false
 // Dados da API com os passos da receita
@@ -28,7 +28,11 @@ struct SpeechView: View {
             switch newWord {
             case "next":
                 goToNextStep()
+            case "proximo":
+                goToNextStep()
             case "back":
+                goToPreviousStep()
+            case "voltar":
                 goToPreviousStep()
             case "read":
                 startReading()

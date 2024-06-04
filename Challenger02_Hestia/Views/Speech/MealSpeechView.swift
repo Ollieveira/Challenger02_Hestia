@@ -3,7 +3,7 @@ import TelemetryClient
 
 struct MealSpeechView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject private var speechToText = SpeechToText(language: "en-US")
+    @StateObject private var speechToText = SpeechToText(language: "pt-BR")
     @Binding var meal: Meal
     @State private var currentStepIndex = 0
     @State private var navigateToNextView = false
@@ -154,7 +154,11 @@ struct MealSpeechView: View {
             switch command {
             case "next":
                 goToNextStep()
+            case "próximo":
+                goToNextStep()
             case "back":
+                goToPreviousStep()
+            case "voltar":
                 goToPreviousStep()
             case "read":
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)

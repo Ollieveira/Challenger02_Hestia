@@ -17,6 +17,8 @@ struct WebScrapingView: View {
     @State private var responseString = ""
     @State private var selectedUrl = ""
     @State private var isLoading = false
+    @State private var navigateToDetail = false
+    @State private var newMealIndex = 0
     @State private var retryCount = 0
     private let maxRetryCount = 3
 
@@ -25,26 +27,43 @@ struct WebScrapingView: View {
             if isLoading {
                 ProgressView("Loading...")
             } else {
-                ScrollView {
-                    Text("Response: \(responseString)")
+                Spacer()
+                TextField("Enter URL here", text: $selectedUrl)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                Spacer()
+                Button(action: {
+                    extractTextFromURL()
+                }) {
+                    Text("Confirmar")
+                        .foregroundColor(.white)
+                        .bold()
+                        .font(.body)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.tabViewCor)
+                                .shadow(radius: 5) // Adiciona sombra
+                        )
                 }
-            }
-
-            TextField("Enter URL here", text: $selectedUrl)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-
-            Button("Extract Text from URL") {
-                extractTextFromURL()
             }
-
-            Button("Simplify Text") {
-                sendRequest1(with: responseString)
-            }
-
-            Button("Create JSON") {
-                sendRequest2(with: responseString)
-            }
+            
+//            Button("Extract Text from URL") {
+//                extractTextFromURL()
+//            }
+//
+//            Button("Simplify Text") {
+//                sendRequest1(with: responseString)
+//            }
+//
+//            Button("Create JSON") {
+//                sendRequest2(with: responseString)
+//            }
+            NavigationResetView(
+                            destination: MealDetailView(meal: $viewModel.meals[newMealIndex]),
+                            isActive: $navigateToDetail
+                        )
         }
         .padding()
     }
@@ -71,7 +90,12 @@ struct WebScrapingView: View {
                         let finalMealData = try JSONSerialization.data(withJSONObject: mealDict)
                         let meal = try decoder.decode(Meal.self, from: finalMealData)
                         print("Decoded Meal:", meal)
-                        viewModel.addToFavorites(meal: meal)
+                        let mealIndex = viewModel.addToFavorites(meal: meal)
+                        newMealIndex = mealIndex!
+                        navigateToDetail = true
+                        self.responseString = ""
+                        self.selectedUrl = ""
+                        
                     }
                 } catch {
                     print("Error decoding Meal from nested JSON:", error)
@@ -97,6 +121,8 @@ struct WebScrapingView: View {
                     self.isLoading = false
                     if let data = data, let htmlString = String(data: data, encoding: .utf8) {
                         self.parseHTML(htmlString, retryCount: 0)
+                        print("tentando sendReques1 com:", responseString)
+                        self.sendRequest2(with: responseString)
                     } else {
                         self.responseString = "Failed to fetch HTML"
                     }
@@ -105,6 +131,7 @@ struct WebScrapingView: View {
         }
 
         func parseHTML(_ html: String, retryCount: Int) {
+            self.isLoading = true
             do {
                 let doc: Document = try SwiftSoup.parse(html)
                 let bodyText = try doc.body()?.text() ?? "No body text found"
@@ -162,6 +189,7 @@ struct WebScrapingView: View {
                     }
                 } else {
                     self.responseString = "Failed to send request or parse response"
+                    
                 }
             }
         }.resume()
@@ -170,7 +198,7 @@ struct WebScrapingView: View {
     func sendRequest2(with text: String) {
         guard let requestURL = URL(string: "https://hestiarecipes.netlify.app/.netlify/functions/recipeGPT") else { return }
         let formattedPrompt = """
-        Analise o seguinte texto contendo informações sobre uma receita misturadas com comentários e anúncios. Extraia as informações relevantes apenas para a receita de forma pratica e direta e estruture-as no seguinte formato JSON: O objeto 'Meal' deve conter os campos 'idMeal' (nil), 'strMeal' (nome da receita), 'strCategory' (categoria, como sobremesa ou salgado), 'strArea' (origem geográfica da receita, caso não ache, coloque mundo), 'strInstructions' (instrucao completa de como fazer a receita no sentido de acoes na cozinha, com cada grande passo dividido por ponto, nunca coloque numeros como 1, 2 para controlar a ordem apenas o passo em si), 'instructionSteps' (nil), 'strMealThumb' (nil), 'strTags' (nil), 'strYoutube' (nil), 'notes' (nil), e 'ingredients' (um dicionário com os ingredientes e suas quantidades. Caso nao ache quantidade, coloque "A gosto", evitando ao maximo fazer isso). Ignorar qualquer conteúdo não relevante para a receita e focar apenas nos detalhes da receita. Texto:
+        Analise o seguinte texto contendo informações sobre uma receita misturadas com comentários e anúncios. Extraia as informações relevantes apenas para a receita de forma pratica e direta e estruture-as no seguinte formato JSON: O objeto 'Meal' deve conter os campos 'idMeal' (null), 'strMeal' (nome da receita), 'strCategory' (categoria, como sobremesa ou salgado ou "geral", nunca null), 'strArea' (origem geográfica da receita ou mundo, nunca vazia), 'strInstructions' (instrucao completa de como fazer a receita com cada grande passo dividido por ponto, nunca numerados por ordem, apenas o passo do modo de preparo em si), 'instructionSteps' (null), 'strMealThumb' (null), 'strTags' (null), 'strYoutube' (null), 'notes' (null), e 'ingredients' (um dicionário com os ingredientes e suas quantidades. Caso nao ache quantidade, coloque "A gosto", evitando ao maximo fazer isso. Coloque todos os igredientes, mesmo que de partes diferentes da receita, em um mesmo dicionario). Ignorar qualquer conteúdo não relevante para a receita e focar apenas nos detalhes da receita. Não esqueca das virgulas, é importante que todas as chaves aparecam, mesmo que com null, e todas devem estar DENTRO do objeto Meal, inclusive o dicionario de ingredientes. Texto:
 
         \(text)
         """
@@ -194,6 +222,7 @@ struct WebScrapingView: View {
                     }
                 } else {
                     self.responseString = "Failed to send request or parse response"
+                    self.isLoading = false
                 }
             }
         }.resume()
