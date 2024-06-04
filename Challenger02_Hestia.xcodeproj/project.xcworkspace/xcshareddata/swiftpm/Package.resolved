@@ -1,5 +1,5 @@
 {
-  "originHash" : "95ce26a4e62277a815139fc66145e163f88b210e5a13422c6b57a1a4ed1795ed",
+  "originHash" : "8b510e3cb9a2a72805b4bec249dc42bc8532969ade33184735082819fa70f723",
   "pins" : [
     {
       "identity" : "codableextensions",
@@ -17,6 +17,24 @@
       "state" : {
         "revision" : "d20ccc4b8266cf739eede58cdfc7e9c6ffb41cda",
         "version" : "1.5.1"
+      }
+    },
+    {
+      "identity" : "swiftsoup",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/scinfu/SwiftSoup.git",
+      "state" : {
+        "revision" : "028487d4a8a291b2fe1b4392b5425b6172056148",
+        "version" : "2.7.2"
+      }
+    },
+    {
+      "identity" : "tocropviewcontroller",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TimOliver/TOCropViewController.git",
+      "state" : {
+        "revision" : "a634cb7cdfd580006e79a6e74e64417fe9e9783b",
+        "version" : "2.7.4"
       }
     }
   ],

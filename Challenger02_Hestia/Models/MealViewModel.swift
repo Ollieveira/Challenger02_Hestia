@@ -2,33 +2,37 @@ import SwiftUI
 import CodableExtensions
 
 @Observable
-class MealViewModel: ObservableObject {
+class MealViewModel {
     static var instance = MealViewModel()
     static let alphabet = "abcdefghijklmnoprstvwy" // Retiramos q u x z
     var searchType: SearchType = .letter
     
-    var meals: [Meal] = []
-    var allMeals: [Meal] = []
-    
-    var favoriteMeals: [Meal] = [] // Adicione esta linha
-    var filteredIndices: [Int] = []
+    var meals: [Meal] = [] // Cache inicial de receitas carregadas e salvas localmente
+    var filteredMeals: [Meal] { // Refeições filtradas para exibição
+        self.meals.filter { meal in
+            let hasRestriction = meal.dietaryRestrictions.contains { activeFilters.contains($0) }
+            if searchInput.isEmpty {
+                return hasRestriction == false
+            } else {
+                return hasRestriction == false && meal.strMeal.localizedCaseInsensitiveContains(searchInput)
+            }
+        }
+    }
+    var favoriteMeals: [Meal] = [] // Refeições favoritas
     
     var activeFilters: Set<String> = []
-    var searchInput: String = "" {
-           didSet { filterMeals() }
-       }
-
+    var searchInput: String = ""
+    
     var isLoading = false
     
     enum SearchType {
         case name, letter, category
     }
     
-    
     private init() {
         if let loadedMeals = try? [Meal].load(from: "meals"), !loadedMeals.isEmpty {
             self.meals = loadedMeals
-            self.allMeals = self.meals
+//            self.filteredMeals = self.meals
             print("Using cached meals")
         } else {
             print("No cached meals found")
@@ -45,10 +49,12 @@ class MealViewModel: ObservableObject {
         if let index = meals.firstIndex(where: { $0.id == meal.id }) {
             meals[index].notes = notes
             saveMeals()
+//            filterMeals()
         }
         if let index = favoriteMeals.firstIndex(where: { $0.id == meal.id }) {
             favoriteMeals[index].notes = notes
             saveMeals()
+//            filterMeals()
         }
     }
     
@@ -56,14 +62,12 @@ class MealViewModel: ObservableObject {
         do {
             try meals.save(in: "meals")
             try favoriteMeals.save(in: "favoriteMeals")
+            try filteredMeals.save(in: "allMeals")
             print("Meals saved")
         } catch {
             print("Failed to save meals: \(error)")
         }
     }
-
-    
-    
     
     func loadAllMeals() {
         Task {
@@ -77,18 +81,17 @@ class MealViewModel: ObservableObject {
         isLoading = true
         await performSearch(query: String(letter))
         isLoading = false
-        allMeals = meals
     }
     
     public func filterMeals() {
-          if searchInput.isEmpty {
-              filteredIndices = Array(meals.indices)
-          } else {
-              filteredIndices = meals.indices.filter { index in
-                  meals[index].strMeal.lowercased().contains(searchInput.lowercased())
-              }
-          }
-      }
+//        if searchInput.isEmpty {
+//            applyFilters()
+//        } else {
+//            filteredMeals = meals.filter { meal in
+//                meal.strMeal.lowercased().contains(searchInput.lowercased())
+//            }
+//        }
+    }
     
     func performSearch(query: String) async {
         guard !query.isEmpty else { return }
@@ -107,14 +110,14 @@ class MealViewModel: ObservableObject {
             let fetchedMeals = try await WebService().fetchMeals(fromURL: urlString)
             
             await MainActor.run {
-                // Update meals array with new data
                 for meal in fetchedMeals {
                     if !meals.contains(where: { $0.id == meal.id }) {
                         meals.append(meal)
                     }
                 }
+//                filteredMeals = meals // Atualiza o cache inicial com todas as refeições
+                filterMeals()
             }
-            
             
             print("Fetch completed for:", query)
         } catch {
@@ -142,33 +145,40 @@ class MealViewModel: ObservableObject {
     }
     
     private func applyFilters() {
-        isLoading = true
-        if activeFilters.isEmpty {
-            meals = allMeals
-        } else {
-            meals = allMeals.filter { meal in
-                !meal.dietaryRestrictions.contains(where: activeFilters.contains)
+//        if activeFilters.isEmpty {
+//            filteredMeals = meals // Se não houver filtros, use todas as refeições carregadas
+//        } else {
+//            filteredMeals = meals.filter { meal in
+//                !meal.dietaryRestrictions.contains(where: activeFilters.contains)
+//            }
+//        }
+    }
+    
+    func addToFavorites(meal: Meal) -> Int? {
+            print("Attempting to add meal:", meal)
+            
+            // Add to favorite meals if not already in the favorites list
+            if !favoriteMeals.contains(where: { $0.id == meal.id }) {
+                favoriteMeals.append(meal)
+                print("Added to favorites.")
+            } else {
+                print("This ID already exists in favorites.")
+            }
+            
+            // Add to main meals array if not already present
+            if let existingIndex = meals.firstIndex(where: { $0.id == meal.id }) {
+                print("Meal already exists in the main list.")
+                saveMeals()
+                return existingIndex
+            } else {
+                meals.append(meal)
+                print("Meal added to main list because it was not already present.")
+                saveMeals()
+                return meals.firstIndex(where: { $0.id == meal.id })
             }
         }
-        isLoading = false
-    }
-    
-    func addToFavorites(meal: Meal) {
-        if !favoriteMeals.contains(where: { $0.id == meal.id }) {
-            favoriteMeals.append(meal)
-            
-            
-        }
-    }
-    
     func removeFromFavorites(meal: Meal) {
         favoriteMeals.removeAll(where: { $0.id == meal.id })
-        
-        
+        saveMeals()
     }
-    
 }
-
-    
-    
-

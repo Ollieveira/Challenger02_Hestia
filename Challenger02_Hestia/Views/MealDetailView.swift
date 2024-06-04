@@ -5,7 +5,7 @@ import CodableExtensions
 struct MealDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var meal: Meal
-    @StateObject var viewModel = MealViewModel.instance
+    @State var viewModel = MealViewModel.instance
     @State private var isReading = false
     @State var isFavorite = false
     @State var showObservation = false
@@ -14,14 +14,22 @@ struct MealDetailView: View {
     var body: some View {
         VStack{
             ZStack (alignment: .top) {
-                AsyncImage(url: meal.strMealThumb) { image in
+                if let url = meal.strMealThumb {
+                    AsyncImage(url: url) { image in
                     image.resizable()
-                } placeholder: {
-                    ProgressView()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                        .aspectRatio(contentMode: .fit)
+                        .scaledToFill()
+                        .frame(maxWidth: .infinity, maxHeight: 265)
+                } else {
+                    Image("defaultRecipeImage") // Replace with your local default image name
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .scaledToFill()
+                        .frame(maxWidth: .infinity, maxHeight: 265)
                 }
-                .aspectRatio(contentMode: .fit)
-                .scaledToFill()
-                .frame(maxWidth: .infinity, maxHeight: 265)
                 
                 // Adição de um efeito sombreado gradiente na parte superior do banner para deixar mais visivel os botões superiores
                 
@@ -38,7 +46,7 @@ struct MealDetailView: View {
                                 .font(.title)
                                 .fontWeight(.bold)
                             
-                            Text(meal.strArea)
+                            Text(meal.strArea ?? "")
                                 .font(.caption2)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.tabViewCor)

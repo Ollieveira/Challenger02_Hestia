@@ -5,11 +5,11 @@ struct Meal: Identifiable, Codable, Hashable {
     var id: String { idMeal }
     let idMeal: String
     let strMeal: String
-    let strCategory: String
-    let strArea: String
+    let strCategory: String?
+    let strArea: String?
     let strInstructions: String
     let instructionSteps: [String]
-    let strMealThumb: URL
+    let strMealThumb: URL?
     let strTags: String?
     let strYoutube: URL?
     var notes: String?  // Propriedade para armazenar anotações do usuário
@@ -19,7 +19,7 @@ struct Meal: Identifiable, Codable, Hashable {
     var dietaryRestrictions: [String]
 
     enum CodingKeys: String, CodingKey {
-        case idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, notes
+        case idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, notes, ingredients
     }
 
     enum DynamicCodingKeys: String, CodingKey {
@@ -35,34 +35,37 @@ struct Meal: Identifiable, Codable, Hashable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        idMeal = try container.decode(String.self, forKey: .idMeal)
         strMeal = try container.decode(String.self, forKey: .strMeal)
+        
+        let idMealValue = try container.decodeIfPresent(String.self, forKey: .idMeal)
+           idMeal = (idMealValue?.isEmpty ?? true) ? "\(strMeal)\(Int.random(in: 1...10))" : idMealValue!
+        
         strCategory = try container.decode(String.self, forKey: .strCategory)
-        strArea = try container.decode(String.self, forKey: .strArea)
+        strArea = try container.decodeIfPresent(String.self, forKey: .strArea)
         strInstructions = try container.decode(String.self, forKey: .strInstructions)
-        strMealThumb = try container.decode(URL.self, forKey: .strMealThumb)
+        strMealThumb = try container.decodeIfPresent(URL.self, forKey: .strMealThumb)
         strTags = try container.decodeIfPresent(String.self, forKey: .strTags)
         strYoutube = try container.decodeIfPresent(String.self, forKey: .strYoutube).flatMap(URL.init)
         notes = try container.decodeIfPresent(String.self, forKey: .notes)  // Decodifica as anotações
-
+        ingredients = try container.decodeIfPresent([String: String].self, forKey: .ingredients) ?? [:]
 
         instructionSteps = strInstructions
             .split(whereSeparator: { $0.isNewline || $0 == "." })
             .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty }
         
-        let dynamicContainer = try decoder.container(keyedBy: DynamicCodingKeys.self)
-        var ingredientsDict = [String: String]()
-        for i in 1...20 {
-            let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(i)")!
-            let measureKey = DynamicCodingKeys(stringValue: "strMeasure\(i)")!
-            if let ingredient = try dynamicContainer.decodeIfPresent(String.self, forKey: ingredientKey),
-               let measure = try dynamicContainer.decodeIfPresent(String.self, forKey: measureKey),
-               !ingredient.isEmpty {
-                ingredientsDict[ingredient] = measure
+        if ingredients.isEmpty {
+            let dynamicContainer = try decoder.container(keyedBy: DynamicCodingKeys.self)
+            for i in 1...20 {
+                let ingredientKey = DynamicCodingKeys(stringValue: "strIngredient\(i)")!
+                let measureKey = DynamicCodingKeys(stringValue: "strMeasure\(i)")!
+                if let ingredient = try dynamicContainer.decodeIfPresent(String.self, forKey: ingredientKey),
+                   let measure = try dynamicContainer.decodeIfPresent(String.self, forKey: measureKey),
+                   !ingredient.isEmpty {
+                    ingredients[ingredient] = measure
+                }
             }
         }
-        self.ingredients = ingredientsDict
 
         // Determine dietary restrictions based on ingredients
         self.dietaryRestrictions = []

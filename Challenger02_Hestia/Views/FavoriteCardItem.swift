@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct FavoriteCard: View {
     
-    @StateObject var viewModel = MealViewModel.instance
+    @State var viewModel = MealViewModel.instance
 
     
     let imageUrl: URL
