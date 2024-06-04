@@ -5,7 +5,7 @@ import CodableExtensions
 struct MealDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var meal: Meal
-    @StateObject var viewModel = MealViewModel.instance
+    @State var viewModel = MealViewModel.instance
     @State private var isReading = false
     @State var isFavorite = false
     @State var showObservation = false

@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct FavoriteCard: View {
     
-    @StateObject var viewModel = MealViewModel.instance
+    @State var viewModel = MealViewModel.instance
 
     
     let imageUrl: URL
@@ -61,7 +61,7 @@ struct FavoriteCard: View {
                     self.showingAlert = true
                 }, label: {
                     Image(systemName: deleteIcon)
-                        .foregroundStyle(Color.tabViewCor)
+                        .foregroundStyle(Color.tabViewItemCor)
                         .font(.footnote)
                         .padding(.vertical, 8)
                         .padding(.trailing, 8)

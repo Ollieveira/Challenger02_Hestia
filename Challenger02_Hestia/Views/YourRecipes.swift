@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct YourRecipes: View {
     
-    @StateObject var viewModel = MealViewModel.instance
+    @State var viewModel = MealViewModel.instance
     
     
     var body: some View {
@@ -19,7 +19,7 @@ struct YourRecipes: View {
                 Text("Check out your")
                 +
                 Text(" favorites ")
-                    .foregroundStyle(.tabViewCor)
+                    .foregroundStyle(.tabViewItemCor)
                 +
                 Text("!")
             )

@@ -9,8 +9,7 @@ import SwiftUI
 import TelemetryClient
 
 struct EverythingTogetherMenuView: View {
-    @State var favorite: Bool = false
-    @State var isFirstLoad: Bool = true
+    @State var viewModel = MealViewModel.instance
     @State private var viewAppearTime: Date?
 
     
@@ -21,7 +20,7 @@ struct EverythingTogetherMenuView: View {
                     Text("It's time to cook your")
                     +
                     Text(" hungry ")
-                        .foregroundStyle(.tabViewCor)
+                        .foregroundStyle(.tabViewItemCor)
                     +
                     Text("out!")
                 )
@@ -30,6 +29,28 @@ struct EverythingTogetherMenuView: View {
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(16)
+                
+                ZStack (alignment: .trailing){
+                        TextField("Search meals...", text: $viewModel.searchInput)
+                            .font(.subheadline)
+                            .padding(12)
+                            .background(.thinMaterial,
+                                        in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            .shadow(radius: 6)
+                    
+                    if !viewModel.searchInput.isEmpty {
+                        Button(action: {
+                            viewModel.searchInput = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 12)
+                        }
+                    }
+                }
+                .padding()
+                
                 
                 ButtonStyleMenuView()
                 

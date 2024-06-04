@@ -10,7 +10,7 @@ struct MealSpeechView: View {
     @State private var isReading = false
     @State private var isListening = false
     @State var hasSeenOnboarding = false
-    @StateObject var viewModel = MealViewModel.instance
+    @State var viewModel = MealViewModel.instance
     @State private var viewAppearTime: Date?
 
 
