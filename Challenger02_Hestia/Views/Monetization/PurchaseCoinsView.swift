@@ -11,9 +11,9 @@ struct PurchaseCoinsView: View {
                 Text("Buy 5 Coins")
             }
             Button(action: {
-                purchaseManager.buyProduct(productIdentifier: "product_id_5_moedas")
+                purchaseManager.buyProduct(productIdentifier: "product_id_15_moedas")
             }) {
-                Text("Buy 10 Coins")
+                Text("Buy 15 Coins")
             }
             Button(action: {
                 purchaseManager.buyProduct(productIdentifier: "product_id_30_moedas")

@@ -54,6 +54,8 @@
 		99C2B38F2C10FA9E00F32049 /* CoinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C2B38E2C10FA9E00F32049 /* CoinListView.swift */; };
 		99C2B3912C10FAF400F32049 /* PurchaseCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C2B3902C10FAF400F32049 /* PurchaseCoinsView.swift */; };
 		99C2B3952C10FC3E00F32049 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C2B3942C10FC3E00F32049 /* StoreKit.framework */; };
+		99C2B3992C11200800F32049 /* AddRecipeManually.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C2B3982C11200800F32049 /* AddRecipeManually.swift */; };
+		99C2B39B2C11207000F32049 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C2B39A2C11207000F32049 /* PurchaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		99C2B3922C10FBE800F32049 /* Hestia: Voice-Guided Recipes.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Hestia: Voice-Guided Recipes.storekit"; sourceTree = "<group>"; };
 		99C2B3942C10FC3E00F32049 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		99C2B3962C10FD2B00F32049 /* Challenger02_Hestia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Challenger02_Hestia.entitlements; sourceTree = "<group>"; };
+		99C2B3982C11200800F32049 /* AddRecipeManually.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeManually.swift; sourceTree = "<group>"; };
+		99C2B39A2C11207000F32049 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +253,7 @@
 				99C2B3822C0E52EA00F32049 /* ImageCropperView.swift */,
 				99C2B3842C0E58BE00F32049 /* CustomCameraView.swift */,
 				99C2B3862C0F924C00F32049 /* NavigationResetView.swift */,
+				99C2B3982C11200800F32049 /* AddRecipeManually.swift */,
 			);
 			path = AddRecipeViews;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 			children = (
 				99C2B38E2C10FA9E00F32049 /* CoinListView.swift */,
 				99C2B3902C10FAF400F32049 /* PurchaseCoinsView.swift */,
+				99C2B39A2C11207000F32049 /* PurchaseView.swift */,
 			);
 			path = Monetization;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 				6FE1301B2BF3DF8700F40F26 /* YourRecipes.swift in Sources */,
 				9964D9CF2BE2AA60008CE95B /* MealDetailView.swift in Sources */,
 				6FAC30DB2BFC2B33008D8864 /* AddObservationView.swift in Sources */,
+				99C2B3992C11200800F32049 /* AddRecipeManually.swift in Sources */,
 				6FF1E15C2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift in Sources */,
 				99C2B3792C0D238800F32049 /* CameraView.swift in Sources */,
 				99C2B3832C0E52EA00F32049 /* ImageCropperView.swift in Sources */,
@@ -380,6 +387,7 @@
 				9964D9D12BE2AA6E008CE95B /* MealRowItem.swift in Sources */,
 				9964D9C32BE2A9B8008CE95B /* MealModel.swift in Sources */,
 				9964D9C72BE2A9EB008CE95B /* CategoryModel.swift in Sources */,
+				99C2B39B2C11207000F32049 /* PurchaseView.swift in Sources */,
 				9964D9C92BE2A9FB008CE95B /* CategoryViewModel.swift in Sources */,
 				6FF14DB42BE16F760004D52C /* Challenger02_HestiaApp.swift in Sources */,
 				99C2B3702C0D209300F32049 /* AddNewRecipeView.swift in Sources */,

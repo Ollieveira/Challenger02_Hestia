@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct AddNewRecipeView: View {
+    
+    @EnvironmentObject var purchaseManager: PurchaseManager
+    @State var viewModel = MealViewModel.instance
+    @State private var isShowingSheet = false
+    
     var body: some View {
         GeometryReader { geometry in
-            VStack{
+            VStack {
                 VStack{
                     HStack (spacing:0){
                         Text("Add more")
@@ -33,9 +38,32 @@ struct AddNewRecipeView: View {
                 }
                 .padding(.bottom, 40)
                 .padding(.top, 16)
-                
                 HStack {
-                    Spacer()
+                    Button(action: {
+                        isShowingSheet.toggle()
+                    }) {
+                        HStack{
+                            Text("\(purchaseManager.coins)")
+                                .foregroundStyle(.white)
+                                .bold()
+                            Image("Receitokens")
+                        }
+                        .padding(10)
+                        .background{
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.yellow)
+                        }
+                        
+                    }
+                    .sheet(isPresented: $isShowingSheet) {
+                       PurchaseView()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 20)
+                               
+                HStack {
                     NavigationLink(destination: WebScrapingView()) {
                         RoundedButtonView(imageName: "link.circle.fill", title: "Link", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
                     }
@@ -44,10 +72,24 @@ struct AddNewRecipeView: View {
                     NavigationLink(destination: OCRView()) {
                         RoundedButtonView(imageName: "camera.fill", title: "Photo", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
                     }
-                    Spacer()
                 }
-                Spacer()
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 16)
+
+                HStack {
+                    NavigationLink(destination: AddRecipeManually(viewModel: viewModel)) {
+                        RoundedButtonView(imageName: "plus.circle.fill", title: "Create", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
+                    }
+                    
+                    Spacer()
+
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 16)
+
+
             }
+            .padding(.horizontal, 8)
         }
         .background(Color.backgroundCor)
     }

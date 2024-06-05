@@ -2,59 +2,49 @@ import SwiftUI
 
 struct TheTabView: View {
     @EnvironmentObject var purchaseManager: PurchaseManager
+    @State var viewModel = MealViewModel.instance
     
     var body: some View {
-        NavigationStack {
-            TabView {
-                EverythingTogetherMenuView()
-                    .tabItem {
-                        Image(systemName: "book")
-                        Text("Menu")
-                    }
-                    .toolbarBackground(.tabViewCor, for: .tabBar)
-                    .toolbarBackground(.visible, for: .tabBar)
-
-                YourRecipes()
-                    .tabItem {
-                        Image(systemName: "star.fill")
-                        Text("Favorites")
-                    }
-                    .toolbarBackground(.tabViewCor, for: .tabBar)
-                    .toolbarBackground(.visible, for: .tabBar)
-                AddNewRecipeView()
-                    .tabItem {
-                        Image(systemName: "plus.circle.fill")
-                        Text("Add Recipe")
-                    }
-                    .toolbarBackground(.tabViewCor, for: .tabBar)
-                    .toolbarBackground(.visible, for: .tabBar)
-            }
-            .tint(.tabViewItemCor)
-            .navigationTitle("Coins: \(purchaseManager.coins)")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        if purchaseManager.useCoins(1) {
-                            print("Used 1 coin")
-                        } else {
-                            print("Not enough coins")
+            NavigationStack {
+                TabView {
+                    
+                    AddNewRecipeView()
+                        .tabItem {
+                            Image(systemName: "plus.circle.fill")
+                            Text("Add Recipe")
                         }
-                    }) {
-                        Text("Use Coin")
-                    }
+                        .toolbarBackground(.tabViewCor, for: .tabBar)
+                        .toolbarBackground(.visible, for: .tabBar)
+                    
+                    EverythingTogetherMenuView()
+                        .tabItem {
+                            Image(systemName: "book")
+                            Text("Menu")
+                        }
+                        .toolbarBackground(.tabViewCor, for: .tabBar)
+                        .toolbarBackground(.visible, for: .tabBar)
+                    
+                    YourRecipes()
+                        .tabItem {
+                            Image(systemName: "star.fill")
+                            Text("Favorites")
+                        }
+                        .toolbarBackground(.tabViewCor, for: .tabBar)
+                        .toolbarBackground(.visible, for: .tabBar)
+                    
+                    
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: PurchaseCoinsView()) {
-                        Text("Buy Coins")
+                .onAppear {
+                    // Load meals if empty
+                    if viewModel.meals.isEmpty {
+                        Task {
+                            viewModel.loadAllMeals()
+                        }
                     }
+                    
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: CoinListView()) {
-                        Text("View Coins")
-                    }
-                }
+                .tint(.tabViewItemCor)
             }
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
-    }
 }
