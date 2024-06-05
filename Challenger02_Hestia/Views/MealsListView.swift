@@ -92,13 +92,13 @@ struct MealsListView: View {
             }
         }
         .padding(.top, 32)
-        .onAppear {
-            // Load meals if empty
-            if viewModel.meals.isEmpty {
-                Task {
-                    viewModel.loadAllMeals()
-                }
-            }
-        }
+//        .onAppear {
+//            // Load meals if empty
+//            if viewModel.meals.isEmpty {
+//                Task {
+//                    viewModel.loadAllMeals()
+//                }
+//            }
+//        }
     }
 }

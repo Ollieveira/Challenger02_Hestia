@@ -13,7 +13,7 @@ struct EverythingTogetherMenuView: View {
                     Text("It's time to cook your")
                     +
                     Text(" hungry ")
-                        .foregroundStyle(.tabViewItemCor)
+                        .foregroundStyle(.tabViewCor)
                     +
                     Text("out!")
                 )

@@ -2,6 +2,8 @@ import SwiftUI
 
 struct TheTabView: View {
     
+    @State var viewModel = MealViewModel.instance
+
     var body: some View {
         NavigationStack {
             TabView {
@@ -21,7 +23,7 @@ struct TheTabView: View {
                     }
                     .toolbarBackground(.tabViewCor, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
-
+                
                 YourRecipes()
                     .tabItem {
                         Image(systemName: "star.fill")
@@ -30,7 +32,16 @@ struct TheTabView: View {
                     .toolbarBackground(.tabViewCor, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
                 
-
+                
+            }
+            .onAppear {
+                // Load meals if empty
+                if viewModel.meals.isEmpty {
+                    Task {
+                        viewModel.loadAllMeals()
+                    }
+                }
+                
             }
             .tint(.tabViewItemCor)
         }

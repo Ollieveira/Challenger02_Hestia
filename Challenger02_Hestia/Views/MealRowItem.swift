@@ -11,36 +11,73 @@ struct MealRow: View {
         let dynamicHeight: CGFloat = calculateHeight(isOdd: isOdd, isLeftColumn: isLeftColumn)
         
         VStack {
-            AsyncImage(url: meal.strMealThumb) { image in
+            if let url = meal.strMealThumb {
+                AsyncImage(url: url) { image in
                 image.resizable()
-            } placeholder: {
-                ProgressView()
+                } placeholder: {
+                    ProgressView()
+                }
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
+                    .cornerRadius(10)
+                    .overlay(
+                        //LinearGradient(gradient: Gradient(colors: [Color.tabViewCor.opacity(0.5), Color.clear]), startPoint: .bottom, endPoint: .top)
+                        LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.75), Color.clear]), startPoint: .bottom, endPoint: .top)
+                        .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
+                        .aspectRatio(1.0, contentMode: .fit)
+                        .cornerRadius(10)
+                        .opacity(0.5)
+                        .overlay(
+                            VStack(alignment: .leading) {
+                                Spacer()
+                                HStack {
+                                    Text(meal.strMeal)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.white)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .multilineTextAlignment(.leading)
+                                    // Alterado para branco para melhorar a legibilidade
+                                    Spacer()
+                                }
+                                .padding(5)
+                            }
+                        )
+                    )
+
+            } else {
+                Image("defaultRecipeImage") // Replace with your local default image name
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
+                    .cornerRadius(10)
+                    .overlay(
+                        //LinearGradient(gradient: Gradient(colors: [Color.tabViewCor.opacity(0.5), Color.clear]), startPoint: .bottom, endPoint: .top)
+                        LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.75), Color.clear]), startPoint: .bottom, endPoint: .top)
+                        .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
+                        .aspectRatio(1.0, contentMode: .fit)
+                        .cornerRadius(10)
+                        .opacity(0.5)
+                        .overlay(
+                            VStack(alignment: .leading) {
+                                Spacer()
+                                HStack {
+                                    Text(meal.strMeal)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.white)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .multilineTextAlignment(.leading)
+                                    // Alterado para branco para melhorar a legibilidade
+                                    Spacer()
+                                }
+                                .padding(5)
+                            }
+                        )
+                    )
+
             }
-            .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
-            .cornerRadius(10)
-            .overlay(
-                //LinearGradient(gradient: Gradient(colors: [Color.tabViewCor.opacity(0.5), Color.clear]), startPoint: .bottom, endPoint: .top)
-                LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.75), Color.clear]), startPoint: .bottom, endPoint: .top)
-                .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
-                .aspectRatio(1.0, contentMode: .fit)
-                .cornerRadius(10)
-                .opacity(0.5)
-                .overlay(
-                    VStack(alignment: .leading) {
-                        Spacer()
-                        HStack {
-                            Text(meal.strMeal)
-                                .font(.subheadline)
-                                .foregroundStyle(.white)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                .multilineTextAlignment(.leading)
-                            // Alterado para branco para melhorar a legibilidade
-                            Spacer()
-                        }
-                        .padding(5)
-                    }
-                )
-            )
+
         }
         .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
     }
