@@ -17,14 +17,17 @@ struct OCRView: View {
     @State private var showCropper = false
     @State private var navigateToDetail = false
     @State private var newMealIndex = 0
-    
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var showConfirmationAlert = false
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 if isLoading {
-                    HStack{
+                    HStack {
                         Spacer()
-                        VStack{
+                        VStack {
                             Spacer()
                             ProgressView("Processando")
                                 .progressViewStyle(CircularProgressViewStyle(tint: Color.tabViewCor))
@@ -33,10 +36,9 @@ struct OCRView: View {
                         }
                         Spacer()
                     }
-                   
                 } else {
                     if inputImage == nil {
-                        HStack{
+                        HStack {
                             Spacer()
                             Button {
                                 showImagePicker = true
@@ -46,7 +48,8 @@ struct OCRView: View {
                                     title: "Galeria",
                                     backgroundColor: Color.bgFavCardCor,
                                     iconColor: Color.tabViewCor,
-                                    width: geometry.size.width / 2.5)
+                                    width: geometry.size.width / 2.5
+                                )
                             }
                             .sheet(isPresented: $showImagePicker) {
                                 ImagePicker(image: $inputImage)
@@ -57,7 +60,7 @@ struct OCRView: View {
                                     }
                             }
                             Spacer()
-                            Button{
+                            Button {
                                 showCamera = true
                             } label: {
                                 RoundedButtonView(
@@ -65,7 +68,8 @@ struct OCRView: View {
                                     title: "Camera",
                                     backgroundColor: Color.bgFavCardCor,
                                     iconColor: Color.tabViewCor,
-                                    width: geometry.size.width / 2.5)
+                                    width: geometry.size.width / 2.5
+                                )
                             }
                             .sheet(isPresented: $showCamera) {
                                 CameraView(image: $inputImage)
@@ -77,14 +81,13 @@ struct OCRView: View {
                             }
                             Spacer()
                         }
-                    }
-                    else if inputImage != nil && extractedText.isEmpty {
+                    } else if inputImage != nil && extractedText.isEmpty {
                         if showCropper {
                             ImageCropperView(image: $inputImage, croppedImage: $croppedImage, showCropper: $showCropper)
                         } else if let croppedImage = croppedImage {
                             HStack {
                                 Spacer()
-                                VStack{
+                                VStack {
                                     Spacer()
                                     Image(uiImage: croppedImage)
                                         .resizable()
@@ -101,7 +104,7 @@ struct OCRView: View {
                                             .background(
                                                 RoundedRectangle(cornerRadius: 10)
                                                     .fill(Color.tabViewCor)
-                                                    .shadow(radius: 5) // Adiciona sombra
+                                                    .shadow(radius: 5)
                                             )
                                     }
                                     Spacer()
@@ -111,7 +114,7 @@ struct OCRView: View {
                         }
                     }
                     if !extractedText.isEmpty {
-                        HStack{
+                        HStack {
                             Spacer()
                             VStack {
                                 if let croppedImage = croppedImage {
@@ -120,14 +123,13 @@ struct OCRView: View {
                                         .scaledToFit()
                                         .frame(height: 100)
                                 }
-                                
+
                                 VStack(alignment: .leading) {
                                     Text("Extracted Text:")
                                     ZStack {
                                         TextEditor(text: $extractedText)
                                             .padding()
                                             .frame(height: 400)
-                                        //.foregroundColor(.black)
                                         if !isEditingText {
                                             HStack {
                                                 Spacer()
@@ -144,7 +146,7 @@ struct OCRView: View {
                                 }
                                 .padding()
                                 Button(action: {
-                                    sendRequest2(with: responseString)
+                                    confirmSpendingCoin()
                                 }) {
                                     Text("Confirmar")
                                         .foregroundColor(.white)
@@ -154,7 +156,7 @@ struct OCRView: View {
                                         .background(
                                             RoundedRectangle(cornerRadius: 10)
                                                 .fill(Color.tabViewCor)
-                                                .shadow(radius: 5) // Adiciona sombra
+                                                .shadow(radius: 5)
                                         )
                                 }
                                 .padding()
@@ -165,17 +167,28 @@ struct OCRView: View {
                     Spacer()
                 }
                 NavigationResetView(
-                                destination: MealDetailView(meal: $viewModel.meals[newMealIndex]),
-                                isActive: $navigateToDetail
-                            )
+                    destination: MealDetailView(meal: $viewModel.meals[newMealIndex]),
+                    isActive: $navigateToDetail
+                )
             }
             .padding()
         }
         .background(Color.backgroundCor)
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Alerta"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .alert(isPresented: $showConfirmationAlert) {
+            Alert(
+                title: Text("Confirmação"),
+                message: Text("Certeza que quer gastar 1 moeda aqui?"),
+                primaryButton: .default(Text("Confirmar")) {
+                    executeRequest()
+                },
+                secondaryButton: .cancel()
+            )
+        }
     }
 
-   
-    
     func performOCR(on image: UIImage) {
         guard let cgImage = image.cgImage else {
             return
@@ -198,7 +211,7 @@ struct OCRView: View {
             print("Failed to perform OCR: \(error.localizedDescription)")
         }
     }
-    
+
     func decodeMeal(from responseString: String) {
         guard let jsonData = responseString.data(using: .utf8) else {
             print("Error: Cannot create Data from responseString")
@@ -210,9 +223,6 @@ struct OCRView: View {
         do {
             let jsonResponse = try decoder.decode(JsonResponse.self, from: jsonData)
             print("Decoded JsonResponse, extracting text: \(jsonResponse.text)")
-            
-            // This will print the actual JSON string that is being decoded
-            print("Nested JSON Data: \(jsonResponse.text)")
 
             if let nestedJsonData = jsonResponse.text.data(using: .utf8) {
                 do {
@@ -226,23 +236,23 @@ struct OCRView: View {
                         inputImage = nil
                         extractedText = ""
                         navigateToDetail = true
-                        
+
                     }
                 } catch {
                     print("Error decoding Meal from nested JSON:", error)
                 }
             }
-            
+
         } catch {
             print("Error decoding JsonResponse:", error)
         }
     }
-    
+
     func sendRequest2(with text: String) {
         self.isLoading = true
         guard let requestURL = URL(string: "https://hestiarecipes.netlify.app/.netlify/functions/recipeGPT") else { return }
         let formattedPrompt = """
-        Analise o seguinte texto que contem uma receita (ingredientes e modo de preparo), provavelmente com algumas informacoes nao relevantes. Extraia os ingredientes e o modo de preparo de forma pratica e direta, sem inventar receita, e estruture-as no seguinte formato JSON: O objeto 'Meal' deve conter os campos 'idMeal' (null), 'strMeal' (nome da receita), 'strCategory' (categoria, como sobremesa ou salgado ou "geral", nunca null), 'strArea' (origem geográfica da receita ou mundo, nunca vazia), 'strInstructions' (instrucao completa de como fazer a receita com cada grande passo dividido por ponto, nunca numerados por ordem, apenas o passo do modo de preparo em si), 'instructionSteps' (null), 'strMealThumb' (null), 'strTags' (null), 'strYoutube' (null), 'notes' (null), e 'ingredients' (um dicionário com os ingredientes e suas quantidades. Caso nao ache quantidade, coloque "A gosto", evitando ao maximo fazer isso). Ignorar qualquer conteúdo não relevante para a receita e focar apenas nos detalhes da receita. Não esqueca das virgulas, é importante que todas as chaves aparecam, mesmo que com null, e todas devem estar DENTRO do objeto Meal, inclusive o dicionario de ingredientes. Texto:
+        Analise o seguinte texto que contem uma receita (ingredientes e modo de preparo), provavelmente com algumas informacoes nao relevantes. Extraia os ingredientes e o modo de preparo de forma pratica e direta, sem inventar receita, e estruture-as no seguinte formato JSON: O objeto 'Meal' deve conter os campos 'idMeal' (null), 'strMeal' (nome da receita), 'strCategory' (categoria, como sobremesa ou salgado ou "geral", nunca null), 'strArea' (origem geográfica da receita ou mundo, nunca vazia), 'strInstructions' (instrucao completa de como fazer a receita com cada grande passo dividido por ponto, nunca numerados por ordem, apenas o passo do modo de preparo em si), 'instructionSteps' (null), 'strMealThumb' (null), 'strTags' (null), 'strYoutube' (null), 'notes' (null), e 'ingredients' (um dicionário com os ingredientes e suas quantidades. Caso nao ache quantidade, coloque "A gosto", evitando ao maximo fazer isso. Coloque todos os igredientes, mesmo que de partes diferentes da receita, em um mesmo dicionario, nunca deve haver varios dicionarios dentro de ingredients, apenas 1 unificado). Ignorar qualquer conteúdo não relevante para a receita e focar apenas nos detalhes da receita. Não esqueca das virgulas, é importante que todas as chaves aparecam, mesmo que com null, e todas devem estar DENTRO do objeto Meal, inclusive o dicionario de ingredientes. Ignore hifens de pular linha. Texto:
 
         \(text)
         """
@@ -263,6 +273,9 @@ struct OCRView: View {
                         self.responseString = responseString
                         print("Received JSON:", responseString)
                         self.decodeMeal(from: responseString)  // Atualizado para decodificar corretamente
+                        if navigateToDetail {
+                            PurchaseManager.shared.useCoins(1)
+                        }
                     }
                 } else {
                     self.responseString = "Failed to send request or parse response"
@@ -270,6 +283,19 @@ struct OCRView: View {
                 }
             }
         }.resume()
+    }
+
+    func confirmSpendingCoin() {
+        if PurchaseManager.shared.coins >= 1 {
+            showConfirmationAlert = true
+        } else {
+            alertMessage = "Você não tem moedas suficientes!"
+            showAlert = true
+        }
+    }
+
+    func executeRequest() {
+        sendRequest2(with: responseString)
     }
 }
 

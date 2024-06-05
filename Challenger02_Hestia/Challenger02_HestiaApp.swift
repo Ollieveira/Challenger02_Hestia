@@ -1,10 +1,3 @@
-//
-//  Challenge2App.swift
-//  Challenge2
-//
-//  Created by Guilherme Avila on 26/04/24.
-//
-
 import SwiftUI
 import TelemetryClient
 
@@ -12,12 +5,12 @@ import TelemetryClient
 struct Challenge2App: App {
     
     @Environment(\.scenePhase) var scenePhase
-    
-
+    @StateObject private var purchaseManager = PurchaseManager.shared
     
     var body: some Scene {
         WindowGroup {
             TheTabView()
+                .environmentObject(purchaseManager)
         }
         .onChange(of: scenePhase) {
             switch scenePhase {
@@ -44,7 +37,6 @@ struct Challenge2App: App {
             appID: "5465312F-7D61-413A-BA0E-9FC4E2438E10")
         TelemetryManager.initialize(with: configuration)
     }
-
 }
 
 #Preview {

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TheTabView: View {
+    @EnvironmentObject var purchaseManager: PurchaseManager
     
     var body: some View {
         NavigationStack {
@@ -29,11 +30,31 @@ struct TheTabView: View {
                     .toolbarBackground(.visible, for: .tabBar)
             }
             .tint(.tabViewItemCor)
+            .navigationTitle("Coins: \(purchaseManager.coins)")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        if purchaseManager.useCoins(1) {
+                            print("Used 1 coin")
+                        } else {
+                            print("Not enough coins")
+                        }
+                    }) {
+                        Text("Use Coin")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: PurchaseCoinsView()) {
+                        Text("Buy Coins")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: CoinListView()) {
+                        Text("View Coins")
+                    }
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
-
-//#Preview {
-//    TheTabView()
-//}

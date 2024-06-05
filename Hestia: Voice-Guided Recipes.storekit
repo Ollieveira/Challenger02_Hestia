@@ -1,0 +1,116 @@
+{
+  "identifier" : "95D46C72",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6503985572",
+      "localizations" : [
+        {
+          "description" : "Suficiente para cozinhar bastante!",
+          "displayName" : "Pacote 15 ReceiTokens",
+          "locale" : "pt_BR"
+        }
+      ],
+      "productID" : "product_id_15_moedas",
+      "referenceName" : "Pacote_15_Moedas",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6503985665",
+      "localizations" : [
+        {
+          "description" : "Muitas receitas para cozinhar!",
+          "displayName" : "Pacote 30 ReceiTokens",
+          "locale" : "pt_BR"
+        }
+      ],
+      "productID" : "product_id_30_moedas",
+      "referenceName" : "Pacote_30_Moedas",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6503985651",
+      "localizations" : [
+        {
+          "description" : "Para dar um gostinho!",
+          "displayName" : "Pacote 5 ReceiTokens",
+          "locale" : "pt_BR"
+        }
+      ],
+      "productID" : "product_id_5_moedas",
+      "referenceName" : "Pacote_5_Moedas",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6502307116",
+    "_askToBuyEnabled" : false,
+    "_developerTeamID" : "67AYPRFZH8",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 739312994.58876705,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

@@ -50,6 +50,9 @@
             ReferencedContainer = "container:Challenger02_Hestia.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../../Hestia: Voice-Guided Recipes.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
