@@ -5,6 +5,15 @@ struct TheTabView: View {
     var body: some View {
         NavigationStack {
             TabView {
+                
+                AddNewRecipeView()
+                    .tabItem {
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add Recipe")
+                    }
+                    .toolbarBackground(.tabViewCor, for: .tabBar)
+                    .toolbarBackground(.visible, for: .tabBar)
+                
                 EverythingTogetherMenuView()
                     .tabItem {
                         Image(systemName: "book")
@@ -20,13 +29,8 @@ struct TheTabView: View {
                     }
                     .toolbarBackground(.tabViewCor, for: .tabBar)
                     .toolbarBackground(.visible, for: .tabBar)
-                AddNewRecipeView()
-                    .tabItem {
-                        Image(systemName: "plus.circle.fill")
-                        Text("Add Recipe")
-                    }
-                    .toolbarBackground(.tabViewCor, for: .tabBar)
-                    .toolbarBackground(.visible, for: .tabBar)
+                
+
             }
             .tint(.tabViewItemCor)
         }

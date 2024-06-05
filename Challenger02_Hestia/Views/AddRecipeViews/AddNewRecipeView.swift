@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct AddNewRecipeView: View {
+    
+    @State var viewModel = MealViewModel.instance
+
+    
     var body: some View {
         GeometryReader { geometry in
-            VStack{
+            VStack {
                 VStack{
                     HStack (spacing:0){
                         Text("Add more")
@@ -35,7 +39,6 @@ struct AddNewRecipeView: View {
                 .padding(.top, 16)
                 
                 HStack {
-                    Spacer()
                     NavigationLink(destination: WebScrapingView()) {
                         RoundedButtonView(imageName: "link.circle.fill", title: "Link", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
                     }
@@ -44,10 +47,24 @@ struct AddNewRecipeView: View {
                     NavigationLink(destination: OCRView()) {
                         RoundedButtonView(imageName: "camera.fill", title: "Photo", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
                     }
-                    Spacer()
                 }
-                Spacer()
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                .padding(.horizontal, 16)
+
+                HStack {
+                    NavigationLink(destination: AddRecipeManually(viewModel: viewModel)) {
+                        RoundedButtonView(imageName: "plus.circle.fill", title: "Create", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
+                    }
+                    
+                    Spacer()
+
+                }
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                .padding(.horizontal, 16)
+
+
             }
+            .padding(.horizontal, 8)
         }
         .background(Color.backgroundCor)
     }
