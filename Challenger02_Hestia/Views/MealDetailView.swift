@@ -53,7 +53,7 @@ struct MealDetailView: View {
                             
                             Spacer()
                             
-                            Text("Ingredients")
+                            Text("Ingredientes")
                                 .font(.title2)
                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                                 .padding(.top, 46)
@@ -97,9 +97,9 @@ struct MealDetailView: View {
                                     // Se a leitura não está em andamento, comece a ler os ingredientes
                                     isReading = true
                                     
-                                    speechToText.speak(text: "Let's start with the ingredients and then we'll move on to the preparation steps.", rate: 0.3)
+                                    speechToText.speak(text: "Vamos começar com os ingredientes e depois passaremos para os passos de preparação.", rate: 0.3)
                                     
-                                    speechToText.speak(text: "Ingredients", rate: 0.3)
+                                    speechToText.speak(text: "Ingredientes", rate: 0.3)
                                     
                                     for (ingredient, measure) in meal.ingredients.sorted(by: >) {
                                         let formattedKey = ingredient.prefix(1).capitalized + ingredient.dropFirst()
@@ -107,7 +107,7 @@ struct MealDetailView: View {
                                         speechToText.speak(text: ingredientText, rate: 0.3)
                                     }
                                     
-                                    speechToText.speak(text: "Directions", rate: 0.3)
+                                    speechToText.speak(text: "Passos de Preparação", rate: 0.3)
                                     
                                     
                                     for step in meal.instructionSteps {
@@ -135,6 +135,7 @@ struct MealDetailView: View {
                                     .presentationDetents([.medium, .large])
                                     .presentationBackgroundInteraction(.enabled(upThrough: .medium))
                                     .presentationCornerRadius(44)
+                                    .presentationDragIndicator(.visible)
                                     .onDisappear {
                                         showObservation = false
                                     }
@@ -157,7 +158,7 @@ struct MealDetailView: View {
                     }
                     .padding(.leading, 48)
                     
-                    Text("Directions")
+                    Text("Passos de Preparação")
                         .frame(maxWidth: .infinity, alignment: .leading).font(.title2).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .padding(.top, 30)
                         .padding(.bottom, 16)

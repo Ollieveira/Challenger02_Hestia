@@ -29,7 +29,10 @@ struct MealSpeechView: View {
                 
                 Spacer()
                 
-                Image("IconTalksView")
+                Image("hestiaSpeech")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.horizontal, 8)
                 
                 Spacer()
                 
@@ -161,6 +164,8 @@ struct MealSpeechView: View {
             case "voltar":
                 goToPreviousStep()
             case "read":
+                speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+            case "leia":
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
             case "pause":
                 pauseReading()

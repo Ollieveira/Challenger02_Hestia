@@ -28,10 +28,10 @@ struct WebScrapingView: View {
     var body: some View {
         VStack {
             if isLoading {
-                ProgressView("Loading...")
+                ProgressView("Carregando...")
             } else {
                 Spacer()
-                TextField("Enter URL here", text: $selectedUrl)
+                TextField("Insira a URL aqui", text: $selectedUrl)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 Spacer()

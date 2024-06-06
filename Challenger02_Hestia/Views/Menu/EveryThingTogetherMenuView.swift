@@ -10,12 +10,12 @@ struct EverythingTogetherMenuView: View {
         NavigationStack {
             VStack {
                 (
-                    Text("It's time to cook your")
+                    Text("É hora de matar a sua")
                     +
-                    Text(" hungry ")
-                        .foregroundStyle(.tabViewItemCor)
+                    Text(" fome ")
+                        .foregroundStyle(.tabViewCor)
                     +
-                    Text("out!")
+                    Text("cozinhando!")
                 )
                 .font(.title2)
                 .fontDesign(.rounded)
@@ -24,7 +24,7 @@ struct EverythingTogetherMenuView: View {
                 .padding(16)
                 
                 ZStack (alignment: .trailing){
-                        TextField("Search meals...", text: $viewModel.searchInput)
+                        TextField("Procurar receitas...", text: $viewModel.searchInput)
                             .font(.subheadline)
                             .padding(12)
                             .background(.thinMaterial,

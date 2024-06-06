@@ -48,7 +48,9 @@ struct OCRView: View {
                                     title: "Galeria",
                                     backgroundColor: Color.bgFavCardCor,
                                     iconColor: Color.tabViewCor,
-                                    width: geometry.size.width / 2.5
+                                    width: geometry.size.width / 2.5,
+                                    custo: nil,
+                                    receitokens: nil
                                 )
                             }
                             .sheet(isPresented: $showImagePicker) {
@@ -68,7 +70,9 @@ struct OCRView: View {
                                     title: "Camera",
                                     backgroundColor: Color.bgFavCardCor,
                                     iconColor: Color.tabViewCor,
-                                    width: geometry.size.width / 2.5
+                                    width: geometry.size.width / 2.5,
+                                    custo: nil,
+                                    receitokens: nil
                                 )
                             }
                             .sheet(isPresented: $showCamera) {

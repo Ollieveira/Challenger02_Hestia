@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryClient
 
 struct AddNewRecipeView: View {
     
@@ -18,8 +19,8 @@ struct AddNewRecipeView: View {
             VStack {
                 VStack{
                     HStack (spacing:0){
-                        Text("Add more")
-                        Text(" recipes")
+                        Text("Adicionar mais")
+                        Text(" receitas")
                             .foregroundStyle(Color.tabViewCor)
                         Text("!")
                     }
@@ -29,7 +30,7 @@ struct AddNewRecipeView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 16)
                     HStack{
-                        Text("Select one of the options bellow")
+                        Text("Selecione uma das opções abaixo")
                     }
                     .font(.title2)
                     .fontDesign(.rounded)
@@ -41,6 +42,8 @@ struct AddNewRecipeView: View {
                 HStack {
                     Button(action: {
                         isShowingSheet.toggle()
+                        TelemetryManager.send("ButtonClicked", with: ["Button": "Purchase"])
+
                     }) {
                         HStack{
                             Text("\(purchaseManager.coins)")
@@ -49,6 +52,7 @@ struct AddNewRecipeView: View {
                             Image("Receitokens")
                         }
                         .padding(10)
+                        .padding(.horizontal, 16)
                         .background{
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(.yellow)
@@ -56,38 +60,42 @@ struct AddNewRecipeView: View {
                         
                     }
                     .sheet(isPresented: $isShowingSheet) {
-                       PurchaseView()
+                        PurchaseView()
+                            .presentationDetents([.medium])
+                            .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                            .presentationCornerRadius(44)
+                            .presentationDragIndicator(.visible)
                     }
+                    
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 20)
-                               
-                HStack {
-                    NavigationLink(destination: WebScrapingView()) {
-                        RoundedButtonView(imageName: "link.circle.fill", title: "Link", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
-                    }
-                    Spacer()
-
-                    NavigationLink(destination: OCRView()) {
-                        RoundedButtonView(imageName: "camera.fill", title: "Photo", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 16)
-
+                
                 HStack {
                     NavigationLink(destination: AddRecipeManually(viewModel: viewModel)) {
-                        RoundedButtonView(imageName: "plus.circle.fill", title: "Create", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5)
+                        RoundedButtonView(imageName: "plus.circle.fill", title: "Criar", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5, custo: nil, receitokens: nil)
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: OCRView()) {
+                            RoundedButtonView(imageName: "camera.fill", title: "Foto", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5, custo: 1, receitokens: "Receitokens")
+                        }
                     }
                     
-                    Spacer()
-
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 16)
-
-
+                
+                HStack {
+                    NavigationLink(destination: WebScrapingView()) {
+                        RoundedButtonView(imageName: "link.circle.fill", title: "Link", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5, custo: 2, receitokens: "Receitokens")
+                    }
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 16)
+                
             }
             .padding(.horizontal, 8)
         }
@@ -95,12 +103,15 @@ struct AddNewRecipeView: View {
     }
 }
 
+
 struct RoundedButtonView: View {
     let imageName: String
     let title: String
     let backgroundColor: Color
     let iconColor: Color
     let width: CGFloat
+    let custo: Int?
+    let receitokens: String?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -113,7 +124,27 @@ struct RoundedButtonView: View {
                     .scaledToFit()
                     .frame(width: width / 3, height: width / 3)
                     .foregroundColor(iconColor)
+                if let custo = custo, let receitokens = receitokens {
+                    HStack {
+                        Text("\(custo)")
+                            .foregroundStyle(.white)
+                            .bold()
+                        Image(receitokens)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15, height: 15)
+                    }
+                    .padding(4)
+                    .padding(.horizontal, 12)
+                    .background {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.yellow)
+                    }
+                    .offset(x: -40, y: 60)
+                    
+                }
             }
+            
             Text(title)
                 .fontDesign(.rounded)
                 .font(.body)

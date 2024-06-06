@@ -12,7 +12,7 @@ class PurchaseManager: NSObject, ObservableObject, SKProductsRequestDelegate, SK
         SKPaymentQueue.default().add(self)
         UserManager.shared.initializeUserDefaults()
         coins = UserManager.shared.getUserCoins()
-        fetchProducts(productIdentifiers: ["product_id_5_moedas", "product_id_10_moedas", "product_id_30_moedas"])
+        fetchProducts(productIdentifiers: ["product_id_5_moedas", "product_id_15_moedas", "product_id_30_moedas"])
     }
 
     func addCoins(_ amount: Int) {

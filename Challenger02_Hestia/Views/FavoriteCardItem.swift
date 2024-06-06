@@ -68,9 +68,9 @@ struct FavoriteCard: View {
                 })
                 .alert(isPresented: $showingAlert) {
                     Alert(
-                        title: Text("Delete Favorite"),
-                        message: Text("Are you sure you want to delete \(recipeTitle)"),
-                        primaryButton: .destructive(Text("Delete")) {
+                        title: Text("Deletar favorito"),
+                        message: Text("Tem certeza de que deseja excluir \(recipeTitle)?"),
+                        primaryButton: .destructive(Text("Deletar")) {
                             viewModel.removeFromFavorites(meal: meal)
                             TelemetryManager.send("buttonPress", with: ["button": "Removeu Favorites - FavoritesView"])
 

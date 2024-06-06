@@ -11,12 +11,12 @@ struct FinishingTheRecipeView: View {
     var body: some View {
             VStack (alignment: .center, spacing: 40) {
                 VStack (alignment: .center){
-                    Text("You've finished this recipe!")
+                    Text("Você terminou esta receita!")
                         .font(.title2)
                         .fontDesign(.rounded)
                         .fontWeight(.bold)
                     
-                    Text("Congratulations! Now, what's next?")
+                    Text("Parabéns! Agora, o que vem a seguir?")
                         .font(.headline)
                         .fontDesign(.rounded)
                         .fontWeight(.semibold)
@@ -28,14 +28,14 @@ struct FinishingTheRecipeView: View {
                         NavigationLink(
                             destination: TheTabView()
                         ) {
-                            CircleIconButton(systemName: "book.fill", width: 70, height: 70, font: .title)
+                            CircleIconButton(systemName: "plus.circle.fill", width: 70, height: 70, font: .title)
                         }
                         .simultaneousGesture(TapGesture().onEnded {
                             // Envia o sinal de telemetria antes da navegação
                             TelemetryManager.send("navigationLinkPress", with: ["destination": "Recipes - FinishedRecipeView"])
                         })
                         
-                        Text("Recipes")
+                        Text("Nova Receita")
                             .font(.subheadline)
                     }
                     
@@ -54,7 +54,7 @@ struct FinishingTheRecipeView: View {
                         })
 
                         
-                        Text("Create a Note")
+                        Text("Criar nota")
                             .font(.subheadline)
                         
                     }
@@ -73,7 +73,7 @@ struct FinishingTheRecipeView: View {
                         })
 
                         
-                        Text("Favorites")
+                        Text("Favoritos")
                             .font(.subheadline)
                         
                     }

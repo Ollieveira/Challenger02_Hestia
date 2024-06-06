@@ -16,7 +16,7 @@ struct OnBoarding3: View {
             
             Spacer()
             
-            Text("Voice Guide")
+            Text("Guia de voz")
                 .font(.largeTitle).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundStyle(Color.onBoradingButtonCor)
             
@@ -30,11 +30,11 @@ struct OnBoarding3: View {
             Spacer()
             
             (
-                Text("Say")
+                Text("Diga")
                 +
-                Text(" 'Back' ")
+                Text(" 'Voltar' ")
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)            +
-                Text("to go to the previous step")
+                Text("para retornar a etapa anterior")
             )
             .font(.title3)
             .foregroundStyle(Color.onBoradingButtonCor)

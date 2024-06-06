@@ -16,9 +16,9 @@ struct YourRecipes: View {
     var body: some View {
         VStack {
             (
-                Text("Check out your")
+                Text("Confira seus")
                 +
-                Text(" favorites ")
+                Text(" favoritos ")
                     .foregroundStyle(.tabViewCor)
                 +
                 Text("!")
@@ -46,7 +46,7 @@ struct YourRecipes: View {
                 
                 Spacer()
                 
-                Text("You don't have any favorite recipes yet")
+                Text("Você ainda não tem nenhuma receita favorita")
                     .font(.title2)
                     .fontDesign(.rounded)
                     .bold()

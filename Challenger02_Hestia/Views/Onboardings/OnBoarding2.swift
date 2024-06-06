@@ -13,7 +13,7 @@ struct OnBoarding2: View {
             
             Spacer()
             
-            Text("Voice Guide")
+            Text("Guia de voz")
                 .font(.largeTitle).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundStyle(Color.onBoradingButtonCor)
             
@@ -27,11 +27,11 @@ struct OnBoarding2: View {
             Spacer()
             
             (
-                Text("Say")
+                Text("Diga")
                 +
-                Text(" 'Next' ")
+                Text(" 'Próximo' ")
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)            +
-                Text("to go to the following step")
+                Text("para ir para o próximo passo")
             )
             .font(.title3)
             .foregroundStyle(Color.onBoradingButtonCor)

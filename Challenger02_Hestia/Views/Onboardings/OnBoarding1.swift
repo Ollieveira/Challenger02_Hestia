@@ -13,7 +13,7 @@ struct OnBoarding1: View {
             
             Spacer()
             
-            Text("Voice Guide")
+            Text("Guia de voz")
                 .font(.largeTitle).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundStyle(Color.onBoradingButtonCor)
             
@@ -27,11 +27,11 @@ struct OnBoarding1: View {
             Spacer()
             
             (
-                Text("Say")
+                Text("Diga")
                 +
-                Text(" 'Read' ")
+                Text(" 'Leia' ")
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)            +
-                Text("to start listening the recipe")
+                Text("para começar a ouvir a receita")
             )
             .font(.title3)
             .foregroundStyle(Color.onBoradingButtonCor)
