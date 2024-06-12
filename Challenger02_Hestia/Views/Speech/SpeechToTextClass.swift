@@ -20,8 +20,8 @@ class SpeechToText: ObservableObject {
     }
     
     var language: String
-    @Published private(set) var words: [String]
-    @Published private(set) var currentWord: String
+    @Published private(set) var words: [String] = []
+    @Published private(set) var currentWord: String = ""
     
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?
@@ -29,34 +29,20 @@ class SpeechToText: ObservableObject {
     private let recognizer: SFSpeechRecognizer?
     private let synthesizer = AVSpeechSynthesizer()
     
-    init(language: String,
-         words: [String],
-         currentWord: String,
-         audioEngine: AVAudioEngine? = nil,
-         request: SFSpeechAudioBufferRecognitionRequest? = nil,
-         task: SFSpeechRecognitionTask? = nil,
-         recognizer: SFSpeechRecognizer?) {
-        self.language = language
-        self.words = words
-        self.currentWord = currentWord
-        self.audioEngine = audioEngine
-        self.request = request
-        self.task = task
-        self.recognizer = recognizer
-        
+    func configureAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
         do {
-            let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth, .duckOthers])
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            print(error.localizedDescription)
-            assertionFailure(error.localizedDescription)
+            print("Failed to configure audio session: \(error.localizedDescription)")
         }
     }
     
-    convenience init(language: String) {
-        self.init(language: language, words: [], currentWord: "", recognizer: SFSpeechRecognizer(locale: Locale(identifier: language)))
-        guard recognizer != nil else { transcribe(RecognizerError.nilRecognizer); return }
+    init(language: String) {
+        self.language = language
+        self.recognizer = SFSpeechRecognizer(locale: Locale(identifier: language))
+        configureAudioSession()
         
         Task {
             do {
@@ -72,15 +58,6 @@ class SpeechToText: ObservableObject {
         }
     }
     
-//    var isSpeaking: Bool {
-//        return synthesizer.isSpeaking
-//    }
-    
-//    var isPaused: Bool {
-//        return synthesizer.isPaused
-    //    }
-    //
-    
     func getIsPaused() -> Bool {
         return synthesizer.isPaused
     }
@@ -89,59 +66,51 @@ class SpeechToText: ObservableObject {
         return synthesizer.isSpeaking
     }
     
-// Metodo para ler um texto
-    
-    func speak(text: String, rate: Float = 1.0) {
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: language)
+    func speak(text: String, language: String? = nil, rate: Float = 1.0) {
         
-        // Defina a velocidade da leitura
+//        for voice in AVSpeechSynthesisVoice.speechVoices() {
+//            print("\(voice.name) - \(voice.identifier) - \(voice.quality)")
+//        }
+
+        let utterance = AVSpeechUtterance(string: text)
+        
+        // Procurar a voz aprimorada de Luciana
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.voice.enhanced.pt-BR.Luciana") {
+            utterance.voice = voice
+        }
+        
         utterance.rate = rate
         utterance.postUtteranceDelay = 1.0
-
-        
         synthesizer.speak(utterance)
     }
 
-// Metodo para parar de ler o texto
-    
     func stopSpeaking() {
         synthesizer.stopSpeaking(at: .immediate)
     }
-
-// Metodo para pausar a leitura
     
     func pauseSpeaking() {
-            if synthesizer.isSpeaking {
-                synthesizer.pauseSpeaking(at: .word)
-            }
+        if synthesizer.isSpeaking {
+            synthesizer.pauseSpeaking(at: .word)
         }
-    
-// Metodo para retomar a leitura no momento que foi pausada
+    }
     
     func continueSpeaking() {
-            if synthesizer.isPaused {
-                synthesizer.continueSpeaking()
-            }
+        if synthesizer.isPaused {
+            synthesizer.continueSpeaking()
         }
-
-// Metodo para transformar fala em texto (reconhecimento de voz)
+    }
     
     func startTranscribing() {
         Task {
             await transcribe()
         }
     }
-
-// Metodo que reseta o reconhecimento de voz
     
-   func resetTranscript() {
+    func resetTranscript() {
         Task {
             await reset()
         }
     }
-
-// Metodo que cancela o reconhecimento de voz
     
     func stopTranscribing() {
         Task {
@@ -149,10 +118,9 @@ class SpeechToText: ObservableObject {
         }
     }
     
-
     private func transcribe() async {
         guard let recognizer, recognizer.isAvailable else {
-            self.transcribe(RecognizerError.recognizerIsUnavailable)
+            transcribe(RecognizerError.recognizerIsUnavailable)
             return
         }
         
@@ -164,8 +132,8 @@ class SpeechToText: ObservableObject {
                 self?.recognitionHandler(audioEngine: audioEngine, result: result, error: error)
             }
         } catch {
-            await self.reset()
-            self.transcribe(error)
+            await reset()
+            transcribe(error)
         }
     }
     
@@ -175,19 +143,17 @@ class SpeechToText: ObservableObject {
         audioEngine = nil
         request = nil
         task = nil
+        try? await Task.sleep(nanoseconds: 500_000_000) // Pausa de 0.5 segundo
     }
-    
+
     private static func prepareEngine() throws -> (AVAudioEngine, SFSpeechAudioBufferRecognitionRequest) {
         let audioEngine = AVAudioEngine()
-        
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
         
-        
         let inputNode = audioEngine.inputNode
-        
         let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+        inputNode.installTap(onBus: 0, bufferSize: 2048, format: recordingFormat) { (buffer, _) in
             request.append(buffer)
         }
         audioEngine.prepare()
@@ -197,19 +163,17 @@ class SpeechToText: ObservableObject {
     }
     
     private func recognitionHandler(audioEngine: AVAudioEngine, result: SFSpeechRecognitionResult?, error: Error?) {
-        let receivedFinalResult = result?.isFinal ?? false
-        let receivedError = error != nil
-        
-        if receivedFinalResult || receivedError {
-            audioEngine.stop()
-            audioEngine.inputNode.removeTap(onBus: 0)
+        if let result = result {
+            transcribe(result.bestTranscription.formattedString)
+            if result.isFinal {
+                stopTranscribing()
+            }
         }
         
-        if let result {
-            transcribe(result.bestTranscription.formattedString)
+        if error != nil {
+            stopTranscribing()
         }
     }
-    
     
     private func transcribe(_ message: String) {
         Task { @MainActor in
@@ -224,20 +188,12 @@ class SpeechToText: ObservableObject {
     }
     
     private func transcribe(_ error: Error) {
-        var errorMessage = ""
-        if let error = error as? RecognizerError {
-            errorMessage += error.message
-        } else {
-            errorMessage += error.localizedDescription
-        }
+        print("Transcription error: \(error.localizedDescription)")
     }
     
-    func extractLastWord(from inputString: String) -> String {
+    private func extractLastWord(from inputString: String) -> String {
         let words = inputString.components(separatedBy: .whitespaces)
-        if let lastWord = words.last {
-            return lastWord
-        }
-        return ""
+        return words.last ?? ""
     }
 }
 
@@ -250,7 +206,6 @@ extension SFSpeechRecognizer {
         }
     }
 }
-
 
 extension AVAudioSession {
     func hasPermissionToRecord() async -> Bool {

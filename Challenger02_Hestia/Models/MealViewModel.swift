@@ -62,7 +62,6 @@ class MealViewModel {
         do {
             try meals.save(in: "meals")
             try favoriteMeals.save(in: "favoriteMeals")
-            try filteredMeals.save(in: "allMeals")
             print("Meals saved")
         } catch {
             print("Failed to save meals: \(error)")
