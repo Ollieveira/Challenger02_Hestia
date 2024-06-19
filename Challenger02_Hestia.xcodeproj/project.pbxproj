@@ -15,6 +15,7 @@
 		6F3CBAD82BEBFDCE0047BEAD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3CBAD72BEBFDCE0047BEAD /* Data.swift */; };
 		6F656F2A2BF5471900A1CF3A /* MealsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F656F292BF5471900A1CF3A /* MealsSearchView.swift */; };
 		6FAC30DB2BFC2B33008D8864 /* AddObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAC30DA2BFC2B33008D8864 /* AddObservationView.swift */; };
+		6FB6FC552C21FC27004BD508 /* DataRecipesPortuguese.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FB6FC542C21FC27004BD508 /* DataRecipesPortuguese.json */; };
 		6FE1301B2BF3DF8700F40F26 /* YourRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301A2BF3DF8700F40F26 /* YourRecipes.swift */; };
 		6FE1301D2BF3E07300F40F26 /* FavoriteCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301C2BF3E07300F40F26 /* FavoriteCardItem.swift */; };
 		6FE47A5E2BED475200BA9263 /* MealSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE47A5D2BED475200BA9263 /* MealSpeechView.swift */; };
@@ -68,6 +69,7 @@
 		6F656F292BF5471900A1CF3A /* MealsSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsSearchView.swift; sourceTree = "<group>"; };
 		6F6CC9312BF2AE1D0098C2E8 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6FAC30DA2BFC2B33008D8864 /* AddObservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddObservationView.swift; sourceTree = "<group>"; };
+		6FB6FC542C21FC27004BD508 /* DataRecipesPortuguese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DataRecipesPortuguese.json; sourceTree = "<group>"; };
 		6FE1301A2BF3DF8700F40F26 /* YourRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourRecipes.swift; sourceTree = "<group>"; };
 		6FE1301C2BF3E07300F40F26 /* FavoriteCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCardItem.swift; sourceTree = "<group>"; };
 		6FE47A5D2BED475200BA9263 /* MealSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSpeechView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				9964D9C62BE2A9EB008CE95B /* CategoryModel.swift */,
 				9964D9C82BE2A9FB008CE95B /* CategoryViewModel.swift */,
 				6F3CBAD72BEBFDCE0047BEAD /* Data.swift */,
+				6FB6FC542C21FC27004BD508 /* DataRecipesPortuguese.json */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FF14DBB2BE16F770004D52C /* Preview Assets.xcassets in Resources */,
+				6FB6FC552C21FC27004BD508 /* DataRecipesPortuguese.json in Resources */,
 				6FF14DB82BE16F770004D52C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

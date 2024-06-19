@@ -1,183 +1,3 @@
-//import SwiftUI
-//import TelemetryClient
-//
-//struct MealSpeechView: View {
-//    @Environment(\.dismiss) var dismiss
-//    @StateObject private var speechToText = SpeechToText(language: "pt-BR")
-//    @Binding var meal: Meal
-//    @State private var currentStepIndex = 0
-//    @State private var navigateToNextView = false
-//    @State private var isReading = false
-//    @State private var isListening = false
-//    @State var hasSeenOnboarding = false
-//    @State var viewModel = MealViewModel.instance
-//    @State private var viewAppearTime: Date?
-//
-//
-//    
-//    var body: some View {
-//        
-//        let isLastStep = currentStepIndex == meal.instructionSteps.count - 1
-//        
-//        if hasSeenOnboarding {
-//            VStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-//                
-//                Spacer()
-//                
-//                Text(meal.strMeal)
-//                    .font(.largeTitle).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-//                
-//                Spacer()
-//                
-//                Image("hestiaSpeech")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .padding(.horizontal, 8)
-//                
-//                Spacer()
-//                
-//                Text(meal.instructionSteps[currentStepIndex])
-//                    .font(.title2).fontWeight(.semibold)
-//                    .multilineTextAlignment(.center)
-//                    .padding(.horizontal, 16)
-//                
-//                
-//                Spacer()
-//                
-//                HStack {
-//                    Spacer()
-//                    
-//                    CircleIconButton(systemName: "arrowshape.left.fill", width: 50, height: 50, font: .headline) {
-//                        if currentStepIndex > 0 { // Verifica se currentStepIndex é maior que 0
-//                            currentStepIndex -= 1
-//                        }
-//                    }
-//                    .disabled(currentStepIndex == 0)
-//                    
-//                    
-//                    Spacer()
-//                    
-//                    CircleIconButton(systemName: isLastStep ? "checkmark" : "arrowshape.right.fill", width: 50, height: 50, font: .headline, action: {
-//                        if currentStepIndex < meal.instructionSteps.count - 1 {
-//                            currentStepIndex += 1
-//                        } else if isLastStep {
-//                            navigateToNextView = true
-//                            TelemetryManager.send("buttonPress", with: ["button": "Concluiu todos os passos da receita"])
-//
-//                        }
-//                    }, isLastStep: isLastStep)
-//                    
-//                    Spacer()
-//                }
-//                
-//                Spacer()
-//                
-//                NavigationLink(value: navigateToNextView) {
-//                    EmptyView()
-//                }
-//            }
-//            .navigationDestination(isPresented: $navigateToNextView) {
-//                FinishingTheRecipeView(isPresented: $navigateToNextView, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
-//            }
-//            .onAppear {
-//                // Registra o momento em que a view aparece
-//                viewAppearTime = Date()
-//                speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-//                speechToText.startTranscribing()
-//            }
-//            .onDisappear {
-//                // Calcula o tempo que a view ficou visível
-//                if let viewAppearTime = viewAppearTime {
-//                    let viewDisappearTime = Date()
-//                    let duration = viewDisappearTime.timeIntervalSince(viewAppearTime)
-//                    // Envia o sinal de telemetria com a duração
-//                    TelemetryManager.send("viewDuration", floatValue: duration, with: ["page": "MealSpeechView"])
-//                }
-//                dismiss()
-//                speechToText.stopTranscribing()
-//                speechToText.stopSpeaking()
-//            }
-//            .frame(maxWidth: .infinity, maxHeight: .infinity) // Faz a VStack ocupar toda a view
-//            .background(Color.backgroundCor.edgesIgnoringSafeArea(.all)) // Aplica a cor do background em toda a view
-//            .onChange(of: speechToText.currentWord) { oldWord, newWord in
-//                handleVoiceCommand(command: newWord)
-//            }
-//        } else {
-//            OnBoardingView(hasSeenOnboarding: $hasSeenOnboarding)
-//                .onDisappear {
-//                    hasSeenOnboarding = true
-//                }
-//        }
-//    }
-//    
-//    
-//    struct CircleIconButton: View {
-//        var systemName: String
-//        var width: CGFloat
-//        var height: CGFloat
-//        var font: Font
-//        var action: () -> Void
-//        var isLastStep: Bool?
-//        
-//        var body: some View {
-//            Button(action: action, label: {
-//                ZStack {
-//                    Circle()
-//                        .frame(width: width, height: height)
-//                        .foregroundStyle(isLastStep ?? false ? Color.checkButtonCor : Color.tabViewCor)
-//                    Image(systemName: systemName)
-//                        .font(font)
-//                        .fontWeight(.semibold)
-//                        .foregroundStyle(Color.buttonsContentCor)
-//                }
-//            })
-//        }
-//    }
-//    
-//    func goToNextStep() {
-//        currentStepIndex = min(currentStepIndex + 1, meal.instructionSteps.count - 1)
-//        speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-//    }
-//    
-//    func goToPreviousStep() {
-//        currentStepIndex = max(currentStepIndex - 1, 0)
-//        speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-//
-//    }
-//    
-//    func pauseReading() {
-//        speechToText.pauseSpeaking()
-//    }
-//    
-//    func continueReading() {
-//        speechToText.continueSpeaking()
-//    }
-//    
-//    private func handleVoiceCommand(command: String) {
-//            switch command {
-//            case "next":
-//                goToNextStep()
-//            case "próximo":
-//                goToNextStep()
-//            case "back":
-//                goToPreviousStep()
-//            case "voltar":
-//                goToPreviousStep()
-//            case "read":
-//                speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-//            case "leia":
-//                speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-//            case "pause":
-//                pauseReading()
-//            case "continue":
-//                continueReading()
-//            default:
-//                break
-//            }
-//    }
-//}
-//
-//
 
 import SwiftUI
 import TelemetryClient
@@ -261,10 +81,6 @@ struct MealSpeechView: View {
                 // Registra o momento em que a view aparece
                 viewAppearTime = Date()
                 speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-                    //isReading = false
-                    self.speechToText.startTranscribing()
-                }
                 UIApplication.shared.isIdleTimerDisabled = true
             }
             .onDisappear {
@@ -279,7 +95,6 @@ struct MealSpeechView: View {
                 speechToText.stopTranscribing()
                 speechToText.stopSpeaking()
                 UIApplication.shared.isIdleTimerDisabled = false
-
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity) // Faz a VStack ocupar toda a view
             .background(Color.backgroundCor.edgesIgnoringSafeArea(.all)) // Aplica a cor do background em toda a view
@@ -295,7 +110,43 @@ struct MealSpeechView: View {
         }
     }
     
+    func goToNextStep() {
+        currentStepIndex = min(currentStepIndex + 1, meal.instructionSteps.count - 1)
+        speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+    }
     
+    func goToPreviousStep() {
+        currentStepIndex = max(currentStepIndex - 1, 0)
+        speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+    }
+    
+    func pauseReading() {
+        speechToText.pauseSpeaking()
+    }
+    
+    func continueReading() {
+        speechToText.continueSpeaking()
+    }
+    
+    private func handleVoiceCommand(command: String) {
+        let normalizedCommand = command.lowercased().folding(options: .diacriticInsensitive, locale: .current).trimmingCharacters(in: .whitespacesAndNewlines)
+        switch normalizedCommand {
+        case "passe":
+            goToNextStep()
+        case "volte":
+            goToPreviousStep()
+        case "leia":
+            speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
+        case "pause":
+            pauseReading()
+        case "continue":
+            continueReading()
+        default:
+            break
+        }
+    }
+}
+
 struct CircleIconButton: View {
         var systemName: String
         var width: CGFloat
@@ -318,50 +169,6 @@ struct CircleIconButton: View {
             }
         }
     }
-    
-    func goToNextStep() {
-        self.speechToText.stopTranscribing()
-        currentStepIndex = min(currentStepIndex + 1, meal.instructionSteps.count - 1)
-        speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-            self.speechToText.startTranscribing()
-        }
-    }
-    
-    func goToPreviousStep() {
-        self.speechToText.stopTranscribing()
-        currentStepIndex = max(currentStepIndex - 1, 0)
-        speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-            self.speechToText.startTranscribing()
-        }
-    }
-    
-    func pauseReading() {
-        speechToText.pauseSpeaking()
-    }
-    
-    func continueReading() {
-        speechToText.continueSpeaking()
-    }
-    
-    private func handleVoiceCommand(command: String) {
-        let normalizedCommand = command.lowercased().folding(options: .diacriticInsensitive, locale: .current).trimmingCharacters(in: .whitespacesAndNewlines)
-        switch normalizedCommand {
-        case "next", "proximo", "proxima":
-            goToNextStep()
-        case "back", "voltar":
-            goToPreviousStep()
-        case "read", "leia":
-            speechToText.speak(text: meal.instructionSteps[currentStepIndex], rate: 0.5)
-        case "pause":
-            pauseReading()
-        case "continue":
-            continueReading()
-        default:
-            break
-        }
-    }
-}
+
 
 

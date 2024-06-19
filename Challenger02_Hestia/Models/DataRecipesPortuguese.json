@@ -1,0 +1,1792 @@
+[
+  {
+    "strMeal": "Pão de Queijo",
+    "categoria": "Miscelânea",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Preaqueça o forno a 180°C.",
+      "Em uma tigela, misture o polvilho azedo, sal, água, leite e óleo.",
+      "Adicione os ovos e misture bem até obter uma massa homogênea.",
+      "Incorpore o queijo ralado à massa.",
+      "Faça pequenas bolinhas e coloque-as em uma assadeira untada.",
+      "Asse no forno preaquecido por cerca de 20 minutos ou até dourar."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "250g",
+        "ingrediente": "polvilho azedo"
+      },
+      {
+        "quantidade": "100ml",
+        "ingrediente": "água"
+      },
+      {
+        "quantidade": "100ml",
+        "ingrediente": "leite"
+      },
+      {
+        "quantidade": "50ml",
+        "ingrediente": "óleo"
+      },
+      {
+        "quantidade": "1 colher de chá",
+        "ingrediente": "sal"
+      },
+      {
+        "quantidade": "200g",
+        "ingrediente": "queijo Minas ralado"
+      },
+      {
+        "quantidade": "2",
+        "ingrediente": "ovos"
+      }
+    ]
+  },
+  {
+    "strMeal": "Brigadeiro",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Em uma panela, misture o leite condensado com o cacau em pó.",
+      "Adicione a manteiga e leve ao fogo baixo, mexendo sempre.",
+      "Cozinhe até que a mistura desgrude do fundo da panela.",
+      "Despeje a mistura em um prato untado e deixe esfriar.",
+      "Unte as mãos com manteiga e faça pequenas bolas com a massa.",
+      "Passe os brigadeiros no granulado de chocolate."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 lata",
+        "ingrediente": "leite condensado"
+      },
+      {
+        "quantidade": "4 colheres de sopa",
+        "ingrediente": "cacau em pó"
+      },
+      {
+        "quantidade": "1 colher de sopa",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "granulado de chocolate"
+      }
+    ]
+  },
+  {
+    "strMeal": "Feijoada",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Deixe os feijões de molho na água durante a noite.",
+      "Em uma grande panela, cozinhe o feijão com folhas de louro em água suficiente para cobrir.",
+      "Em outra panela, refogue o bacon, a carne seca e as linguiças cortadas em pedaços.",
+      "Adicione alho, cebola picada e continue refogando.",
+      "Misture as carnes ao feijão e deixe cozinhar até que tudo esteja bem cozido.",
+      "Ajuste o sal e tempere com pimenta do reino a gosto.",
+      "Sirva com arroz branco, couve refogada e farofa."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500g",
+        "ingrediente": "feijão preto"
+      },
+      {
+        "quantidade": "200g",
+        "ingrediente": "bacon"
+      },
+      {
+        "quantidade": "200g",
+        "ingrediente": "carne seca"
+      },
+      {
+        "quantidade": "200g",
+        "ingrediente": "linguiça calabresa"
+      },
+      {
+        "quantidade": "2",
+        "ingrediente": "cebolas grandes"
+      },
+      {
+        "quantidade": "5 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "2",
+        "ingrediente": "folhas de louro"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "pimenta do reino"
+      }
+    ]
+  },
+  {
+    "strMeal": "Moqueca Baiana",
+    "categoria": "Peixe",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Tempere o peixe com limão, alho e sal e deixe marinar por 30 minutos.",
+      "Em uma panela de barro, aqueça o azeite de dendê e refogue cebola e pimentão até ficarem macios.",
+      "Adicione os tomates picados e cozinhe até formar um molho.",
+      "Coloque o peixe e o leite de coco na panela e cozinhe em fogo baixo com a panela tampada por cerca de 20 minutos.",
+      "Adicione o coentro picado antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "peixe (robalo ou garoupa)"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "limões (suco)"
+      },
+      {
+        "quantidade": "3 dentes",
+        "ingrediente": "alho (amassados)"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      },
+      {
+        "quantidade": "100 ml",
+        "ingrediente": "azeite de dendê"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola (grande em rodelas)"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão verde (em rodelas)"
+      },
+      {
+        "quantidade": "3 unidades",
+        "ingrediente": "tomates (picados)"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "leite de coco"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "coentro (picado)"
+      }
+    ]
+  },
+  {
+    "strMeal": "Coxinha",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe o peito de frango com temperos e desfie.",
+      "Prepare um caldo com o cozimento do frango e adicione farinha de trigo para formar uma massa.",
+      "Deixe a massa esfriar e depois modele em forma de coxinha, recheando com o frango desfiado.",
+      "Passe as coxinhas em ovos batidos e depois em farinha de rosca.",
+      "Frite em óleo quente até dourar."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "peito de frango"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas (picadas)"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e temperos"
+      },
+      {
+        "quantidade": "500 ml",
+        "ingrediente": "caldo de cozimento do frango"
+      },
+      {
+        "quantidade": "400 g",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "ovos"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "farinha de rosca"
+      }
+    ]
+  },
+  {
+    "strMeal": "Bobó de Camarão",
+    "categoria": "Peixe",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Tempere o camarão com limão e alho e reserve.",
+      "Cozinhe a mandioca até que fique bem macia e então bata no liquidificador até formar um creme.",
+      "Refogue cebola e alho no azeite de dendê, acrescente tomate, pimentão e cozinhe até amolecer.",
+      "Adicione o creme de mandioca, camarões, leite de coco e cozinhe por alguns minutos.",
+      "Finalize com cheiro-verde e ajuste o sal e a pimenta."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "camarão limpo"
+      },
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "mandioca"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "limão (suco)"
+      },
+      {
+        "quantidade": "3 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "100 ml",
+        "ingrediente": "azeite de dendê"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão vermelho"
+      },
+      {
+        "quantidade": "3 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "400 ml",
+        "ingrediente": "leite de coco"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "cheiro-verde"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      }
+    ]
+  },
+  {
+    "strMeal": "Vatapá",
+    "categoria": "Peixe",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Deixe o pão de molho no leite de coco até amolecer e bata no liquidificador.",
+      "Refogue cebola, alho, gengibre e pimentões no azeite de dendê.",
+      "Adicione a pasta de pão, camarão seco, castanha de caju moída, amendoim moído e cozinhe até engrossar.",
+      "Tempere com sal, pimenta e finalize com cheiro-verde."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "5 unidades",
+        "ingrediente": "pães franceses"
+      },
+      {
+        "quantidade": "500 ml",
+        "ingrediente": "leite de coco"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "azeite de dendê"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "5 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "50 g",
+        "ingrediente": "gengibre"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "camarão seco"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "castanha de caju moída"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "amendoim moído"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "cheiro-verde"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      }
+    ]
+  },
+  {
+    "strMeal": "Escondidinho de Frango com Mandioca",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe a mandioca até ficar macia e esprema para formar um purê. Misture com manteiga e leite, tempere com sal.",
+      "Refogue o frango desfiado com alho, cebola e tomate, temperando com sal e pimenta.",
+      "Monte em um refratário uma camada do purê de mandioca, uma camada de frango e finalize com mais uma camada de mandioca.",
+      "Cubra com queijo parmesão ralado e leve ao forno para gratinar."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "mandioca"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "leite"
+      },
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "peito de frango"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "queijo parmesão ralado"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      }
+    ]
+  },
+  {
+    "strMeal": "Bolo de Rolo",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Prepare uma massa fina com farinha, ovos, açúcar e manteiga.",
+      "Asse rapidamente em uma forma plana.",
+      "Espalhe uma camada de goiabada derretida sobre a massa.",
+      "Enrole a massa firmemente, formando um rolo.",
+      "Corte em fatias e sirva."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "500 g",
+        "ingrediente": "açúcar"
+      },
+      {
+        "quantidade": "500 g",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "5 unidades",
+        "ingrediente": "ovos"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "goiabada"
+      }
+    ]
+  },
+  {
+    "strMeal": "Acarajé",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Deixe o feijão-fradinho de molho e depois triture para formar uma massa.",
+      "Misture a massa com cebola ralada, sal e formate bolinhos.",
+      "Frite os bolinhos em azeite de dendê até ficarem dourados.",
+      "Sirva com vatapá, caruru, camarão seco e molho de pimenta."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "feijão-fradinho"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      },
+      {
+        "quantidade": "500 ml",
+        "ingrediente": "azeite de dendê"
+      }
+    ]
+  },
+  {
+    "strMeal": "Feijão Tropeiro",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe o feijão e reserve.",
+      "Frite o bacon e a linguiça em pedaços pequenos.",
+      "Na mesma panela, refogue a cebola e o alho.",
+      "Adicione o feijão, a farinha de mandioca e misture bem.",
+      "Finalize com ovos fritos picados, couve picada e tempere com sal a gosto."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "feijão carioquinha"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "bacon"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "linguiça calabresa"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "4 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "farinha de mandioca"
+      },
+      {
+        "quantidade": "6 unidades",
+        "ingrediente": "ovos"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "couve"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      }
+    ]
+  },
+  {
+    "strMeal": "Empadão de Frango",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Prepare a massa misturando farinha, manteiga, ovo e água até formar uma massa homogênea e deixe descansar.",
+      "Refogue o frango desfiado com cebola, alho, tomate, ervilhas e azeitonas.",
+      "Abra a massa, forre uma forma, adicione o recheio e cubra com mais massa.",
+      "Pincele com gema de ovo e asse até dourar."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "ovo"
+      },
+      {
+        "quantidade": "100 ml",
+        "ingrediente": "água"
+      },
+      {
+        "quantidade": "500 g",
+        "ingrediente": "peito de frango"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "ervilhas"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "azeitonas"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "gema de ovo"
+      }
+    ]
+  },
+  {
+    "strMeal": "Pastel de Queijo",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Prepare a massa misturando farinha, água, óleo e uma pitada de sal.",
+      "Abra a massa em círculos, coloque uma porção de queijo no centro e feche, pressionando as bordas.",
+      "Frite em óleo quente até os pastéis ficarem dourados.",
+      "Escorra em papel toalha antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "água"
+      },
+      {
+        "quantidade": "50 ml",
+        "ingrediente": "óleo"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "queijo mozzarella"
+      }
+    ]
+  },
+  {
+    "strMeal": "Moqueca de Peixe",
+    "categoria": "Peixe",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Tempere o peixe com limão, alho e sal.",
+      "Em uma panela, coloque o azeite de dendê, refogue a cebola, o alho e acrescente o tomate e o pimentão até amolecerem.",
+      "Adicione o peixe e refogue rapidamente de ambos os lados.",
+      "Cubra com o leite de coco e cozinhe em fogo baixo até o peixe estar cozido.",
+      "Adicione o coentro e ajuste o sal antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "peixe (robalo ou dourado)"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "limões"
+      },
+      {
+        "quantidade": "4 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "azeite de dendê"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão vermelho"
+      },
+      {
+        "quantidade": "400 ml",
+        "ingrediente": "leite de coco"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "coentro"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      }
+    ]
+  },
+  {
+    "strMeal": "Caruru",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Lave e pique o quiabo e reserve.",
+      "Em uma panela, refogue a cebola e o alho no azeite de dendê.",
+      "Adicione o camarão seco, o quiabo e refogue mais um pouco.",
+      "Coloque o amendoim e a castanha de caju moída, misture bem.",
+      "Adicione água suficiente para formar um molho espesso e cozinhe até o quiabo estar macio.",
+      "Tempere com sal e pimenta e sirva com arroz branco."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "quiabo"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "camarão seco"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "amendoim moído"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "castanha de caju moída"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "azeite de dendê"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "4 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      }
+    ]
+  },
+  {
+    "strMeal": "Caldo de Feijão",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe o feijão com água, alho, e uma folha de louro até ficar macio.",
+      "Bata o feijão cozido no liquidificador até formar um caldo homogêneo.",
+      "Refogue bacon e linguiça em uma panela, adicione ao caldo.",
+      "Tempere com sal e pimenta, deixe ferver e sirva com cheiro-verde picado."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "feijão preto"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "bacon"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "linguiça calabresa"
+      },
+      {
+        "quantidade": "3 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "folha de louro"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "cheiro-verde"
+      }
+    ]
+  },
+  {
+    "strMeal": "Arroz Carreteiro",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Refogue a cebola e o alho em óleo até dourarem.",
+      "Adicione carne seca desfiada e refogue até ficar bem dourada.",
+      "Incorpore o arroz e frite por alguns minutos antes de adicionar água.",
+      "Cozinhe até o arroz absorver a água e ficar macio, tempere com sal a gosto e sirva."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "arroz"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "carne seca desfiada"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "3 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "óleo"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      }
+    ]
+  },
+  {
+    "strMeal": "Tapioca",
+    "categoria": "Miscellanous",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Aqueça uma frigideira e espalhe a goma de tapioca uniformemente até cobrir o fundo.",
+      "Deixe cozinhar até que as bordas comecem a descolar.",
+      "Recheie a gosto, dobre ao meio e sirva quente."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "goma de tapioca"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "recheio de sua escolha"
+      }
+    ]
+  },
+  {
+    "strMeal": "Canjica",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Deixe o milho para canjica de molho por algumas horas.",
+      "Cozinhe o milho na panela de pressão com água até ficar macio.",
+      "Adicione leite condensado, leite de coco, açúcar e canela em pau, cozinhando até obter uma mistura cremosa.",
+      "Sirva quente ou frio, polvilhado com canela em pó."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "milho para canjica"
+      },
+      {
+        "quantidade": "1 lata",
+        "ingrediente": "leite condensado"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "leite de coco"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "açúcar"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "canela em pau"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "canela em pó para polvilhar"
+      }
+    ]
+  },
+  {
+    "strMeal": "Canjica",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Deixe o milho para canjica de molho por algumas horas.",
+      "Cozinhe o milho na panela de pressão com água até ficar macio.",
+      "Adicione leite condensado, leite de coco, açúcar e canela em pau, cozinhando até obter uma mistura cremosa.",
+      "Sirva quente ou frio, polvilhado com canela em pó."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "milho para canjica"
+      },
+      {
+        "quantidade": "1 lata",
+        "ingrediente": "leite condensado"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "leite de coco"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "açúcar"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "canela em pau"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "canela em pó para polvilhar"
+      }
+    ]
+  },
+  {
+    "strMeal": "Virado à Paulista",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe o feijão e reserve.",
+      "Frite a linguiça, o bacon e reserve.",
+      "Na mesma panela, adicione alho e cebola e refogue.",
+      "Junte o feijão cozido, farinha de mandioca e misture até ficar homogêneo.",
+      "Sirva com os acompanhamentos tradicionais: arroz, couve refogada, ovo frito e a linguiça e bacon fritos."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "feijão carioca"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "linguiça"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "bacon"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "farinha de mandioca"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      }
+    ]
+  },
+  {
+    "strMeal": "Bauru",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Corte o pão ao meio e aqueça levemente na chapa ou no forno.",
+      "Frite o bife temperado até o ponto desejado.",
+      "Coloque o bife no pão, adicione fatias de queijo prato, rodelas de tomate e pepino em conserva.",
+      "Feche o sanduíche e sirva imediatamente."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pão francês"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "bife de rosbife"
+      },
+      {
+        "quantidade": "2 fatias",
+        "ingrediente": "queijo prato"
+      },
+      {
+        "quantidade": "2 rodelas",
+        "ingrediente": "tomate"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "pepino em conserva"
+      }
+    ]
+  },
+  {
+    "strMeal": "Cuscuz Paulista",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Refogue a cebola e o alho em óleo até dourarem.",
+      "Adicione o molho de tomate, ervilhas, milho e palmito e cozinhe por alguns minutos.",
+      "Misture a farinha de milho gradualmente até a mistura ficar homogênea.",
+      "Decore com ovos cozidos, sardinha e tomates, e cozinhe no vapor por 20 minutos.",
+      "Desenforme e sirva quente ou frio."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "molho de tomate"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "ervilhas"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "milho"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "palmito"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "farinha de milho"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "ovos cozidos"
+      },
+      {
+        "quantidade": "1 lata",
+        "ingrediente": "sardinha"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      }
+    ]
+  },
+  {
+    "strMeal": "Frango com Quiabo",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Tempere o frango com alho, sal e limão e deixe marinar por 30 minutos.",
+      "Frite o frango até dourar e reserve.",
+      "Na mesma panela, refogue cebola e tomate, adicione o quiabo e cozinhe até ficar macio.",
+      "Retorne o frango à panela, adicione água e cozinhe até o frango estar completamente cozido.",
+      "Ajuste o sal e sirva com arroz branco."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "frango"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "quiabo"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "3 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "limões"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      }
+    ]
+  },
+  {
+    "strMeal": "Pamonha",
+    "categoria": "Miscellanous",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Rale o milho verde e misture com açúcar e uma pitada de sal.",
+      "Envolva a mistura em folhas de milho e amarre bem.",
+      "Cozinhe em água fervente por aproximadamente 1 hora.",
+      "Deixe esfriar um pouco antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "12 unidades",
+        "ingrediente": "espigas de milho verde"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "açúcar"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      }
+    ]
+  },
+  {
+    "strMeal": "Risoto de Camarão",
+    "categoria": "Peixe",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Refogue a cebola no azeite até ficar transparente.",
+      "Adicione o arroz arbóreo e refogue brevemente.",
+      "Adicione o vinho branco e deixe evaporar.",
+      "Aos poucos, adicione caldo de peixe, mexendo sempre, até o arroz ficar al dente.",
+      "Incorpore o camarão cozido, o parmesão e a manteiga, ajuste os temperos e sirva imediatamente."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola picada"
+      },
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "azeite"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "arroz arbóreo"
+      },
+      {
+        "quantidade": "100 ml",
+        "ingrediente": "vinho branco"
+      },
+      {
+        "quantidade": "400 g",
+        "ingrediente": "camarão"
+      },
+      {
+        "quantidade": "1 litro",
+        "ingrediente": "caldo de peixe"
+      },
+      {
+        "quantidade": "50 g",
+        "ingrediente": "queijo parmesão ralado"
+      },
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "manteiga"
+      }
+    ]
+  },
+  {
+    "strMeal": "Sopa de Abóbora",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Refogue a cebola e o alho em azeite até amolecerem.",
+      "Adicione a abóbora em cubos e refogue por alguns minutos.",
+      "Cubra com caldo de legumes e cozinhe até a abóbora ficar macia.",
+      "Bata tudo no liquidificador até obter uma consistência cremosa.",
+      "Retorne ao fogo, ajuste o sal e a pimenta, adicione o creme de leite e cozinhe por mais alguns minutos antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "500 g",
+        "ingrediente": "abóbora"
+      },
+      {
+        "quantidade": "1 litro",
+        "ingrediente": "caldo de legumes"
+      },
+      {
+        "quantidade": "100 ml",
+        "ingrediente": "creme de leite"
+      },
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "azeite"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      }
+    ]
+  },
+  {
+    "strMeal": "Torta de Limão",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Prepare a massa triturando biscoitos de maisena e misturando com manteiga derretida, depois forre o fundo de uma forma e reserve.",
+      "Para o recheio, misture leite condensado com suco de limão e raspas de limão até engrossar.",
+      "Despeje o recheio sobre a base de biscoito e leve à geladeira por algumas horas.",
+      "Cubra com merengue e queime com um maçarico antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "200 g",
+        "ingrediente": "biscoito de maisena"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "1 lata",
+        "ingrediente": "leite condensado"
+      },
+      {
+        "quantidade": "120 ml",
+        "ingrediente": "suco de limão"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "limão (raspas)"
+      }
+    ]
+  },
+  {
+    "strMeal": "Picadinho de Carne",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Tempere a carne com sal e pimenta e reserve.",
+      "Em uma panela, aqueça o óleo e doure a carne em fogo alto.",
+      "Adicione cebola picada e alho até que fiquem dourados.",
+      "Incorpore tomate picado, pimentão e um pouco de água, deixe cozinhar até a carne estar macia.",
+      "Finalize com cheiro-verde e sirva com arroz branco."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "carne bovina (cubos)"
+      },
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "óleo"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "cheiro-verde"
+      }
+    ]
+  },
+  {
+    "strMeal": "Salpicão de Frango",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe o frango, desfie e reserve.",
+      "Misture o frango desfiado com maionese, creme de leite, cenoura ralada, milho, ervilha e uvas passas.",
+      "Tempere com sal, pimenta e suco de limão.",
+      "Refrigere por algumas horas antes de servir.",
+      "Adicione batata palha por cima antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "peito de frango"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "maionese"
+      },
+      {
+        "quantidade": "100 ml",
+        "ingrediente": "creme de leite"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cenoura"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "milho"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "ervilha"
+      },
+      {
+        "quantidade": "50 g",
+        "ingrediente": "uvas passas"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "suco de limão"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "batata palha"
+      }
+    ]
+  },
+  {
+    "strMeal": "Caldinho de Feijão",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe o feijão com folhas de louro até ficar bem macio.",
+      "Bata o feijão cozido no liquidificador com um pouco do caldo até formar um creme.",
+      "Refogue bacon e cebola picada até dourarem e adicione ao caldo.",
+      "Tempere com pimenta malagueta a gosto e sirva quente com cheiro-verde."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "feijão preto"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "folhas de louro"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "bacon"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "pimenta malagueta"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "cheiro-verde"
+      }
+    ]
+  },
+  {
+    "strMeal": "Coxinha de Frango",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe o frango com temperos, desfie e reserve.",
+      "Prepare a massa com caldo de frango, farinha de trigo e manteiga.",
+      "Modele a massa em forma de coxinha, recheie com o frango desfiado, passe no ovo batido e na farinha de rosca.",
+      "Frite em óleo quente até dourar."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "peito de frango"
+      },
+      {
+        "quantidade": "500 ml",
+        "ingrediente": "caldo de frango"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "ovos"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "farinha de rosca"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "óleo para fritar"
+      }
+    ]
+  },
+  {
+    "strMeal": "Acarajé",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Deixe o feijão-fradinho de molho, depois triture até formar uma massa.",
+      "Misture a massa com cebola ralada e sal, modele em pequenos discos e frite em azeite de dendê.",
+      "Sirva com vatapá, caruru, camarão seco e molho de pimenta."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "feijão-fradinho"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "cebolas"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      },
+      {
+        "quantidade": "500 ml",
+        "ingrediente": "azeite de dendê"
+      }
+    ]
+  },
+  {
+    "strMeal": "Quindim",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Misture gemas, coco ralado e açúcar, depois adicione manteiga derretida e misture bem.",
+      "Despeje a mistura em formas untadas e leve ao forno em banho-maria até firmar.",
+      "Deixe esfriar completamente antes de desenformar e servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "12 unidades",
+        "ingrediente": "gemas"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "coco ralado"
+      },
+      {
+        "quantidade": "250 g",
+        "ingrediente": "açúcar"
+      },
+      {
+        "quantidade": "50 g",
+        "ingrediente": "manteiga"
+      }
+    ]
+  },
+  {
+    "strMeal": "Frango Xadrez",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Corte o frango em cubos e tempere com sal e pimenta.",
+      "Aqueça o óleo em uma panela e frite o frango até dourar.",
+      "Adicione pimentão, cebola, e molho de soja, cozinhe até os vegetais amolecerem.",
+      "Misture amido de milho com um pouco de água e adicione ao frango para engrossar o molho.",
+      "Sirva com arroz branco."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "peito de frango"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão vermelho"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "molho de soja"
+      },
+      {
+        "quantidade": "1 colher de sopa",
+        "ingrediente": "amido de milho"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      },
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "óleo"
+      }
+    ]
+  },
+  {
+    "strMeal": "Farofa de Banana",
+    "categoria": "Miscellanous",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Derreta a manteiga em uma frigideira, adicione cebola picada até que fique translúcida.",
+      "Incorpore as bananas cortadas e deixe cozinhar até que comecem a amolecer.",
+      "Adicione farinha de mandioca e frite até que a farofa fique dourada.",
+      "Tempere com sal e pimenta a gosto e sirva como acompanhamento."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "bananas"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "farinha de mandioca"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal e pimenta"
+      }
+    ]
+  },
+  {
+    "strMeal": "Caldo Verde",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe batatas em água até ficarem macias e amasse-as na água do cozimento.",
+      "Refogue alho e cebola em uma panela com azeite, adicione as batatas amassadas e caldo de galinha.",
+      "Junte couve manteiga cortada finamente e deixe cozinhar até que esteja macia.",
+      "Adicione pedaços de linguiça calabresa frita e sirva quente."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "batatas"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "couve manteiga"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "linguiça calabresa"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "1 litro",
+        "ingrediente": "caldo de galinha"
+      },
+      {
+        "quantidade": "2 colheres de sopa",
+        "ingrediente": "azeite"
+      }
+    ]
+  },
+  {
+    "strMeal": "Bobó de Camarão",
+    "categoria": "Peixe",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Cozinhe a mandioca até ficar macia e bata no liquidificador até formar um purê.",
+      "Refogue cebola, alho, pimentão e tomates no azeite de dendê, adicione o camarão e cozinhe por alguns minutos.",
+      "Incorpore o purê de mandioca e o leite de coco, cozinhe até engrossar.",
+      "Finalize com coentro picado e ajuste o tempero antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "camarão limpo"
+      },
+      {
+        "quantidade": "1 kg",
+        "ingrediente": "mandioca"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão vermelho"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "azeite de dendê"
+      },
+      {
+        "quantidade": "400 ml",
+        "ingrediente": "leite de coco"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "coentro"
+      }
+    ]
+  },
+  {
+    "strMeal": "Pudim de Leite Condensado",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Misture o leite condensado, leite e ovos até obter uma mistura homogênea.",
+      "Prepare uma calda de caramelo e despeje em uma forma.",
+      "Despeje a mistura do pudim na forma e asse em banho-maria até firmar.",
+      "Deixe esfriar completamente e desenforme antes de servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "1 lata",
+        "ingrediente": "leite condensado"
+      },
+      {
+        "quantidade": "1 medida da lata",
+        "ingrediente": "leite"
+      },
+      {
+        "quantidade": "3 unidades",
+        "ingrediente": "ovos"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "açúcar para o caramelo"
+      }
+    ]
+  },
+  {
+    "strMeal": "Casquinha de Siri",
+    "categoria": "Peixe",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Refogue a cebola e o alho no azeite, adicione a carne de siri e refogue.",
+      "Misture com tomate, pimentão, coentro, e farinha de rosca, e cozinhe até engrossar.",
+      "Recheie casquinhas de siri com a mistura, cubra com mais farinha de rosca e queijo parmesão.",
+      "Asse até dourar e sirva com fatias de limão."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "carne de siri"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "tomates"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "coentro"
+      },
+      {
+        "quantidade": "100 g",
+        "ingrediente": "farinha de rosca"
+      },
+      {
+        "quantidade": "50 g",
+        "ingrediente": "queijo parmesão"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "limão para servir"
+      }
+    ]
+  },
+  {
+    "strMeal": "Esfiha de Carne",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Prepare a massa com farinha, fermento, açúcar, sal, óleo e água morna, deixe descansar até dobrar de volume.",
+      "Para o recheio, refogue carne moída com cebola, alho, tomate, pimentão, temperos e deixe esfriar.",
+      "Abra pequenas porções de massa, recheie e modele as esfihas.",
+      "Asse em forno pré-aquecido até dourarem."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "500 g",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "30 g",
+        "ingrediente": "fermento biológico fresco"
+      },
+      {
+        "quantidade": "1 colher de sopa",
+        "ingrediente": "açúcar"
+      },
+      {
+        "quantidade": "1 colher de chá",
+        "ingrediente": "sal"
+      },
+      {
+        "quantidade": "100 ml",
+        "ingrediente": "óleo"
+      },
+      {
+        "quantidade": "200 ml",
+        "ingrediente": "água morna"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "carne moída"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "2 dentes",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "tomate"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "pimentão"
+      }
+    ]
+  },
+  {
+    "strMeal": "Empadinha de Palmito",
+    "categoria": "Salgada",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Faça a massa misturando farinha, manteiga, ovos e sal até formar uma massa lisa.",
+      "Prepare o recheio refogando palmito com cebola, alho, tomate e cheiro-verde.",
+      "Monte as empadinhas em forminhas, coloque o recheio e cubra com massa.",
+      "Asse até que estejam douradas."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "400 g",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "200 g",
+        "ingrediente": "manteiga"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "ovos"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "sal"
+      },
+      {
+        "quantidade": "300 g",
+        "ingrediente": "palmito picado"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "cebola"
+      },
+      {
+        "quantidade": "1 dente",
+        "ingrediente": "alho"
+      },
+      {
+        "quantidade": "1 unidade",
+        "ingrediente": "tomate"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "cheiro-verde"
+      }
+    ]
+  },
+  {
+    "strMeal": "Bolinho de Chuva",
+    "categoria": "Sobremesa",
+    "area": "Brasil",
+    "instructionSteps": [
+      "Misture farinha, açúcar, ovos, leite e fermento até formar uma massa homogênea.",
+      "Aqueça óleo em uma panela e frite colheradas da massa até que fiquem douradas.",
+      "Escorra em papel toalha e polvilhe com açúcar e canela para servir."
+    ],
+    "ingredientes": [
+      {
+        "quantidade": "2 xícaras",
+        "ingrediente": "farinha de trigo"
+      },
+      {
+        "quantidade": "1/2 xícara",
+        "ingrediente": "açúcar"
+      },
+      {
+        "quantidade": "2 unidades",
+        "ingrediente": "ovos"
+      },
+      {
+        "quantidade": "1/2 xícara",
+        "ingrediente": "leite"
+      },
+      {
+        "quantidade": "1 colher de chá",
+        "ingrediente": "fermento em pó"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "óleo para fritar"
+      },
+      {
+        "quantidade": "a gosto",
+        "ingrediente": "açúcar e canela para polvilhar"
+      }
+    ]
+  }
+]
