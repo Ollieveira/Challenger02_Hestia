@@ -11,6 +11,7 @@ struct Challenge2App: App {
         WindowGroup {
             TheTabView()
                 .environmentObject(purchaseManager)
+                .preferredColorScheme(.light)
         }
         .onChange(of: scenePhase) {
             switch scenePhase {
