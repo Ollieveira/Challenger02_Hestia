@@ -1,5 +1,5 @@
 //
-//  OnBoarding1.swift
+//  OnBoarding2.swift
 //  Challenger02_Hestia
 //
 //  Created by Willys Oliveira on 16/05/24.
@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct OnBoarding2: View {
+struct OnBoarding3: View {
+    
+    @Binding var hasSeenOnboarding: Bool
+    
     var body: some View {
         VStack {
             
@@ -19,7 +22,7 @@ struct OnBoarding2: View {
             
             Spacer()
             
-            Image(systemName: "forward.fill")
+            Image(systemName: "backward.fill")
                 .font(.custom("foward", size: 102))
                 .fontWeight(.bold)
                 .foregroundStyle(Color.onBoradingButtonCor)
@@ -29,19 +32,34 @@ struct OnBoarding2: View {
             (
                 Text("Diga")
                 +
-                Text(" 'Próximo' ")
+                Text(" 'Voltar' ")
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)            +
-                Text("para ir para o próximo passo")
+                Text("para retornar a etapa anterior")
             )
             .font(.title3)
             .foregroundStyle(Color.onBoradingButtonCor)
-
             
+            
+            Spacer()
+            Button(action: {
+                hasSeenOnboarding = true
+            }) {
+                Text("OK")
+                    .foregroundColor(.backgroundCor)
+                    .font(.headline)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding()
+                    .padding(.horizontal, 32)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(.onBoradingButtonCor)
+                    )
+            }
             Spacer()
         }
     }
 }
 
 #Preview {
-    OnBoarding2()
+    OnBoarding3(hasSeenOnboarding: .constant(true))
 }

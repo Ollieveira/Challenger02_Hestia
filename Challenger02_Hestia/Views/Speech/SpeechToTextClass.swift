@@ -481,6 +481,7 @@ class SpeechToText: ObservableObject {
     var language: String
     @Published private(set) var words: [String] = []
     @Published private(set) var currentWord: String = ""
+    @Published var isSpeaking: Bool = false
     
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?
@@ -490,6 +491,7 @@ class SpeechToText: ObservableObject {
     
     // Funcao que configura o reconhecimento de voz
     func configureAudioSessionForRecording() {
+        isSpeaking = false
         print("Estou gravando!!")
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -502,6 +504,7 @@ class SpeechToText: ObservableObject {
     
     // Funcao que configura o audio de leitura
     func configureAudioSessionForPlayback() {
+        isSpeaking = true
         print("Estou falando!!")
         
         let audioSession = AVAudioSession.sharedInstance()
@@ -562,7 +565,7 @@ class SpeechToText: ObservableObject {
     }
     
     private func estimateSpeechDuration(text: String, rate: Float) -> TimeInterval {
-        let wordsPerMinute = 250 * rate
+        let wordsPerMinute = 300 * rate
         let wordCount = text.split(separator: " ").count
         return TimeInterval(wordCount) / Double(wordsPerMinute) * 60.0
     }
