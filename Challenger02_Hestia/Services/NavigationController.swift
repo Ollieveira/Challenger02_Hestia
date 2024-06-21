@@ -1,8 +1,14 @@
-//
-//  NavigationController.swift
-//  Challenger02_Hestia
-//
-//  Created by Willys Oliveira on 21/06/24.
-//
-
 import Foundation
+import UIKit
+
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
+    }
+}
+

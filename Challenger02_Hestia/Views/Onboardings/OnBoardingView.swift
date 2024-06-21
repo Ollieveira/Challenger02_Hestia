@@ -19,8 +19,13 @@ struct OnBoardingView: View {
                     .tag(1)
                 OnBoarding2()
                     .tag(2)
-                OnBoarding3(hasSeenOnboarding: $hasSeenOnboarding)
+                OnBoarding3()
                     .tag(3)
+                OnBoarding4()
+                    .tag(4)
+                OnBoarding5(hasSeenOnboarding: $hasSeenOnboarding)
+                    .tag(5)
+                    
 
             }
             .font(.largeTitle)
