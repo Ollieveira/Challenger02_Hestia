@@ -2,10 +2,12 @@ import SwiftUI
 import TelemetryClient
 
 struct FinishingTheRecipeView: View {
+    @StateObject private var speechToText = SpeechToText(language: "pt-BR")
     @Binding var isPresented: Bool
     var note: String
     var meal: Meal
     var viewModel: MealViewModel
+
     
     
     var body: some View {
@@ -86,6 +88,10 @@ struct FinishingTheRecipeView: View {
                 .fill(Color.bgFavCardCor)
             )
             .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                speechToText.stopTranscribing()
+                speechToText.stopSpeaking()
+            }
     }
     
     struct CircleIconButton: View {
