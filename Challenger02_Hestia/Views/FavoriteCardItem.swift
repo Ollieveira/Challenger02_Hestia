@@ -41,8 +41,9 @@ struct FavoriteCard: View {
                 VStack (alignment: .leading) {
                     Text(recipeTitle)
                         .font(.title3).fontWeight(.semibold)
+                        .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                     
-                    Text(region)
+                    Text(region.capitalizingFirstLetter())
                         .font(.footnote)
                     
                     //                ForEach(Array(tags?.enumerated() ?? [].enumerated()), id: \.element) { index, tag in
@@ -87,5 +88,11 @@ struct FavoriteCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding(.horizontal, 16)
         })
+    }
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + dropFirst()
     }
 }
