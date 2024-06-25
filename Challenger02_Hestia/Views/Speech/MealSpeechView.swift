@@ -32,6 +32,7 @@ struct MealSpeechView: View {
                     Text(meal.strMeal)
                         .font(.title2).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .foregroundStyle(Color.tabViewCor)
+                        .multilineTextAlignment(.center)
                         .padding(.top, 8)
                     
                     

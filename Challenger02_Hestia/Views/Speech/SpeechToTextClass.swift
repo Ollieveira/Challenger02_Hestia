@@ -483,6 +483,7 @@ class SpeechToText: ObservableObject {
     @Published private(set) var currentWord: String = ""
     @Published var isSpeaking: Bool = false
     
+    private var timer: Timer?
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
@@ -557,18 +558,38 @@ class SpeechToText: ObservableObject {
         stopTranscribing() // Stop transcribing while speaking
         synthesizer.speak(utterance)
         
-        let estimatedDuration = estimateSpeechDuration(text: text, rate: rate)
-        DispatchQueue.main.asyncAfter(deadline: .now() + estimatedDuration) { [weak self] in
-            self?.startTranscribing() // Restart transcribing after speaking
-            self?.configureAudioSessionForRecording() // Configure the session for recording
-        }
+        // Start the timer to check the speaking status
+        startMonitoringSpeech()
+
+        
+//        let estimatedDuration = estimateSpeechDuration(text: text, rate: rate)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + estimatedDuration) { [weak self] in
+//            self?.startTranscribing() // Restart transcribing after speaking
+//            self?.configureAudioSessionForRecording() // Configure the session for recording
+//        }
     }
     
-    private func estimateSpeechDuration(text: String, rate: Float) -> TimeInterval {
-        let wordsPerMinute = 300 * rate
-        let wordCount = text.split(separator: " ").count
-        return TimeInterval(wordCount) / Double(wordsPerMinute) * 60.0
+    private func startMonitoringSpeech() {
+        timer?.invalidate() // Invalidate any existing timer
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
+            self?.checkSpeakingStatus()
+        }
     }
+
+    private func checkSpeakingStatus() {
+        if !synthesizer.isSpeaking {
+            timer?.invalidate()
+            startTranscribing() // Restart transcribing after speaking
+            configureAudioSessionForRecording() // Configure the session for recording
+        }
+    }
+
+    
+//    private func estimateSpeechDuration(text: String, rate: Float) -> TimeInterval {
+//        let wordsPerMinute = 200 * rate
+//        let wordCount = text.split(separator: " ").count
+//        return TimeInterval(wordCount) / Double(wordsPerMinute) * 60.0
+//    }
     
     func stopSpeaking() {
         synthesizer.stopSpeaking(at: .immediate)
