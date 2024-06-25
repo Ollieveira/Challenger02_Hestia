@@ -13,30 +13,43 @@ struct OnBoardingView: View {
     @Binding var hasSeenOnboarding: Bool
     
     var body: some View {
-        ZStack{
-            TabView (selection: $currentPage) {
-                OnBoarding1()
-                    .tag(1)
-                OnBoarding2()
-                    .tag(2)
-                OnBoarding3()
-                    .tag(3)
-                OnBoarding4()
-                    .tag(4)
-                OnBoarding5(hasSeenOnboarding: $hasSeenOnboarding)
-                    .tag(5)
+        NavigationStack {
+            ZStack{
+                TabView (selection: $currentPage) {
+                    OnBoarding1()
+                        .tag(1)
+                    OnBoarding2()
+                        .tag(2)
+                    OnBoarding3()
+                        .tag(3)
+                    OnBoarding4()
+                        .tag(4)
+                    OnBoarding5(hasSeenOnboarding: $hasSeenOnboarding)
+                        .tag(5)
                     
-
+                    
+                }
+                .font(.largeTitle)
+                .tabViewStyle(.page(indexDisplayMode: .always))
+                .indexViewStyle(.page(backgroundDisplayMode: .always))
             }
-            .font(.largeTitle)
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .background(Color.backgroundCor)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(trailing: skipButton)
         }
-        .background(Color.backgroundCor)
-        .navigationBarBackButtonHidden(true)
-
 
     }
+    
+    private var skipButton: some View {
+        Button(action: {
+            hasSeenOnboarding = true
+        }) {
+            Text("Pular")
+                .foregroundColor(Color.tabViewCor)
+        }
+        .opacity(currentPage == 5 ? 0 : 1) // Esconde o botão "Skip" na última página
+    }
+
 }
 
 #Preview {

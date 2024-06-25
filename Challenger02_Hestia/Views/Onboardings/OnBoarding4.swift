@@ -9,7 +9,12 @@ import SwiftUI
 
 struct OnBoarding4: View {
     var body: some View {
-        VStack {
+        VStack (alignment:.center, spacing: 32 ) {
+            
+            Text("Passo a Passo")
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(.semibold)
+                .foregroundStyle(Color.tabViewCor)
+                .padding()
             VStack {
                 Text("Controle de voz")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -45,14 +50,8 @@ struct OnBoarding4: View {
             .frame(width: 360, height: 450)
             
             Divider()
-                .padding(.top, 42)
+                .padding(.top, 16)
             
-            
-            Text("Passo a Passo")
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(.semibold)
-                .foregroundStyle(Color.tabViewCor)
-                .padding()
-
             Text("Leia as instruções atentamente a respeito dos comandos de voz.")
                 .font(.headline).fontWeight(.regular)
                 .multilineTextAlignment(.center)
