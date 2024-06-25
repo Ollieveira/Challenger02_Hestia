@@ -9,34 +9,36 @@ struct MealDetailView: View {
     @State private var isReading = false
     @State var isFavorite = false
     @State var showObservation = false
+    @State private var toastMessage: String = ""
+    @State private var showToast: Bool = false
     @StateObject private var speechToText = SpeechToText(language: "pt-BR")
     
     var body: some View {
-        VStack{
-            ZStack (alignment: .top) {
-                if let url = meal.strMealThumb {
-                    AsyncImage(url: url) { image in
-                    image.resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFill()
-                        .frame(maxWidth: .infinity, maxHeight: 265)
-                } else {
-                    Image("defaultRecipeImage") // Replace with your local default image name
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFill()
-                        .frame(maxWidth: .infinity, maxHeight: 265)
-                }
-                
-                // Adição de um efeito sombreado gradiente na parte superior do banner para deixar mais visivel os botões superiores
-                
-                LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]), startPoint: .top, endPoint: .bottom)
-                    .frame(maxWidth: .infinity, maxHeight: 265)
-                    .clipShape(RoundedRectangle(cornerRadius: 40))
-            }
+        VStack {
+//            ZStack (alignment: .top) {
+//                if let url = meal.strMealThumb {
+//                    AsyncImage(url: url) { image in
+//                    image.resizable()
+//                    } placeholder: {
+//                        ProgressView()
+//                    }
+//                        .aspectRatio(contentMode: .fit)
+//                        .scaledToFill()
+//                        .frame(maxWidth: .infinity, maxHeight: 265)
+//                } else {
+//                    Image("defaultRecipeImage") // Replace with your local default image name
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .scaledToFill()
+//                        .frame(maxWidth: .infinity, maxHeight: 265)
+//                }
+//                
+//                // Adição de um efeito sombreado gradiente na parte superior do banner para deixar mais visivel os botões superiores
+//                
+//                LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]), startPoint: .top, endPoint: .bottom)
+//                    .frame(maxWidth: .infinity, maxHeight: 265)
+//                    .clipShape(RoundedRectangle(cornerRadius: 40))
+//            }
             
             VStack {
                 ScrollView {
@@ -46,7 +48,7 @@ struct MealDetailView: View {
                                 .font(.title)
                                 .fontWeight(.bold)
                             
-                            Text(meal.strArea ?? "")
+                            Text(meal.strArea?.capitalizingFirstLetter() ?? "".capitalizingFirstLetter())
                                 .font(.caption2)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.tabViewCor)
@@ -172,16 +174,16 @@ struct MealDetailView: View {
                     .padding(.leading, 48)
                 }
             }
-            .background(
-                RoundedRectangle(cornerRadius: 44)
-                    .fill(Color.backgroundCor)
-            )
-            .offset(y: -32)
+//            .background(
+//                RoundedRectangle(cornerRadius: 44)
+//                    .fill(Color.backgroundCor)
+//            )
+//            .offset(y: -32)
             
             
         }
         .background(Color.backgroundCor)
-        .edgesIgnoringSafeArea(.all)
+//        .edgesIgnoringSafeArea(.all)
         .onDisappear {
             speechToText.stopSpeaking()
         }
@@ -192,29 +194,50 @@ struct MealDetailView: View {
             speechToText.stopSpeaking()
             
         }) {
-            Image(systemName: "arrowshape.left.fill")
-                .font(.title2)
-                .fontWeight(.semibold)
-                .foregroundStyle(Color.buttonsContentCor)
+            Image(systemName: "chevron.left")
+                .font(.title3)
+                .fontWeight(.regular)
+                .foregroundStyle(Color.tabViewCor)
         })
         .navigationBarItems(trailing: Button(action: {
             // Colocar funcionalidade de adicionar receita aos favoritos
             if isFavorite {
                 viewModel.removeFromFavorites(meal: meal)
                 TelemetryManager.send("buttonPress", with: ["button": "Removeu dos Favoritos"])
+                toastMessage = "Removido dos Favoritos"
 
             } else {
                 viewModel.addToFavorites(meal: meal)
                 TelemetryManager.send("buttonPress", with: ["button": "Adicionou aos Favoritos"])
+                toastMessage = "Adicionado aos Favoritos"
 
             }
             isFavorite.toggle()
+            showToastWithMessage(toastMessage)
+
         }) {
-            Image(systemName: isFavorite ? "star.fill" : "star")
+            Image(systemName: isFavorite ? "bookmark.fill" : "bookmark")
                 .font(.title2)
                 .fontWeight(.semibold)
-                .foregroundStyle(isFavorite ? Color.tabViewCor : Color.buttonsContentCor)
+                .foregroundStyle(isFavorite ? Color.tabViewCor : Color.tabViewCor)
         })
+        .overlay(
+            VStack {
+                if showToast {
+                    ToastView(message: toastMessage, meal: meal)
+                        .padding(.top, 50)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                withAnimation {
+                                    showToast = false
+                                }
+                            }
+                        }
+                }
+                Spacer()
+            }
+        )
+
         .onAppear {
             isFavorite = viewModel.favoriteMeals.contains(where: { $0.id == meal.id })
         }
@@ -268,6 +291,14 @@ struct MealDetailView: View {
         }
     }
     
+    private func showToastWithMessage(_ message: String) {
+        toastMessage = message
+        withAnimation {
+            showToast = true
+        }
+    }
+
+    
     func openURL(_ url: URL) {
         UIApplication.shared.open(url)
     }
@@ -277,12 +308,6 @@ struct MealDetailView: View {
 
 
 
-//Text("Category: \(meal.strCategory)")
-//
-//
-//if let tags = meal.strTags {
-//    Text("Tags: \(tags)")
-//}
 
 
 
