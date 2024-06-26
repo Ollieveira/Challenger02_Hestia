@@ -16,7 +16,6 @@ struct FavoriteCard: View {
     let imageUrl: URL
     let recipeTitle: String
     let region: String
-//    let tags: [String]?
     let deleteIcon: String
     @Binding var meal: Meal
     @State private var showingAlert = false
@@ -45,15 +44,6 @@ struct FavoriteCard: View {
                     
                     Text(region.capitalizingFirstLetter())
                         .font(.footnote)
-                    
-                    //                ForEach(Array(tags?.enumerated() ?? [].enumerated()), id: \.element) { index, tag in
-                    //                    Text(tag)
-                    //                        .font(.footnote)
-                    //                        .padding(.horizontal, 6)
-                    //                        .padding(.vertical, 4)
-                    //                        .background(RoundedRectangle(cornerRadius: 8)
-                    //                            .stroke(Color.tabViewCor, lineWidth: 2))
-                    //                }
                 }
                 .padding(.vertical, 8)
                 
