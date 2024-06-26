@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PurchaseView: View {
     
-//    @State var receitokens: Int = 00
     @EnvironmentObject var purchaseManager: PurchaseManager
     
     var body: some View {
@@ -35,7 +34,6 @@ struct PurchaseView: View {
                         .foregroundStyle(Color.textCoin)
 
                 }
-//                .frame(width: 70, height: 31)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
                 
@@ -56,7 +54,7 @@ struct PurchaseView: View {
                         HStack (spacing: 1) {
                             Text("5")
                                 .font(.largeTitle).fontWeight(.bold)
-                                .foregroundStyle(Color.tabViewCor)
+                                .foregroundStyle(Color.backgroundCor)
 
                             Image("Receitokens")
                                 .resizable()
@@ -65,10 +63,10 @@ struct PurchaseView: View {
 
                         }
                         Text("Receitokens")
-                            .font(.body).fontWeight(.regular)
-                            .foregroundStyle(Color.tabViewCor)
+                            .font(.footnote).fontWeight(.regular)
+                            .foregroundStyle(Color.backgroundCor)
 
-                        Text("R$ 1,00")
+                        Text("R$ 0,99")
                             .padding(8)
                             .font(.body).fontWeight(.bold)
                             .foregroundStyle(Color.white)
@@ -77,17 +75,12 @@ struct PurchaseView: View {
                             )
 
                     }
-                    .padding(5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.pink, lineWidth: 1)
-                    )
-                    .padding(5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 18)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-
+                    .padding()
+                    .background{
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.tabViewCor)
+                            .shadow(radius: 5)
+                    }
                 })
                 
                 Button(action: {
@@ -97,7 +90,7 @@ struct PurchaseView: View {
                         HStack (spacing: 1) {
                             Text("15")
                                 .font(.largeTitle).fontWeight(.bold)
-                                .foregroundStyle(Color.tabViewCor)
+                                .foregroundStyle(Color.backgroundCor)
 
                             Image("Receitokens")
                                 .resizable()
@@ -106,8 +99,8 @@ struct PurchaseView: View {
 
                         }
                         Text("Receitokens")
-                            .font(.body).fontWeight(.regular)
-                            .foregroundStyle(Color.tabViewCor)
+                            .font(.footnote).fontWeight(.regular)
+                            .foregroundStyle(Color.backgroundCor)
 
                         Text("R$ 2,90")
                             .padding(8)
@@ -118,16 +111,12 @@ struct PurchaseView: View {
                             )
 
                     }
-                    .padding(5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.pink, lineWidth: 1)
-                    )
-                    .padding(5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 18)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
+                    .padding()
+                    .background{
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.tabViewCor)
+                            .shadow(radius: 5)
+                    }
 
                 })
                 
@@ -138,7 +127,7 @@ struct PurchaseView: View {
                         HStack (spacing: 1) {
                             Text("30")
                                 .font(.largeTitle).fontWeight(.bold)
-                                .foregroundStyle(Color.tabViewCor)
+                                .foregroundStyle(Color.backgroundCor)
 
                             Image("Receitokens")
                                 .resizable()
@@ -146,10 +135,10 @@ struct PurchaseView: View {
                                 .frame(width: 36,height: 25)
                         }
                         Text("Receitokens")
-                            .font(.body).fontWeight(.regular)
-                            .foregroundStyle(Color.tabViewCor)
+                            .font(.footnote).fontWeight(.regular)
+                            .foregroundStyle(Color.backgroundCor)
 
-                        Text("R$ 4,90")
+                        Text("R$ 4,99")
                             .padding(8)
                             .font(.body).fontWeight(.bold)
                             .foregroundStyle(Color.white)
@@ -158,16 +147,12 @@ struct PurchaseView: View {
                             )
 
                     }
-                    .padding(5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.pink, lineWidth: 1)
-                    )
-                    .padding(5)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 18)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
+                    .padding()
+                    .background{
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.tabViewCor)
+                            .shadow(radius: 5)
+                    }
 
                 })
 
