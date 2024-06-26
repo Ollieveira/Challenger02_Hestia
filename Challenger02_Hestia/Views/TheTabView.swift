@@ -34,17 +34,17 @@ struct TheTabView: View {
                     
                     
                 }
-                .onAppear {
-                    // Load meals if empty
-                    if viewModel.meals.isEmpty {
-                        Task {
-                            viewModel.loadAllMeals()
-                        }
-                    }
+//                .onAppear {
+//                    // Load meals if empty
+//                    if viewModel.meals.isEmpty {
+//                        Task {
+//                            viewModel.loadAllMeals()
+//                        }
+//                    }
                     
                 }
                 .tint(.tabViewItemCor)
+                .navigationBarBackButtonHidden(true)
             }
-            .navigationBarBackButtonHidden(true)
         }
-}
+//}

@@ -9,7 +9,7 @@ struct Challenge2App: App {
     
     var body: some Scene {
         WindowGroup {
-            TheTabView()
+            LaunchScreenView()
                 .environmentObject(purchaseManager)
                 .preferredColorScheme(.light)
         }
