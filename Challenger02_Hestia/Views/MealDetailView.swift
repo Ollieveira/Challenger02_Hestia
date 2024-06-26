@@ -12,36 +12,12 @@ struct MealDetailView: View {
     @State private var toastMessage: String = ""
     @State private var showToast: Bool = false
     @State private var showOverlay = false
+    @State private var buttonPosition: CGRect = .zero
     @StateObject private var speechToText = SpeechToText(language: "pt-BR")
     
     var body: some View {
         ZStack {
             VStack {
-                //            ZStack (alignment: .top) {
-                //                if let url = meal.strMealThumb {
-                //                    AsyncImage(url: url) { image in
-                //                    image.resizable()
-                //                    } placeholder: {
-                //                        ProgressView()
-                //                    }
-                //                        .aspectRatio(contentMode: .fit)
-                //                        .scaledToFill()
-                //                        .frame(maxWidth: .infinity, maxHeight: 265)
-                //                } else {
-                //                    Image("defaultRecipeImage") // Replace with your local default image name
-                //                        .resizable()
-                //                        .aspectRatio(contentMode: .fit)
-                //                        .scaledToFill()
-                //                        .frame(maxWidth: .infinity, maxHeight: 265)
-                //                }
-                //
-                //                // Adição de um efeito sombreado gradiente na parte superior do banner para deixar mais visivel os botões superiores
-                //
-                //                LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.6), Color.clear]), startPoint: .top, endPoint: .bottom)
-                //                    .frame(maxWidth: .infinity, maxHeight: 265)
-                //                    .clipShape(RoundedRectangle(cornerRadius: 40))
-                //            }
-                
                 VStack (alignment: .leading, spacing: 8) {
                     
                     Text(meal.strMeal)
@@ -68,7 +44,7 @@ struct MealDetailView: View {
                         .cornerRadius(10)
                         
                     } else {
-                        Image("defaultRecipeImage") // Replace with your local default image name
+                        Image("defaultRecipeImage")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .scaledToFill()
@@ -77,150 +53,95 @@ struct MealDetailView: View {
                     }
                 }
                 
-                HStack {
-                    Spacer()
-                    
-                    NavigationLink (
-                        destination: MealSpeechView(meal: $meal)
-                        ,
-                        label: {
-                            HStack (spacing: 8) {
-                                Image(systemName: "play.fill")
-                                    .font(.body)
-                                    .foregroundColor(.backgroundCor)
-                                    .fontWeight(.semibold)
-                                
-                                Text("Começar")
-                                    .foregroundColor(.backgroundCor)
-                                    .font(.footnote)
-                                    .fontWeight(.semibold)
+                    HStack (spacing: 12) {
+                        
+                        Spacer()
+                        
+                        if let notes = meal.notes, !notes.isEmpty {
+                            CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline) {
+                                TelemetryManager.send("buttonPress", with: ["button": "Abrir tela Sheet de Notas"])
+                                showObservation = true
                             }
-                            .padding(8)
-                            .background(
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(.onBoradingButtonCor)
-                            )
+
+                            .sheet(isPresented: $showObservation, content: {
+                                AddObservationView(isPresented: $showObservation, isSheet: true, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
+                                    .presentationDetents([.medium, .large])
+                                    .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                                    .presentationCornerRadius(44)
+                                    .presentationDragIndicator(.visible)
+                                    .onDisappear {
+                                        showObservation = false
+                                    }
+                            })
                         }
-                    )
-                    .simultaneousGesture(TapGesture().onEnded {
-                        // Envia o sinal de telemetria antes da navegação
-                        TelemetryManager.send("navigationLinkPress", with: ["destination": "MealSpeechView"])
-                    })
-                    
-                    Button(action: {
-                        withAnimation {
-                            showOverlay.toggle()
-                        }
-                    }) {
-                        ZStack {
-                            Circle()
-                                .frame(width: 32, height: 32)
-                                .foregroundStyle(Color.backgroundCor)
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.tabViewCor, lineWidth: 2)
+                        
+                        NavigationLink (
+                            destination: MealSpeechView(meal: $meal)
+                            ,
+                            label: {
+                                HStack (spacing: 8) {
+                                    Image(systemName: "play.fill")
+                                        .font(.body)
+                                        .foregroundColor(.backgroundCor)
+                                        .fontWeight(.semibold)
+                                    
+                                    Text("Começar")
+                                        .foregroundColor(.backgroundCor)
+                                        .font(.footnote)
+                                        .fontWeight(.semibold)
+                                }
+                                .padding(8)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .fill(.onBoradingButtonCor)
                                 )
-                            
-                            Image(systemName: "arrowtriangle.down.fill")
-                                .font(.body)
-                                .foregroundColor(Color.tabViewCor)
-                                .padding()
+                            }
+
+                        )
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // Envia o sinal de telemetria antes da navegação
+                            TelemetryManager.send("navigationLinkPress", with: ["destination": "MealSpeechView"])
+                        })
+                        
+                        Button(action: {
+                            withAnimation {
+                                showOverlay.toggle()
+                            }
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 32, height: 32)
+                                    .foregroundStyle(Color.backgroundCor)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(Color.tabViewCor, lineWidth: 2)
+                                    )
+                                
+                                Image(systemName: "arrowtriangle.down.fill")
+                                    .font(.body)
+                                    .foregroundColor(Color.tabViewCor)
+                            }
+
                         }
+                        .background(GeometryReader { geometry in
+                            Color.clear
+                                .onAppear {
+                                    DispatchQueue.main.async {
+                                        self.buttonPosition = geometry.frame(in: .global)
+                                    }
+                                }
+                        })
                     }
-                }
-                .padding(.horizontal, 16)
+                    .padding(.horizontal, 24).padding(.top, 8)
                 
                 VStack {
                     ScrollView {
                         Text("Ingredientes")
                             .frame(maxWidth: .infinity, alignment: .leading).font(.title2).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .padding(.top, 30)
+                            .padding(.top, 16)
                             .padding(.bottom, 16)
                             .padding(.leading, 32)
                         
-                        //                            Spacer()
-                        //
-                        //                            VStack (alignment: .center, spacing: 8){
-                        //
-                        //                                //                            NavigationLink (
-                        //                                //                                destination: MealSpeechView(meal: $meal)
-                        //                                //                                ,
-                        //                                //                                label: {
-                        //                                //                                    ZStack {
-                        //                                //                                        Circle()
-                        //                                //                                            .frame(width: 50, height: 50)
-                        //                                //                                            .foregroundStyle(Color.tabViewCor)
-                        //                                //                                        Image(systemName: "play.fill")
-                        //                                //                                            .font(.headline)
-                        //                                //                                            .fontWeight(.semibold)
-                        //                                //                                            .foregroundStyle(Color.buttonsContentCor)
-                        //                                //                                    }
-                        //                                //                                }
-                        //                                //                            )
-                        //                                //                            .simultaneousGesture(TapGesture().onEnded {
-                        //                                //                                                // Envia o sinal de telemetria antes da navegação
-                        //                                //                                                TelemetryManager.send("navigationLinkPress", with: ["destination": "MealSpeechView"])
-                        //                                //                                            })
-                        //
-                        //                                //                            CircleIconButton(systemName: "headphones", width: 32, height: 32, font: .caption, hasNotes: false) {
-                        //                                //
-                        //                                //                                if speechToText.getIsSpeaking() && !speechToText.getIsPaused() {
-                        //                                //                                    TelemetryManager.send("buttonPress", with: ["button": "Interrompeu a narração na MealDetailView"])
-                        //                                //                                    // Se a leitura está em andamento, pare a leitura
-                        //                                //                                    speechToText.stopSpeaking()
-                        //                                //                                    isReading = false
-                        //                                //                                } else {
-                        //                                //                                    TelemetryManager.send("buttonPress", with: ["button": "Inicou a narração na MealDetailView"])
-                        //                                //
-                        //                                //                                    // Se a leitura não está em andamento, comece a ler os ingredientes
-                        //                                //                                    isReading = true
-                        //                                //
-                        //                                //                                    speechToText.speak(text: "Vamos começar com os ingredientes e depois passaremos para os passos de preparação.", rate: 0.3)
-                        //                                //
-                        //                                //                                    speechToText.speak(text: "Ingredientes", rate: 0.3)
-                        //                                //
-                        //                                //                                    for (ingredient, measure) in meal.ingredients.sorted(by: >) {
-                        //                                //                                        let formattedKey = ingredient.prefix(1).capitalized + ingredient.dropFirst()
-                        //                                //                                        let ingredientText = "\(measure) of \(formattedKey)"
-                        //                                //                                        speechToText.speak(text: ingredientText, rate: 0.3)
-                        //                                //                                    }
-                        //                                //
-                        //                                //                                    speechToText.speak(text: "Passos de Preparação", rate: 0.3)
-                        //                                //
-                        //                                //
-                        //                                //                                    for step in meal.instructionSteps {
-                        //                                //                                        // Configure a velocidade da leitura aqui (0.3 é 30% da velocidade normal)
-                        //                                //                                        speechToText.speak(text: step, rate: 0.3)
-                        //                                //                                    }
-                        //                                //                                }
-                        //                                //                            }
-                        //                                //
-                        //                                //                            CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, hasNotes: false, action: {
-                        //                                //                                TelemetryManager.send("buttonPress", with: ["button": "Ver video no YouTube"])
-                        //                                //
-                        //                                //                                if let youtubeURL = meal.strYoutube {
-                        //                                //                                    openURL(youtubeURL)
-                        //                                //                                }
-                        //                                //                            })
-                        //                                //
-                        //                                //                            CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline, hasNotes: !(meal.notes?.isEmpty ?? true)) {
-                        //                                //                                TelemetryManager.send("buttonPress", with: ["button": "Abrir tela Sheet de Notas"])
-                        //                                //
-                        //                                //                                showObservation = true
-                        //                                //                            }
-                        //                                //                            .sheet(isPresented: $showObservation, content: {
-                        //                                //                                AddObservationView(isPresented: $showObservation, isSheet: true, note: meal.notes ?? "", meal: meal, viewModel: viewModel)
-                        //                                //                                    .presentationDetents([.medium, .large])
-                        //                                //                                    .presentationBackgroundInteraction(.enabled(upThrough: .medium))
-                        //                                //                                    .presentationCornerRadius(44)
-                        //                                //                                    .presentationDragIndicator(.visible)
-                        //                                //                                    .onDisappear {
-                        //                                //                                        showObservation = false
-                        //                                //                                    }
-                        //                                //                            })
-                        //
-                        //                            }
-                        //                            .padding(.top, 20)
                         
                         VStack (spacing: 16) {
                             ForEach(meal.ingredients.sorted(by: >), id: \.key) { key, value in
@@ -305,7 +226,7 @@ struct MealDetailView: View {
             }
             
             if showOverlay {
-                Color.black.opacity(0.4)
+                Color.tabViewCor.opacity(0.4)
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
                         withAnimation {
@@ -320,49 +241,55 @@ struct MealDetailView: View {
                         
                         Spacer()
                         
-                        
-                        CircleIconButton(systemName: "speaker.wave.2", width: 32, height: 32, font: .caption, hasNotes: false) {
+                        CircleIconButton(systemName: "speaker.wave.2", width: 32, height: 32, font: .caption) {
                             if speechToText.getIsSpeaking() && !speechToText.getIsPaused() {
                                 TelemetryManager.send("buttonPress", with: ["button": "Interrompeu a narração na MealDetailView"])
                                 speechToText.stopSpeaking()
                                 isReading = false
+                                withAnimation {
+                                    showOverlay.toggle()
+                                }
                             } else {
                                 TelemetryManager.send("buttonPress", with: ["button": "Inicou a narração na MealDetailView"])
                                 isReading = true
-                                
-                                speechToText.speak(text: "Vamos começar com os ingredientes e depois passaremos para os passos de preparação.", rate: 0.3)
-                                speechToText.speak(text: "Ingredientes", rate: 0.3)
+                                withAnimation {
+                                    showOverlay.toggle()
+                                }
+
+                                speechToText.speak2(text: "Vamos começar com os ingredientes e depois passaremos para os passos de preparação.", rate: 0.3)
+                                speechToText.speak2(text: "Ingredientes", rate: 0.3)
                                 
                                 for (ingredient, measure) in meal.ingredients.sorted(by: >) {
                                     let formattedKey = ingredient.prefix(1).capitalized + ingredient.dropFirst()
-                                    let ingredientText = "\(measure) of \(formattedKey)"
-                                    speechToText.speak(text: ingredientText, rate: 0.3)
+                                    let ingredientText = "\(measure) de \(formattedKey)"
+                                    speechToText.speak2(text: ingredientText, rate: 0.3)
                                 }
                                 
-                                speechToText.speak(text: "Passos de Preparação", rate: 0.3)
+                                speechToText.speak2(text: "Passos de Preparação", rate: 0.3)
                                 
                                 for step in meal.instructionSteps {
-                                    speechToText.speak(text: step, rate: 0.3)
+                                    speechToText.speak2(text: step, rate: 0.3)
                                 }
                             }
                         }
                     }
                     
-                    
-                    HStack {
-                        Text("Video da Receita")
-                            .font(.footnote).fontWeight(.semibold)
-                            .foregroundStyle(Color.tabViewCor)
-                        
-                        Spacer()
-                        
-                        CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, hasNotes: false, action: {
-                            TelemetryManager.send("buttonPress", with: ["button": "Ver video no YouTube"])
+                    if meal.strYoutube != nil {
+                        HStack {
+                            Text("Video da Receita")
+                                .font(.footnote).fontWeight(.semibold)
+                                .foregroundStyle(Color.tabViewCor)
                             
-                            if let youtubeURL = meal.strYoutube {
-                                openURL(youtubeURL)
-                            }
-                        })
+                            Spacer()
+                            
+                            CircleIconButton(systemName: "play.rectangle.fill", width: 32, height: 32, font: .caption2, action: {
+                                TelemetryManager.send("buttonPress", with: ["button": "Ver video no YouTube"])
+                                
+                                if let youtubeURL = meal.strYoutube {
+                                    openURL(youtubeURL)
+                                }
+                            })
+                        }
                     }
                     
                     
@@ -373,7 +300,7 @@ struct MealDetailView: View {
                         
                         Spacer()
                         
-                        CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline, hasNotes: !(meal.notes?.isEmpty ?? true)) {
+                        CircleIconButton(systemName: "square.and.pencil", width: 32, height: 32, font: .subheadline) {
                             TelemetryManager.send("buttonPress", with: ["button": "Abrir tela Sheet de Notas"])
                             showObservation = true
                         }
@@ -390,15 +317,13 @@ struct MealDetailView: View {
                     }
                 }
                 .padding()
+                .frame(maxWidth: 200)
                 .background(Color.white)
-                .cornerRadius(12)
+                .cornerRadius(10)
                 .shadow(radius: 10)
-                .offset(x: 72, y: 10) // Offset to align below the button to the right
-                .frame(maxWidth: 200, alignment: .trailing) // Align to trailing edge
+                .position(x: buttonPosition.midX - 80, y: buttonPosition.maxY - 15) // Ajuste da distância do menu em relação ao botão
             }
-
         }
-        
     }
     
     struct BulletPointView: View {
@@ -421,7 +346,7 @@ struct MealDetailView: View {
         let width: CGFloat
         let height: CGFloat
         let font: Font
-        let hasNotes: Bool
+//        let hasNotes: Bool
         let action: () -> Void
         
         var body: some View {
@@ -430,12 +355,12 @@ struct MealDetailView: View {
                     Circle()
                         .frame(width: width, height: height)
                         .foregroundStyle(Color.tabViewCor)
-                    if hasNotes {
-                        Image(systemName: "circle.fill")
-                            .font(.caption)
-                            .foregroundStyle(Color.notificationCor)
-                            .offset(x: -12, y: -12)
-                    }
+//                    if hasNotes {
+//                        Image(systemName: "circle.fill")
+//                            .font(.caption)
+//                            .foregroundStyle(Color.notificationCor)
+//                            .offset(x: -12, y: -12)
+//                    }
                     Image(systemName: systemName)
                         .font(font)
                         .fontWeight(.semibold)
