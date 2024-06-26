@@ -44,7 +44,7 @@ struct AddObservationView: View {
                     isPresented = false
                     
                 }, label: {
-                    Text("Done")
+                    Text("Pronto")
                         .font(.title3)
                         .fontDesign(.rounded)
                         .foregroundStyle(Color.white)
