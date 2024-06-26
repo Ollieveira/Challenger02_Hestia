@@ -31,7 +31,13 @@ struct TheTabView: View {
                         }
                         .toolbarBackground(.tabViewCor, for: .tabBar)
                         .toolbarBackground(.visible, for: .tabBar)
-                    
+                    MainPageView()
+                        .tabItem {
+                            Image(systemName: "star.fill")
+                            Text("Main")
+                        }
+                        .toolbarBackground(.tabViewCor, for: .tabBar)
+                        .toolbarBackground(.visible, for: .tabBar)
                     
                 }
                 .onAppear {

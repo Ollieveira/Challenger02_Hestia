@@ -33,6 +33,7 @@
 		6FF1E1602BE57E0000A4B14E /* TheTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF1E15F2BE57E0000A4B14E /* TheTabView.swift */; };
 		993DD3D92BE416500007EEEE /* SpeechToTextClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993DD3D82BE416500007EEEE /* SpeechToTextClass.swift */; };
 		993DD3DB2BE4166F0007EEEE /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993DD3DA2BE4166F0007EEEE /* SpeechView.swift */; };
+		994CD61F2C2C8AC60067A3C7 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994CD61E2C2C8AC60067A3C7 /* MainPageView.swift */; };
 		9964D9C32BE2A9B8008CE95B /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964D9C22BE2A9B8008CE95B /* MealModel.swift */; };
 		9964D9C52BE2A9CB008CE95B /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964D9C42BE2A9CB008CE95B /* MealViewModel.swift */; };
 		9964D9C72BE2A9EB008CE95B /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964D9C62BE2A9EB008CE95B /* CategoryModel.swift */; };
@@ -89,6 +90,7 @@
 		6FF1E15F2BE57E0000A4B14E /* TheTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheTabView.swift; sourceTree = "<group>"; };
 		993DD3D82BE416500007EEEE /* SpeechToTextClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechToTextClass.swift; sourceTree = "<group>"; };
 		993DD3DA2BE4166F0007EEEE /* SpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
+		994CD61E2C2C8AC60067A3C7 /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		9964D9C22BE2A9B8008CE95B /* MealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModel.swift; sourceTree = "<group>"; };
 		9964D9C42BE2A9CB008CE95B /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		9964D9C62BE2A9EB008CE95B /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -175,13 +177,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6FF1E15A2BE57B6600A4B14E /* Menu */ = {
+		6FF1E15A2BE57B6600A4B14E /* MealListView */ = {
 			isa = PBXGroup;
 			children = (
+				9964D9CC2BE2AA49008CE95B /* MealsListView.swift */,
 				6FF1E15B2BE57C1800A4B14E /* EveryThingTogetherMenuView.swift */,
 				6FF1E15D2BE57CCD00A4B14E /* ButtonStyleMenuView.swift */,
 			);
-			path = Menu;
+			path = MealListView;
 			sourceTree = "<group>";
 		};
 		993DD3D72BE414D60007EEEE /* Speech */ = {
@@ -194,15 +197,23 @@
 			path = Speech;
 			sourceTree = "<group>";
 		};
+		994CD61D2C2C8AB90067A3C7 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				994CD61E2C2C8AC60067A3C7 /* MainPageView.swift */,
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
 		9964D9BF2BE2A995008CE95B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				994CD61D2C2C8AB90067A3C7 /* MainPage */,
 				99C2B37C2C0D23A500F32049 /* AddRecipeViews */,
 				99C2B36E2C0D205E00F32049 /* Onboardings */,
 				993DD3D72BE414D60007EEEE /* Speech */,
-				6FF1E15A2BE57B6600A4B14E /* Menu */,
+				6FF1E15A2BE57B6600A4B14E /* MealListView */,
 				99C2B3972C1101A000F32049 /* Monetization */,
-				9964D9CC2BE2AA49008CE95B /* MealsListView.swift */,
 				9964D9D02BE2AA6E008CE95B /* MealRowItem.swift */,
 				9964D9CE2BE2AA60008CE95B /* MealDetailView.swift */,
 				9964D9D22BE2AA80008CE95B /* CategoriesListView.swift */,
@@ -389,6 +400,7 @@
 				6F2CEC2B2BF67F5500F7EC5C /* OnBoarding3.swift in Sources */,
 				6FCDCFE42C260DF3007F34B4 /* OnBoarding2.swift in Sources */,
 				99C2B3872C0F924C00F32049 /* NavigationResetView.swift in Sources */,
+				994CD61F2C2C8AC60067A3C7 /* MainPageView.swift in Sources */,
 				9964D9CB2BE2AA34008CE95B /* WebService.swift in Sources */,
 				99C2B37B2C0D239E00F32049 /* ImagePicker.swift in Sources */,
 				99C2B38F2C10FA9E00F32049 /* CoinListView.swift in Sources */,

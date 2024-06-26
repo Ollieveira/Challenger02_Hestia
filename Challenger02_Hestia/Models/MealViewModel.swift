@@ -138,6 +138,11 @@ class MealViewModel {
         applyFilters()
     }
     
+    func clearAllFilters() {
+        activeFilters.removeAll()
+        applyFilters()
+    }
+    
     func removeAllFilters() {
         activeFilters.removeAll()
         applyFilters()
