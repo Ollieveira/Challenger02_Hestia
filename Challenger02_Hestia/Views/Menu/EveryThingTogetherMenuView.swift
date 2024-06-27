@@ -5,6 +5,7 @@ struct EverythingTogetherMenuView: View {
     @State var viewModel = MealViewModel.instance
     @State private var viewAppearTime: Date?
     @FocusState private var isTextFieldFocused: Bool
+    @FocusState private var isTextEditorFocused: Bool
     
     var body: some View {
         NavigationStack {
@@ -21,6 +22,7 @@ struct EverythingTogetherMenuView: View {
                 ZStack (alignment: .trailing){
                         TextField("", text: $viewModel.searchInput)
                             .focused($isTextFieldFocused)
+                            .focused($isTextEditorFocused)
                             .font(.subheadline)
                             .padding(20)
                             .background(.white,
@@ -65,6 +67,11 @@ struct EverythingTogetherMenuView: View {
                 
                 MealsListView()
             }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isTextEditorFocused = false
+            }
+
             .onAppear {
                 // Registra o momento em que a view aparece
                 viewAppearTime = Date()

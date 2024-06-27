@@ -24,6 +24,7 @@ struct WebScrapingView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var showConfirmationAlert = false
+    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         VStack {
@@ -31,9 +32,50 @@ struct WebScrapingView: View {
                 ProgressView("Carregando...")
             } else {
                 Spacer()
-                TextField("Insira a URL aqui", text: $selectedUrl)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+//                TextField("Insira a URL aqui", text: $selectedUrl)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    .padding()
+                ZStack (alignment: .trailing){
+                        TextField("", text: $selectedUrl)
+                            .focused($isTextFieldFocused)
+                            .font(.subheadline)
+                            .padding(20)
+                            .background(.white,
+                                        in: RoundedRectangle(cornerRadius: 35, style: .continuous))
+                            .shadow(radius: 1)
+                    HStack{
+                        if !isTextFieldFocused && selectedUrl.isEmpty {
+                            HStack{
+                                Image(systemName: "network")
+                                    .font(.title2)
+                                    .foregroundColor(Color(.filterActiveCor))
+                                VStack (alignment: .leading, spacing: 0){
+                                    Text("Insira Link")
+                                        .bold()
+                                        .foregroundColor(Color(.tabViewCor))
+                                        .opacity(0.4)
+                                    Text("Coloque o link da pagina da receita que deseja!")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .padding(.leading, 12)
+                        }
+                        Spacer()
+                        if !viewModel.searchInput.isEmpty {
+                            Button(action: {
+                                viewModel.searchInput = ""
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.trailing, 12)
+                            }
+                        }
+                    }
+                    
+                }
+                .padding()
                 Spacer()
                 Button(action: {
                     confirmSpendingCoin()

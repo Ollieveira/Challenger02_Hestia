@@ -36,7 +36,7 @@ struct FavoriteCard: View {
                     } placeholder: {
                         ProgressView()
                     }
-                    .frame(width: 116, height: 72)
+                    .frame(width: 116, height: 92)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     
                     
@@ -77,7 +77,7 @@ struct FavoriteCard: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 2)
                 )
-                .frame(maxWidth: .infinity, maxHeight: 72)
+                .frame(maxWidth: .infinity, maxHeight: 92)
                 .background(Color.backgroundCor)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal, 16).padding(.bottom, 8)
