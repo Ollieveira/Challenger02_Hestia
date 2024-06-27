@@ -13,7 +13,7 @@ struct TheTabView: View {
                             Image(systemName: "plus.circle.fill")
                             Text("Adicionar Receita")
                         }
-                        .toolbarBackground(.tabViewCor, for: .tabBar)
+                        .toolbarBackground(.backgroundCor, for: .tabBar)
                         .toolbarBackground(.visible, for: .tabBar)
                     
                     EverythingTogetherMenuView()
@@ -21,7 +21,7 @@ struct TheTabView: View {
                             Image(systemName: "book")
                             Text("Receitas")
                         }
-                        .toolbarBackground(.tabViewCor, for: .tabBar)
+                        .toolbarBackground(.backgroundCor, for: .tabBar)
                         .toolbarBackground(.visible, for: .tabBar)
                     
                     YourRecipes()
@@ -29,7 +29,7 @@ struct TheTabView: View {
                             Image(systemName: "star.fill")
                             Text("Favoritos")
                         }
-                        .toolbarBackground(.tabViewCor, for: .tabBar)
+                        .toolbarBackground(.backgroundCor, for: .tabBar)
                         .toolbarBackground(.visible, for: .tabBar)
                     
                     

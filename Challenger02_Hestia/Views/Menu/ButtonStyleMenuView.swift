@@ -19,7 +19,7 @@ struct ButtonStyleMenuView: View {
     @State var viewModel = MealViewModel.instance
     @State private var menus = [
 //        MenuCategory(name: "Favorites", filterName: "nonFavorite", icons: [Image("Favorites_Selected"), Image ("Favorites_Unselected")] , isFavorite: false),
-        MenuCategory(name: "Vegan", filterName: "Non-Vegan", icons: [Image("Vegan_Symbol_Selected"), Image ("Vegan_Symbol_Unselected") ], isFavorite: false),
+        MenuCategory(name: "Safe for Vegans", filterName: "Non-Vegan", icons: [Image("Vegan_Symbol_Selected"), Image ("Vegan_Symbol_Unselected") ], isFavorite: false),
         MenuCategory(name: "Dairy Free", filterName: "Non-Dairy-Free",  icons: [Image("Dairy_Free_Symbol_Selected"), Image ("Dairy_Free_Symbol_Unselected")] , isFavorite: false),
         MenuCategory(name: "Gluten Free", filterName: "Non-Gluten-Free", icons: [Image("Gluten_Free_Symbol_Selected"), Image ("Gluten_Free_Symbol_Unselected")] , isFavorite: false),
         MenuCategory(name: "Egg Free", filterName: "Non-Egg-Free", icons: [Image("Egg_Free_Symbol_Selected"), Image ("Egg_Free_Symbol_Unselected")] , isFavorite: false),
@@ -30,32 +30,75 @@ struct ButtonStyleMenuView: View {
     ]
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach($menus) { $menuCategory in
-                    Button {
-                        menuCategory.isFavorite.toggle()
-                        if viewModel.activeFilters.contains(menuCategory.filterName) {
-                            viewModel.removeFilter(restriction: menuCategory.filterName)
-                        }
-                        else {
-                            viewModel.addFilter(restriction: menuCategory.filterName)
-                        }
-                    } label: {
-                        VStack {
-                            (viewModel.activeFilters.contains(menuCategory.filterName) ? menuCategory.icons[0] : menuCategory.icons[1])
-                            Text(menuCategory.name)
-                                .foregroundStyle(.textFilterCor)
-                                .font(.caption2)
-                                .fontDesign(.rounded)
-                                .fontWeight(.semibold)
-                        }
-                    }
+        VStack (spacing:0){
+            HStack{
+                Text("Restrições Alimentares e Dieta")
+                    .fontWeight(.semibold)
+                Spacer()
+                Button {
+                    limparTudo()
+                } label: {
+                    Text("limpar tudo")
+                        .foregroundStyle(.filterActiveCor)
+                        .fontWeight(.light)
+                        .font(.caption2)
                 }
             }
-            .padding(.horizontal, 16)
+                .padding(.horizontal, 15)
+                .padding(.bottom, 15)
+            ScrollView(.horizontal, showsIndicators: false) {
+                VStack {
+                    HStack(alignment: .bottom,  spacing: 15) {
+                        ForEach($menus) { $menuCategory in
+                            Button {
+                                menuCategory.isFavorite.toggle()
+                                if viewModel.activeFilters.contains(menuCategory.filterName) {
+                                    viewModel.removeFilter(restriction: menuCategory.filterName)
+                                }
+                                else {
+                                    viewModel.addFilter(restriction: menuCategory.filterName)
+                                }
+                            } label: {
+                                HStack (alignment: .bottom){
+                                    VStack (alignment: .center){
+                                        (viewModel.activeFilters.contains(menuCategory.filterName) ? menuCategory.icons[0] : menuCategory.icons[1])
+                                        Text(menuCategory.name)
+                                            .foregroundStyle(viewModel.activeFilters.contains(menuCategory.filterName) ? Color(.filterActiveCor): Color(.filterUnactiveCor))
+                                            .font(.caption2)
+                                            .fontDesign(.rounded)
+                                            .fontWeight(.regular)
+                                            .padding(.top, 2)
+                                        Divider()
+                                            .padding(.vertical, 0)
+                                            .frame(height: 0.5)
+                                            .background(viewModel.activeFilters.contains(menuCategory.filterName) ? Color(.filterActiveCor) : .clear)
+                                            
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 15)
+                   
+                }
+            }
+
+            Divider()
+                .padding(.top, 0)
+                .frame(height: 0.5)
+                .background(Color(.filterUnactiveCor))
         }
     }
+    
+    private func limparTudo() {
+            // Set all menu categories to not favorite
+            for i in menus.indices {
+                menus[i].isFavorite = false
+            }
+            // Clear all active filters in the view model
+            viewModel.removeAllFilters()
+        }
 }
 
 struct ButtonStyleMenuView_Previews: PreviewProvider {

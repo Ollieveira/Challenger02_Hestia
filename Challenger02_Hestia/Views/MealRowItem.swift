@@ -20,13 +20,13 @@ struct MealRow: View {
                     .aspectRatio(contentMode: .fit)
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
-                    .cornerRadius(10)
+                    .cornerRadius(5)
                     .overlay(
                         //LinearGradient(gradient: Gradient(colors: [Color.tabViewCor.opacity(0.5), Color.clear]), startPoint: .bottom, endPoint: .top)
                         LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.75), Color.clear]), startPoint: .bottom, endPoint: .top)
                         .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
                         .aspectRatio(1.0, contentMode: .fit)
-                        .cornerRadius(10)
+                        .cornerRadius(5)
                         .opacity(0.5)
                         .overlay(
                             VStack(alignment: .leading) {
@@ -51,13 +51,13 @@ struct MealRow: View {
                     .aspectRatio(contentMode: .fit)
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
-                    .cornerRadius(10)
+                    .cornerRadius(5)
                     .overlay(
                         //LinearGradient(gradient: Gradient(colors: [Color.tabViewCor.opacity(0.5), Color.clear]), startPoint: .bottom, endPoint: .top)
                         LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.75), Color.clear]), startPoint: .bottom, endPoint: .top)
                         .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)
                         .aspectRatio(1.0, contentMode: .fit)
-                        .cornerRadius(10)
+                        .cornerRadius(5)
                         .opacity(0.5)
                         .overlay(
                             VStack(alignment: .leading) {

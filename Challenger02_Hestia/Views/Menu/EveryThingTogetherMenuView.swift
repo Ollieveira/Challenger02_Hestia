@@ -4,43 +4,59 @@ import TelemetryClient
 struct EverythingTogetherMenuView: View {
     @State var viewModel = MealViewModel.instance
     @State private var viewAppearTime: Date?
-
+    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         NavigationStack {
             VStack {
                 (
-                    Text("É hora de matar a sua")
-                    +
-                    Text(" fome ")
-                        .foregroundStyle(.tabViewCor)
-                    +
-                    Text("cozinhando!")
+                   Text("Revele-me seus Desejos! O que procura?")
                 )
-                .font(.title2)
                 .fontDesign(.rounded)
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(16)
+                .padding(.top, 16)
+                .padding(.horizontal, 15)
                 
                 ZStack (alignment: .trailing){
-                        TextField("Procurar receitas...", text: $viewModel.searchInput)
+                        TextField("", text: $viewModel.searchInput)
+                            .focused($isTextFieldFocused)
                             .font(.subheadline)
-                            .padding(12)
-                            .background(.thinMaterial,
-                                        in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-                            .shadow(radius: 6)
-                    
-                    if !viewModel.searchInput.isEmpty {
-                        Button(action: {
-                            viewModel.searchInput = ""
-                        }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.title2)
-                                .foregroundColor(.gray)
-                                .padding(.trailing, 12)
+                            .padding(20)
+                            .background(.white,
+                                        in: RoundedRectangle(cornerRadius: 35, style: .continuous))
+                            .shadow(radius: 1)
+                    HStack{
+                        if !isTextFieldFocused {
+                            HStack{
+                                Image(systemName: "magnifyingglass")
+                                    .font(.title2)
+                                    .foregroundColor(Color(.filterActiveCor))
+                                VStack (alignment: .leading, spacing: 0){
+                                    Text("Explorar...")
+                                        .bold()
+                                        .foregroundColor(Color(.tabViewCor))
+                                        .opacity(0.4)
+                                    Text("Procure o que deseja, mergulhe nos seus desejos!")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .padding(.leading, 12)
+                        }
+                        Spacer()
+                        if !viewModel.searchInput.isEmpty {
+                            Button(action: {
+                                viewModel.searchInput = ""
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.gray)
+                                    .padding(.trailing, 12)
+                            }
                         }
                     }
+                    
                 }
                 .padding()
                 
