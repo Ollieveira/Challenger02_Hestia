@@ -13,7 +13,9 @@ struct LaunchScreenView: View {
                     if animaHestia {
                         Spacer()
                         Spacer()
+
                     }
+
                     
                     Spacer()
                     
@@ -35,7 +37,7 @@ struct LaunchScreenView: View {
                         .scaledToFit()
                         .offset(y: 50)
                         .frame(height: animaHestia ? 414 : 0)
-                        .animation(.smooth(duration: 1), value: animaHestia)
+                        .animation(.smooth(duration: 0.5), value: animaHestia)
 
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -44,7 +46,7 @@ struct LaunchScreenView: View {
                 )
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         animaTitle.toggle()
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
