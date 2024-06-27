@@ -36,7 +36,7 @@ struct YourRecipes: View {
                         if let favoriteIndex = $viewModel.meals.firstIndex(where: { $0.id == favoriteMeal.id }) {
                             FavoriteCard(imageUrl: (viewModel.meals[favoriteIndex].strMealThumb ?? URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgwLS8cVj9jxd6gxPlGrLJCcSBDyI5XkQs8g&s"))!,
                                          recipeTitle: viewModel.meals[favoriteIndex].strMeal,
-                                         region: viewModel.meals[favoriteIndex].strArea ?? "",
+                                         region: viewModel.meals[favoriteIndex].area ?? "",
                                          deleteIcon: "trash.fill",
                                          meal: $viewModel.meals[favoriteIndex])
                         }

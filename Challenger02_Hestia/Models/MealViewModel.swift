@@ -30,31 +30,18 @@ class MealViewModel {
     }
     
     private init() {
-        if let loadedMeals = try? [Meal].load(from: "meals"), !loadedMeals.isEmpty {
-            self.meals = loadedMeals
-//            self.filteredMeals = self.meals
-            print("Using cached meals")
-        } else {
-            print("No cached meals found")
-        }
-        if let loadedFavoriteMeals = try? [Meal].load(from: "favoriteMeals"), !loadedFavoriteMeals.isEmpty {
-            self.favoriteMeals = loadedFavoriteMeals
-            print("Using cached favorite meals")
-        } else {
-            print("No cached favorite meals found")
-        }
+        loadAllMeals()
+        loadFavoriteMeals()
     }
     
     func saveMealNotes(_ meal: Meal, notes: String) {
         if let index = meals.firstIndex(where: { $0.id == meal.id }) {
             meals[index].notes = notes
             saveMeals()
-//            filterMeals()
         }
         if let index = favoriteMeals.firstIndex(where: { $0.id == meal.id }) {
             favoriteMeals[index].notes = notes
             saveMeals()
-//            filterMeals()
         }
     }
     
@@ -69,18 +56,30 @@ class MealViewModel {
     }
     
     func loadAllMeals() {
-        Task {
-            for letter in Self.alphabet {
-                await getAllMeals(for: letter)
-            }
+        if let loadedMeals = try? [Meal].load(from: "meals"), !loadedMeals.isEmpty {
+            self.meals = loadedMeals
+            print("Using cached meals")
+        } else {
+            print("No cached meals found")
+            self.meals = loadLocalMeals(from: "DataRecipesPortuguese")
         }
     }
-    
-    func getAllMeals(for letter: Character) async {
-        isLoading = true
-        await performSearch(query: String(letter))
-        isLoading = false
+
+    func loadFavoriteMeals() {
+        if let loadedFavoriteMeals = try? [Meal].load(from: "favoriteMeals"), !loadedFavoriteMeals.isEmpty {
+            self.favoriteMeals = loadedFavoriteMeals
+            print("Using cached favorite meals")
+        } else {
+            print("No cached favorite meals found")
+        }
     }
+
+    
+//    func getAllMeals(for letter: Character) async {
+//        isLoading = true
+//        await performSearch(query: String(letter))
+//        isLoading = false
+//    }
     
     public func filterMeals() {
 //        if searchInput.isEmpty {
@@ -92,37 +91,37 @@ class MealViewModel {
 //        }
     }
     
-    func performSearch(query: String) async {
-        guard !query.isEmpty else { return }
-        
-        do {
-            let urlString: String
-            switch searchType {
-            case .name:
-                urlString = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(query)"
-            case .letter:
-                guard query.count == 1 else { return }
-                urlString = "https://www.themealdb.com/api/json/v1/1/search.php?f=\(query)"
-            case .category:
-                urlString = "https://www.themealdb.com/api/json/v1/1/filter.php?c=\(query)"
-            }
-            let fetchedMeals = try await WebService().fetchMeals(fromURL: urlString)
-            
-            await MainActor.run {
-                for meal in fetchedMeals {
-                    if !meals.contains(where: { $0.id == meal.id }) {
-                        meals.append(meal)
-                    }
-                }
-//                filteredMeals = meals // Atualiza o cache inicial com todas as refeições
-                filterMeals()
-            }
-            
-            print("Fetch completed for:", query)
-        } catch {
-            print("Failed to fetch meals: \(error)")
-        }
-    }
+//    func performSearch(query: String) async {
+//        guard !query.isEmpty else { return }
+//        
+//        do {
+//            let urlString: String
+//            switch searchType {
+//            case .name:
+//                urlString = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(query)"
+//            case .letter:
+//                guard query.count == 1 else { return }
+//                urlString = "https://www.themealdb.com/api/json/v1/1/search.php?f=\(query)"
+//            case .category:
+//                urlString = "https://www.themealdb.com/api/json/v1/1/filter.php?c=\(query)"
+//            }
+//            let fetchedMeals = try await WebService().fetchMeals(fromURL: urlString)
+//            
+//            await MainActor.run {
+//                for meal in fetchedMeals {
+//                    if !meals.contains(where: { $0.id == meal.id }) {
+//                        meals.append(meal)
+//                    }
+//                }
+////                filteredMeals = meals // Atualiza o cache inicial com todas as refeições
+//                filterMeals()
+//            }
+//            
+//            print("Fetch completed for:", query)
+//        } catch {
+//            print("Failed to fetch meals: \(error)")
+//        }
+//    }
     
     func getMealType(for index: Int) -> Bool {
         return index % 2 == 0

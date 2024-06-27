@@ -140,17 +140,20 @@ struct AddRecipeManually: View {
     }
     
     func saveMeal() {
+        let ingredientsArray = ingredients.filter { !$0.key.isEmpty && !$0.value.isEmpty }
+            .map { Meal.Ingredient(quantidade: $0.value, ingrediente: $0.key) }
+
         // Coleta os dados do usuário
         let mealData: [String: Any] = [
             "strMeal": strMeal,
-            "strArea": strArea,
-            "strCategory": strCategory.isEmpty ? "Default Category" : strCategory,
-            "strInstructions": instructionSteps.filter { !$0.isEmpty }.joined(separator: ". "),
+            "area": strArea,
+            "categoria": strCategory.isEmpty ? "Default Category" : strCategory,
+            "strInstructions": instructionSteps.filter { !$0.isEmpty }.joined(separator: "\n"),
 //            "strMealThumb": strMealThumb.isEmpty ? NSNull() : strMealThumb as Any,  // Conversão explícita para Any ou NSNull
             "strYoutube": strYoutube.isEmpty ? "https://www.youtube.com/watch?v=dQw4w9WgXcQ" : strYoutube,
             "notes": notes,
             // Aqui você adiciona os ingredientes e medidas como um dicionário de [String: String]
-            "ingredients": Dictionary(uniqueKeysWithValues: ingredients.filter { !$0.key.isEmpty && !$0.value.isEmpty })
+            "ingredientes": ingredientsArray.map { ["quantidade": $0.quantidade, "ingrediente": $0.ingrediente] }
         ]
         
         // Codifica os dados coletados em JSON
@@ -176,17 +179,3 @@ struct AddMealView_Previews: PreviewProvider {
         AddRecipeManually(viewModel: MealViewModel.instance)
     }
 }
-
-
-
-
-
-//Button(action: {
-//    saveMeal
-//}, Label: {
-//    Text("Salvar Receita")
-//        .font(.title3)
-//        .fontDesign(.rounded)
-//        .foregroundStyle(Color.white)
-//        .frame(width: 100, height: 50)
-//})

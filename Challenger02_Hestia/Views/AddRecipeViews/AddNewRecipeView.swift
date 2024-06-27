@@ -10,7 +10,7 @@ import TelemetryClient
 
 struct AddNewRecipeView: View {
     
-    @EnvironmentObject var purchaseManager: PurchaseManager
+//    @EnvironmentObject var purchaseManager: PurchaseManager
     @State var viewModel = MealViewModel.instance
     @State private var isShowingSheet = false
     
@@ -19,8 +19,8 @@ struct AddNewRecipeView: View {
             VStack {
                 VStack{
                     HStack (spacing:0){
-                        Text("Adicionar mais")
-                        Text(" receitas")
+                        Text("Sejam bem-vindos ao")
+                        Text(" Hestia")
                             .foregroundStyle(Color.tabViewCor)
                         Text("!")
                     }
@@ -30,7 +30,7 @@ struct AddNewRecipeView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 16)
                     HStack{
-                        Text("Selecione uma das opções abaixo")
+                        Text("Que maravilhas você deseja hoje?")
                     }
                     .font(.title2)
                     .fontDesign(.rounded)
@@ -39,6 +39,10 @@ struct AddNewRecipeView: View {
                 }
                 .padding(.bottom, 40)
                 .padding(.top, 16)
+                
+                Image("HestiaMainPage")
+                    .resizable()
+
                 HStack {
                     Button(action: {
                         isShowingSheet.toggle()
@@ -46,9 +50,9 @@ struct AddNewRecipeView: View {
 
                     }) {
                         HStack{
-                            Text("\(purchaseManager.coins)")
-                                .foregroundStyle(.white)
-                                .bold()
+//                            Text("\(purchaseManager.coins)")
+//                                .foregroundStyle(.white)
+//                                .bold()
                             Image("Receitokens")
                         }
                         .padding(10)

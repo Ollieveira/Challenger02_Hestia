@@ -27,7 +27,7 @@ struct EverythingTogetherMenuView: View {
                                         in: RoundedRectangle(cornerRadius: 35, style: .continuous))
                             .shadow(radius: 1)
                     HStack{
-                        if !isTextFieldFocused {
+                        if !isTextFieldFocused && viewModel.searchInput.isEmpty {
                             HStack{
                                 Image(systemName: "magnifyingglass")
                                     .font(.title2)

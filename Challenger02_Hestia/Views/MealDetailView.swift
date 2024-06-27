@@ -20,12 +20,12 @@ struct MealDetailView: View {
             VStack {
                 VStack (alignment: .leading, spacing: 8) {
                     
-                    Text(meal.strMeal)
+                    Text(meal.strMeal.trimmingCharacters(in: ["\n"]))
                         .font(.title)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.leading)
                     
-                    Text(meal.strArea?.capitalizingFirstLetter() ?? "".capitalizingFirstLetter())
+                    Text(meal.area?.capitalizingFirstLetter() ?? "".capitalizingFirstLetter())
                         .font(.caption2)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.tabViewCor)
@@ -132,7 +132,7 @@ struct MealDetailView: View {
                                 }
                         })
                     }
-                    .padding(.horizontal, 24).padding(.top, 8)
+                    .padding(.horizontal, 24).padding(.vertical, 8)
                 
                 VStack {
                     ScrollView {
@@ -144,7 +144,7 @@ struct MealDetailView: View {
                         
                         
                         VStack (spacing: 16) {
-                            ForEach(meal.ingredients.sorted(by: >), id: \.key) { key, value in
+                            ForEach(meal.ingredientes.sorted(by: >), id: \.key) { key, value in
                                 let formattedKey = key.prefix(1).capitalized + key.dropFirst()
                                 BulletPointView(text: "\(formattedKey): \(value)")
                             }
@@ -259,7 +259,7 @@ struct MealDetailView: View {
                                 speechToText.speak2(text: "Vamos começar com os ingredientes e depois passaremos para os passos de preparação.", rate: 0.3)
                                 speechToText.speak2(text: "Ingredientes", rate: 0.3)
                                 
-                                for (ingredient, measure) in meal.ingredients.sorted(by: >) {
+                                for (ingredient, measure) in meal.ingredientes.sorted(by: >) {
                                     let formattedKey = ingredient.prefix(1).capitalized + ingredient.dropFirst()
                                     let ingredientText = "\(measure) de \(formattedKey)"
                                     speechToText.speak2(text: ingredientText, rate: 0.3)
