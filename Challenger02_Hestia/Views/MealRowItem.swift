@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 
 struct MealRow: View {
     let meal: Meal
@@ -12,11 +13,9 @@ struct MealRow: View {
         
         VStack {
             if let url = meal.strMealThumb {
-                AsyncImage(url: url) { image in
-                image.resizable()
-                } placeholder: {
-                    ProgressView()
-                }
+                KFImage(url)
+                    .cacheMemoryOnly()
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.width * 0.43, height: dynamicHeight)

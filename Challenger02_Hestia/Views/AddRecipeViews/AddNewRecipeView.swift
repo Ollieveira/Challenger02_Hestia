@@ -1,24 +1,18 @@
-//
-//  AddNewRecipeView.swift
-//  Challenger02_Hestia
-//
-//  Created by Guilherme Avila on 02/06/24.
-//
-
 import SwiftUI
 import TelemetryClient
 
 struct AddNewRecipeView: View {
     
-//    @EnvironmentObject var purchaseManager: PurchaseManager
+    @EnvironmentObject var purchaseManager: PurchaseManager
     @State var viewModel = MealViewModel.instance
     @State private var isShowingSheet = false
-    
+    @State private var buttonPosition: CGRect = .zero
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                VStack{
-                    HStack (spacing:0){
+                VStack {
+                    HStack(spacing: 0) {
                         Text("Sejam bem-vindos ao")
                         Text(" Hestia")
                             .foregroundStyle(Color.tabViewCor)
@@ -29,7 +23,8 @@ struct AddNewRecipeView: View {
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 16)
-                    HStack{
+                    
+                    HStack {
                         Text("Que maravilhas você deseja hoje?")
                     }
                     .font(.title2)
@@ -37,31 +32,45 @@ struct AddNewRecipeView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 16)
                 }
-                .padding(.bottom, 40)
-                .padding(.top, 16)
+                .padding(.top, 40)
                 
                 Image("HestiaMainPage")
                     .resizable()
-
+                    .frame(width: 332, height: 340)
+                    .padding(.top, 30)
+                    
                 HStack {
+                    VStack(alignment: .leading) {
+                        Text("Explore as funcionalidades ")
+                        Text("esplendidas diante de ti!")
+                    }
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .fontDesign(.rounded)
+                    
+                    Spacer()
+                    
                     Button(action: {
                         isShowingSheet.toggle()
                         TelemetryManager.send("ButtonClicked", with: ["Button": "Purchase"])
-
                     }) {
-                        HStack{
-//                            Text("\(purchaseManager.coins)")
-//                                .foregroundStyle(.white)
-//                                .bold()
+                        HStack {
                             Image("Receitokens")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 22, height: 25)
+                            
+                             Text("\(purchaseManager.coins)")
+                                 .font(.headline)
+                                 .fontWeight(.regular)
+                                 .foregroundStyle(Color.textCoin)
                         }
-                        .padding(10)
+                        .padding(.vertical, 8)
                         .padding(.horizontal, 16)
-                        .background{
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(.yellow)
-                        }
-                        
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 6)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
                     }
                     .sheet(isPresented: $isShowingSheet) {
                         PurchaseView()
@@ -70,43 +79,40 @@ struct AddNewRecipeView: View {
                             .presentationCornerRadius(44)
                             .presentationDragIndicator(.visible)
                     }
-                    
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 16)
-                .padding(.bottom, 20)
+                .padding(.top, 42)
                 
-                HStack {
-                    NavigationLink(destination: AddRecipeManually(viewModel: viewModel)) {
-                        RoundedButtonView(imageName: "plus.circle.fill", title: "Criar", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5, custo: nil, receitokens: nil)
-                        
-                        Spacer()
-                        
-                        NavigationLink(destination: OCRView()) {
-                            RoundedButtonView(imageName: "camera.fill", title: "Foto", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5, custo: 1, receitokens: "Receitokens")
-                        }
-                    }
-                    
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 16)
-                
-                HStack {
+                HStack(spacing: 26) {
                     NavigationLink(destination: WebScrapingView()) {
-                        RoundedButtonView(imageName: "link.circle.fill", title: "Link", backgroundColor: Color.bgFavCardCor, iconColor: Color.tabViewCor, width: geometry.size.width / 2.5, custo: 2, receitokens: "Receitokens")
+                        RoundedButtonView(imageName: "link.badge.plus", title: "Adicionar URL", backgroundColor: Color.backgroundCor, iconColor: Color.tabViewCor, width: geometry.size.width / 5, custo: 2, receitokens: "Receitokens", componentWidth: 100, height: 60)
                     }
-                    Spacer()
+                    .background(GeometryReader { geo in
+                        Color.clear
+                            .onAppear {
+                                DispatchQueue.main.async {
+                                    self.buttonPosition = geo.frame(in: .global)
+                                }
+                            }
+                    })
+                    
+                    NavigationLink(destination: AddRecipeManually(viewModel: viewModel)) {
+                        RoundedButtonView(imageName: "note.text.badge.plus", title: "Crie sua receita", backgroundColor: Color.backgroundCor, iconColor: Color.tabViewCor, width: geometry.size.width / 5, custo: nil, receitokens: nil, componentWidth: 100, height: 60)
+                    }
+                    
+                    NavigationLink(destination: OCRView()) {
+                        RoundedButtonView(imageName: "photo.badge.plus.fill", title: "Adicionar foto", backgroundColor: Color.backgroundCor, iconColor: Color.tabViewCor, width: geometry.size.width / 5, custo: 1, receitokens: "Receitokens", componentWidth: 100, height: 60)
+                    }
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal, 16)
-                
+                .padding(.top, 20)
             }
             .padding(.horizontal, 8)
         }
         .background(Color.backgroundCor)
     }
 }
-
 
 struct RoundedButtonView: View {
     let imageName: String
@@ -116,42 +122,48 @@ struct RoundedButtonView: View {
     let width: CGFloat
     let custo: Int?
     let receitokens: String?
+    let componentWidth: CGFloat
+    let height: CGFloat
     
     var body: some View {
         VStack(alignment: .leading) {
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(backgroundColor)
-                    .frame(width: width, height: width)
                 Image(systemName: imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: width / 3, height: width / 3)
                     .foregroundColor(iconColor)
                 if let custo = custo, let receitokens = receitokens {
-                    HStack {
+                    HStack (spacing: 2){
                         Text("\(custo)")
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.orange)
                             .bold()
                         Image(receitokens)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 15, height: 15)
                     }
-                    .padding(4)
-                    .padding(.horizontal, 12)
+                    .padding(1)
                     .background {
                         RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.yellow)
+                            .fill(Color.backgroundCor)
                     }
-                    .offset(x: -40, y: 60)
-                    
+                    .position(x: width / 1, y: width / 6) // Ajuste da posição baseado no tamanho do botão
                 }
             }
+            .frame(width: componentWidth, height: height)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray, lineWidth: 1)
+            )
             
-            Text(title)
-                .fontDesign(.rounded)
-                .font(.body)
+            VStack {
+                Text(title)
+                    .fontDesign(.rounded)
+                    .font(.footnote)
+                    .foregroundStyle(.filterUnactiveCor)
+            }
+            .frame(width: 100)
         }
     }
 }

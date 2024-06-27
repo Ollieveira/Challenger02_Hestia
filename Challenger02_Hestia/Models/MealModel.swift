@@ -110,28 +110,67 @@ struct Meal: Identifiable, Codable, Hashable {
     private func determineDietaryRestrictions() -> [String] {
         var restrictions: [String] = []
 
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonDairyFreeIngredients.contains) {
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonDairyFreeIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Dairy-Free")
         }
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonGlutenFreeIngredients.contains) {
+        
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonGlutenFreeIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Gluten-Free")
         }
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonEggFreeIngredients.contains) {
+
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonEggFreeIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Egg-Free")
         }
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonVeganIngredients.contains) {
+        
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonVeganIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Vegan")
         }
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonSeafoodFreeIngredients.contains) {
+        
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonSeafoodFreeIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Seafood-Free")
         }
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonPeanutFreeIngredients.contains) {
+        
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonPeanutFreeIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Peanut-Free")
         }
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonSoyFreeIngredients.contains) {
+        
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonSoyFreeIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Soy-Free")
         }
-        if ingredientes.keys.contains(where: DietaryRestrictionsData.nonSugarFreeIngredients.contains) {
+        
+        if ingredientes.keys.contains(where: { key in
+            DietaryRestrictionsData.nonSugarFreeIngredients.contains {
+                $0.lowercased() == key.lowercased()
+            }
+        }) {
             restrictions.append("Non-Sugar-Free")
         }
 

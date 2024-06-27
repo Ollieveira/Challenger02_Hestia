@@ -21,6 +21,7 @@
 		6FCDCFE62C2610BD007F34B4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCDCFE52C2610BD007F34B4 /* NavigationController.swift */; };
 		6FCDCFE82C2AED55007F34B4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCDCFE72C2AED55007F34B4 /* ToastView.swift */; };
 		6FCDCFEA2C2C8AF9007F34B4 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCDCFE92C2C8AF9007F34B4 /* LaunchScreenView.swift */; };
+		6FCDCFED2C2E23D9007F34B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6FCDCFEC2C2E23D9007F34B4 /* Kingfisher */; };
 		6FE1301B2BF3DF8700F40F26 /* YourRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301A2BF3DF8700F40F26 /* YourRecipes.swift */; };
 		6FE1301D2BF3E07300F40F26 /* FavoriteCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1301C2BF3E07300F40F26 /* FavoriteCardItem.swift */; };
 		6FE47A5E2BED475200BA9263 /* MealSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE47A5D2BED475200BA9263 /* MealSpeechView.swift */; };
@@ -128,6 +129,7 @@
 			files = (
 				6FEBE1642BFEBF560007D0E4 /* TelemetryClient in Frameworks */,
 				99C2B3812C0E52BD00F32049 /* TOCropViewController in Frameworks */,
+				6FCDCFED2C2E23D9007F34B4 /* Kingfisher in Frameworks */,
 				99C2B37F2C0E52BD00F32049 /* CropViewController in Frameworks */,
 				99C2B3952C10FC3E00F32049 /* StoreKit.framework in Frameworks */,
 				6FE47A612BEEB47200BA9263 /* CodableExtensions in Frameworks */,
@@ -316,6 +318,7 @@
 				99C2B3742C0D232600F32049 /* SwiftSoup */,
 				99C2B37E2C0E52BD00F32049 /* CropViewController */,
 				99C2B3802C0E52BD00F32049 /* TOCropViewController */,
+				6FCDCFEC2C2E23D9007F34B4 /* Kingfisher */,
 			);
 			productName = Challenger02_Hestia;
 			productReference = 6FF14DB02BE16F760004D52C /* Challenger02_Hestia.app */;
@@ -350,6 +353,7 @@
 				6F9726CB2BFBD6D600D7740F /* XCRemoteSwiftPackageReference "SwiftClient" */,
 				99C2B3732C0D232600F32049 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				99C2B37D2C0E52BD00F32049 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				6FCDCFEB2C2E23D9007F34B4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 6FF14DB12BE16F760004D52C /* Products */;
 			projectDirPath = "";
@@ -661,6 +665,14 @@
 				minimumVersion = 1.5.1;
 			};
 		};
+		6FCDCFEB2C2E23D9007F34B4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 		6FE47A5F2BEEB47200BA9263 /* XCRemoteSwiftPackageReference "CodableExtensions" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rvenieris/CodableExtensions.git";
@@ -692,6 +704,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6F9726CB2BFBD6D600D7740F /* XCRemoteSwiftPackageReference "SwiftClient" */;
 			productName = TelemetryClient;
+		};
+		6FCDCFEC2C2E23D9007F34B4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FCDCFEB2C2E23D9007F34B4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		6FE47A602BEEB47200BA9263 /* CodableExtensions */ = {
 			isa = XCSwiftPackageProductDependency;

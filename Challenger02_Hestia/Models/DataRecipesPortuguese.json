@@ -223,65 +223,6 @@
         "strMealThumb": "https://img.freepik.com/fotos-gratis/vista-frontal-deliciosa-composicao-da-comida-brasileira_23-2148739224.jpg?t=st=1716922952~exp=1716926552~hmac=045d1d8f2f0b86a1cd6606f5f8d3db8050d11b1626f71a4e2ad3d3030e6dd84e&w=2000"
     },
     {
-        "strMeal": "Bobó de Camarão",
-        "categoria": "Peixe",
-        "area": "Brasil",
-        "instructionSteps": [
-            "Tempere o camarão com limão e alho e reserve.",
-            "Cozinhe a mandioca até que fique bem macia e então bata no liquidificador até formar um creme.",
-            "Refogue cebola e alho no azeite de dendê, acrescente tomate, pimentão e cozinhe até amolecer.",
-            "Adicione o creme de mandioca, camarões, leite de coco e cozinhe por alguns minutos.",
-            "Finalize com cheiro-verde e ajuste o sal e a pimenta."
-        ],
-        "ingredientes": [
-            {
-                "quantidade": "1 kg",
-                "ingrediente": "camarão limpo"
-            },
-            {
-                "quantidade": "1 kg",
-                "ingrediente": "mandioca"
-            },
-            {
-                "quantidade": "1 unidade",
-                "ingrediente": "limão (suco)"
-            },
-            {
-                "quantidade": "3 dentes",
-                "ingrediente": "alho"
-            },
-            {
-                "quantidade": "100 ml",
-                "ingrediente": "azeite de dendê"
-            },
-            {
-                "quantidade": "2 unidades",
-                "ingrediente": "cebolas"
-            },
-            {
-                "quantidade": "1 unidade",
-                "ingrediente": "pimentão vermelho"
-            },
-            {
-                "quantidade": "3 unidades",
-                "ingrediente": "tomates"
-            },
-            {
-                "quantidade": "400 ml",
-                "ingrediente": "leite de coco"
-            },
-            {
-                "quantidade": "a gosto",
-                "ingrediente": "cheiro-verde"
-            },
-            {
-                "quantidade": "a gosto",
-                "ingrediente": "sal e pimenta"
-            }
-        ],
-        "strMealThumb": "https://img.freepik.com/fotos-gratis/flat-lay-saboroso-frutos-do-mar-na-tigela_23-2149410776.jpg?t=st=1716922979~exp=1716926579~hmac=90af4e358e796802972b0f3029143ea4462bf63e914143690c642aa697afa05f&w=2000"
-    },
-    {
         "strMeal": "Vatapá",
         "categoria": "Peixe",
         "area": "Brasil",
@@ -419,36 +360,6 @@
             }
         ],
         "strMealThumb": "https://img.freepik.com/fotos-gratis/pedacos-de-delicioso-rolo-de-chocolate_23-2147802386.jpg?t=st=1716923206~exp=1716926806~hmac=039c3b6d8d1c083ee64b6fe6ebca39eec9e81318346f37c6b0666a8fcae75713&w=996"
-    },
-    {
-        "strMeal": "Acarajé",
-        "categoria": "Salgada",
-        "area": "Brasil",
-        "instructionSteps": [
-            "Deixe o feijão-fradinho de molho e depois triture para formar uma massa.",
-            "Misture a massa com cebola ralada, sal e formate bolinhos.",
-            "Frite os bolinhos em azeite de dendê até ficarem dourados.",
-            "Sirva com vatapá, caruru, camarão seco e molho de pimenta."
-        ],
-        "ingredientes": [
-            {
-                "quantidade": "500 g",
-                "ingrediente": "feijão-fradinho"
-            },
-            {
-                "quantidade": "2 unidades",
-                "ingrediente": "cebolas"
-            },
-            {
-                "quantidade": "a gosto",
-                "ingrediente": "sal"
-            },
-            {
-                "quantidade": "500 ml",
-                "ingrediente": "azeite de dendê"
-            }
-        ],
-        "strMealThumb": "https://img.freepik.com/fotos-premium/acaraje-tradicional-comida-de-rua-brasileira-da-bahia_538646-12849.jpg"
     },
     {
         "strMeal": "Feijão Tropeiro",
@@ -792,44 +703,6 @@
             }
         ],
         "strMealThumb": "https://img.freepik.com/fotos-gratis/saborosa-comida-brasileira_23-2148875205.jpg?t=st=1716925113~exp=1716928713~hmac=f8560b8bc7081ca3e46b80a47baced039ef3dab68e07500721f847f910596159&w=2000"
-    },
-    {
-        "strMeal": "Canjica",
-        "categoria": "Sobremesa",
-        "area": "Brasil",
-        "instructionSteps": [
-            "Deixe o milho para canjica de molho por algumas horas.",
-            "Cozinhe o milho na panela de pressão com água até ficar macio.",
-            "Adicione leite condensado, leite de coco, açúcar e canela em pau, cozinhando até obter uma mistura cremosa.",
-            "Sirva quente ou frio, polvilhado com canela em pó."
-        ],
-        "ingredientes": [
-            {
-                "quantidade": "500 g",
-                "ingrediente": "milho para canjica"
-            },
-            {
-                "quantidade": "1 lata",
-                "ingrediente": "leite condensado"
-            },
-            {
-                "quantidade": "200 ml",
-                "ingrediente": "leite de coco"
-            },
-            {
-                "quantidade": "100 g",
-                "ingrediente": "açúcar"
-            },
-            {
-                "quantidade": "2 unidades",
-                "ingrediente": "canela em pau"
-            },
-            {
-                "quantidade": "a gosto",
-                "ingrediente": "canela em pó para polvilhar"
-            }
-        ],
-        "strMealThumb": "https://img.freepik.com/fotos-gratis/mingau-de-aveia-em-uma-tigela-no-concreto-vista-superior_114579-4199.jpg?t=st=1716926514~exp=1716930114~hmac=7df3b19b9c0a281622d923ed93f6f3ef6fc442603162b4a4e8b39283423e63c2&w=2000"
     },
     {
         "strMeal": "Canjica",
@@ -1833,4 +1706,3 @@
         "strMealThumb": "https://st4.depositphotos.com/5344180/38550/i/450/depositphotos_385505510-stock-photo-traditional-brazilian-mini-fried-cake.jpg"
     }
 ]
- 

@@ -14,20 +14,29 @@ struct YourRecipes: View {
     
     
     var body: some View {
-        VStack {
-            (
-                Text("Confira seus")
-                +
-                Text(" favoritos ")
-                    .foregroundStyle(.tabViewCor)
-                +
-                Text("!")
-            )
-            .font(.title2)
-            .fontDesign(.rounded)
-            .bold()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(16)
+        VStack (spacing: 20){
+            HStack {
+                (
+                    Text("Confira seus")
+                    +
+                    Text(" favoritos ")
+                        .foregroundStyle(.tabViewCor)
+                    +
+                    Text("!")
+                )
+                .font(.title2)
+                .fontDesign(.rounded)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
+                
+                Spacer()
+                
+                Image("LogoHestia")
+                    .resizable()
+                    .frame(width: 54, height: 54)
+                    .padding(.trailing, 16)
+            }
             if !viewModel.favoriteMeals.isEmpty {
                 
                 ScrollView(.vertical, showsIndicators: true) {

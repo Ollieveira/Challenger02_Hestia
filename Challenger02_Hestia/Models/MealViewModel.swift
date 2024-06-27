@@ -18,6 +18,19 @@ class MealViewModel {
             }
         }
     }
+    
+    var filteredFavoriteMeals: [Meal] { // Refeições filtradas para exibição
+        self.favoriteMeals.filter { meal in
+            let hasRestriction = meal.dietaryRestrictions.contains { activeFilters.contains($0) }
+            if searchInput.isEmpty {
+                return hasRestriction == false
+            } else {
+                return hasRestriction == false && meal.strMeal.localizedCaseInsensitiveContains(searchInput)
+            }
+        }
+    }
+
+    
     var favoriteMeals: [Meal] = [] // Refeições favoritas
     
     var activeFilters: Set<String> = []

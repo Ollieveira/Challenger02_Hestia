@@ -38,7 +38,8 @@ struct OCRView: View {
                     }
                 } else {
                     if inputImage == nil {
-                        HStack {
+                        Spacer()
+                        VStack (spacing: 30) {
                             Spacer()
                             Button {
                                 showImagePicker = true
@@ -50,7 +51,9 @@ struct OCRView: View {
                                     iconColor: Color.tabViewCor,
                                     width: geometry.size.width / 2.5,
                                     custo: nil,
-                                    receitokens: nil
+                                    receitokens: nil,
+                                    componentWidth: 300,
+                                    height: 150
                                 )
                             }
                             .sheet(isPresented: $showImagePicker) {
@@ -61,7 +64,6 @@ struct OCRView: View {
                                         }
                                     }
                             }
-                            Spacer()
                             Button {
                                 showCamera = true
                             } label: {
@@ -72,7 +74,9 @@ struct OCRView: View {
                                     iconColor: Color.tabViewCor,
                                     width: geometry.size.width / 2.5,
                                     custo: nil,
-                                    receitokens: nil
+                                    receitokens: nil,
+                                    componentWidth: 300,
+                                    height: 150
                                 )
                             }
                             .sheet(isPresented: $showCamera) {
@@ -85,6 +89,7 @@ struct OCRView: View {
                             }
                             Spacer()
                         }
+                        .frame(maxWidth: .infinity)
                     } else if inputImage != nil && extractedText.isEmpty {
                         if showCropper {
                             ImageCropperView(image: $inputImage, croppedImage: $croppedImage, showCropper: $showCropper)
