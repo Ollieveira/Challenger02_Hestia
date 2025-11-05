@@ -95,7 +95,7 @@ struct MealSpeechView: View {
                 speechToText.stopSpeaking()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity) // Faz a VStack ocupar toda a view
-            .background(Color.backgroundCor.edgesIgnoringSafeArea(.all)) // Aplica a cor do background em toda a view
+            .background(Color.backGroundCor.edgesIgnoringSafeArea(.all)) // Aplica a cor do background em toda a view
             .onChange(of: speechToText.currentWord) { oldWord, newWord in
                 handleVoiceCommand(command: newWord)
             }

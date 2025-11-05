@@ -62,7 +62,7 @@ struct YourRecipes: View {
             TelemetryManager.send("viewAppear", with: ["page": "Favorites"])
         }
         .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-        .background(Color.backgroundCor.edgesIgnoringSafeArea(.all))
+        .background(Color.backGroundCor.edgesIgnoringSafeArea(.all))
     }
     
 }

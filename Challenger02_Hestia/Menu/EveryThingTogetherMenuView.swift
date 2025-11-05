@@ -48,7 +48,7 @@ struct EverythingTogetherMenuView: View {
                     TelemetryManager.send("viewDuration", floatValue: duration, with: ["page": "MainPage"])
                 }
             }
-            .background(Color.backgroundCor)
+            .background(Color.backGroundCor)
         }
     }
 }

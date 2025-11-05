@@ -165,13 +165,13 @@ struct MealDetailView: View {
             }
             .background(
                 RoundedRectangle(cornerRadius: 44)
-                    .fill(Color.backgroundCor)
+                    .fill(Color.backGroundCor)
             )
             .offset(y: -32)
             
             
         }
-        .background(Color.backgroundCor)
+        .background(Color.backGroundCor)
         .edgesIgnoringSafeArea(.all)
         .onDisappear {
             speechToText.stopSpeaking()

@@ -27,7 +27,7 @@ struct OnBoardingView: View {
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
-        .background(Color.backgroundCor)
+        .background(Color.backGroundCor)
         .navigationBarBackButtonHidden(true)
 
 

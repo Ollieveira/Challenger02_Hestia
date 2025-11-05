@@ -45,7 +45,7 @@ struct OnBoarding3: View {
                 hasSeenOnboarding = true
             }) {
                 Text("OK")
-                    .foregroundColor(.backgroundCor)
+                    .foregroundColor(Color.backGroundCor)
                     .font(.headline)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding()

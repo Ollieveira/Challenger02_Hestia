@@ -101,7 +101,7 @@ struct MealSearchView: View {
                 }
             }
 
-            .background(Color.backgroundCor)
+            .background(Color.backGroundCor)
         }
     }
 }
